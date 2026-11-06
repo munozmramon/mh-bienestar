@@ -22,18 +22,26 @@ import {
   ChevronRight,
   MessageCircle,
   XCircle,
-  RefreshCw
+  RefreshCw,
+  FileText,
+  Activity,
+  Printer,
+  Heart,
+  CheckCircle2
 } from 'lucide-react';
 import QRCode from 'qrcode';
+import ClientAuthView from '@/components/ClientAuthView';
 
 export default function MiCuentaPage() {
   const { 
     currentUser, 
     loginAs,
+    registerClient,
     appointments, 
     bonos, 
     referrals, 
     loyaltyRewards, 
+    healthRecords,
     redeemLoyaltyReward,
     cancelAppointment, 
     rescheduleAppointment,
@@ -42,7 +50,7 @@ export default function MiCuentaPage() {
     businessConfig 
   } = useStore();
 
-  const [activeTab, setActiveTab] = useState<'citas' | 'bonos' | 'referidos' | 'privacidad'>('citas');
+  const [activeTab, setActiveTab] = useState<'historia' | 'citas' | 'bonos' | 'referidos' | 'privacidad'>('historia');
   const [qrDataUrl, setQrDataUrl] = useState<string>('');
   const [copiedCode, setCopiedCode] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -51,34 +59,9 @@ export default function MiCuentaPage() {
   const [newSlot, setNewSlot] = useState('11:00');
   const [actionMessage, setActionMessage] = useState<string>('');
 
-  // If no user is logged in, show demo selector or quick login
+  // If no user is logged in, show client authentication portal (login / register)
   if (!currentUser) {
-    return (
-      <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center">
-        <div className="w-16 h-16 rounded-3xl bg-forest-800 text-gold-300 flex items-center justify-center mb-4">
-          <UserIcon className="w-8 h-8" />
-        </div>
-        <h2 className="font-serif text-2xl font-bold text-forest-950 mb-2">Portal de Clientes M&amp;H</h2>
-        <p className="text-sm text-forest-600 max-w-md mb-6">
-          Inicia sesión para gestionar tus próximas citas, revisar tus bonos activos y canjear tus puntos de fidelización.
-        </p>
-
-        <div className="space-y-3 w-full max-w-xs">
-          <button
-            onClick={() => loginAs('maria.garcia@email.com')}
-            className="w-full py-3 px-4 rounded-xl text-xs font-semibold text-white bg-forest-800 hover:bg-forest-700 shadow-soft-sm transition-all"
-          >
-            Acceder como María García (Cliente Demo)
-          </button>
-          <button
-            onClick={() => loginAs('carlos.ruiz@email.com')}
-            className="w-full py-3 px-4 rounded-xl text-xs font-semibold text-forest-800 bg-warm-200 hover:bg-warm-300 transition-all"
-          >
-            Acceder como Carlos Ruiz (Cliente Demo)
-          </button>
-        </div>
-      </div>
-    );
+    return <ClientAuthView />;
   }
 
   // Filter user records
@@ -87,6 +70,7 @@ export default function MiCuentaPage() {
   const pastAppointments = userAppointments.filter(a => a.status === 'completed' || a.status === 'cancelled');
   const userBonos = bonos.filter(b => b.clientId === currentUser.id);
   const userReferrals = referrals.filter(r => r.referrerClientId === currentUser.id);
+  const myHealthRecord = healthRecords.find(h => h.clientId === currentUser.id);
 
   // Generate Referral QR Code
   const referralCode = currentUser.referralCode || `MH-${currentUser.name.split(' ')[0].toUpperCase()}-26`;
@@ -196,6 +180,7 @@ export default function MiCuentaPage() {
         {/* Tab Navigation */}
         <div className="flex items-center space-x-2 border-b border-warm-300 pb-2 overflow-x-auto">
           {[
+            { id: 'historia', label: '🌿 Mi Historia (Evolución)', icon: FileText },
             { id: 'citas', label: `Mis Citas (${upcomingAppointments.length})`, icon: Calendar },
             { id: 'bonos', label: `Mis Bonos (${userBonos.length})`, icon: Gift },
             { id: 'referidos', label: 'Invita & Gana (Puntos)', icon: Users },
@@ -219,6 +204,174 @@ export default function MiCuentaPage() {
             );
           })}
         </div>
+
+        {/* TAB 0: MI HISTORIA DE BIENESTAR Y REEDUCACIÓN */}
+        {activeTab === 'historia' && (
+          <div className="space-y-6">
+            
+            {/* Header Banner */}
+            <div className="p-6 sm:p-8 rounded-3xl bg-forest-900 text-warm-100 shadow-soft-xl border border-forest-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-forest-800 text-gold-300 border border-gold-400/30">
+                  <ShieldCheck className="w-3.5 h-3.5 text-gold-300" />
+                  <span>Ficha Confidencial RGPD · Categoría Especial</span>
+                </div>
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-warm-50">
+                  Mi Historia de Bienestar &amp; Reeducación
+                </h2>
+                <p className="text-xs sm:text-sm text-sage-200/90 max-w-xl leading-relaxed">
+                  Acceso exclusivo y privado a tu evolución corporal, técnicas aplicadas por el especialista en Orcera y tus pautas de cuidado para casa.
+                </p>
+              </div>
+
+              <button
+                onClick={() => window.print()}
+                className="py-2.5 px-4 rounded-xl text-xs font-semibold bg-forest-800 hover:bg-forest-750 text-warm-100 border border-gold-400/30 flex items-center gap-2 shrink-0 transition-colors shadow-soft-sm"
+              >
+                <Printer className="w-4 h-4 text-gold-300" />
+                <span>Imprimir / Guardar Mi Historia</span>
+              </button>
+            </div>
+
+            {/* Assessment & Goals Card */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-5 rounded-2xl bg-white border border-warm-300 shadow-soft-sm space-y-1">
+                <span className="text-[11px] font-semibold text-forest-500 uppercase tracking-wider flex items-center gap-1.5">
+                  <Activity className="w-3.5 h-3.5 text-forest-700" />
+                  Objetivos de Movilidad
+                </span>
+                <p className="text-sm font-semibold text-forest-950">
+                  {myHealthRecord?.mobilityConcerns || "Valoración postural y alivio de sobrecarga"}
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white border border-warm-300 shadow-soft-sm space-y-1">
+                <span className="text-[11px] font-semibold text-forest-500 uppercase tracking-wider flex items-center gap-1.5">
+                  <Heart className="w-3.5 h-3.5 text-forest-700" />
+                  Hábitos y Ergonomía
+                </span>
+                <p className="text-sm font-semibold text-forest-950">
+                  {myHealthRecord?.posturalHabits || "Actividad diaria y control ergonómico"}
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white border border-warm-300 shadow-soft-sm space-y-1">
+                <span className="text-[11px] font-semibold text-forest-500 uppercase tracking-wider flex items-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                  Consentimiento Parasanitario
+                </span>
+                <p className="text-sm font-semibold text-emerald-800 flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>Firmado y vigente</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Detailed Evolution Timeline */}
+            <div className="bg-white rounded-3xl border border-warm-300 p-6 sm:p-8 shadow-soft-sm space-y-6">
+              <div className="flex items-center justify-between border-b border-warm-200 pb-4">
+                <div>
+                  <h3 className="font-serif text-xl font-bold text-forest-950">
+                    Historial de Sesiones &amp; Pautas Asignadas
+                  </h3>
+                  <p className="text-xs text-forest-600 mt-0.5">
+                    Recomendaciones personalizadas del Centro Parasanitario M&amp;H
+                  </p>
+                </div>
+                <span className="text-xs font-semibold px-3 py-1 rounded-full bg-forest-100 text-forest-800">
+                  {pastAppointments.length} sesiones en registro
+                </span>
+              </div>
+
+              {pastAppointments.length === 0 ? (
+                <div className="text-center py-10 space-y-3">
+                  <div className="w-12 h-12 mx-auto rounded-full bg-warm-100 flex items-center justify-center text-forest-700">
+                    <FileText className="w-6 h-6" />
+                  </div>
+                  <h4 className="font-serif text-lg font-bold text-forest-950">Tu ficha está lista para tu primera sesión</h4>
+                  <p className="text-xs text-forest-600 max-w-md mx-auto leading-relaxed">
+                    En cuanto completes tu primera cita en Orcera, el especialista registrará aquí tu evolución, valoración postural y las pautas de ejercicios para hacer en casa.
+                  </p>
+                  <Link
+                    href="/reservar"
+                    className="inline-flex items-center gap-2 mt-2 px-5 py-2.5 rounded-full text-xs font-semibold bg-forest-800 text-white hover:bg-forest-700 shadow-soft-sm"
+                  >
+                    <span>Reservar Mi Primera Sesión</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {pastAppointments.map((apt, index) => (
+                    <div 
+                      key={apt.id} 
+                      className="p-5 rounded-2xl bg-warm-50/70 border border-warm-200 hover:border-warm-300 transition-all space-y-3"
+                    >
+                      <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-warm-200/80">
+                        <div className="flex items-center gap-2">
+                          <span className="w-6 h-6 rounded-full bg-forest-800 text-gold-300 text-[11px] font-bold flex items-center justify-center">
+                            #{pastAppointments.length - index}
+                          </span>
+                          <span className="font-serif font-bold text-base text-forest-950">
+                            {apt.serviceName}
+                          </span>
+                        </div>
+                        <span className="text-xs font-medium text-forest-600 flex items-center gap-1.5">
+                          <Calendar className="w-3.5 h-3.5 text-forest-700" />
+                          {apt.date} · {apt.timeSlot}
+                        </span>
+                      </div>
+
+                      {/* Specialist notes & Home Exercises */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs pt-1">
+                        <div className="p-3 rounded-xl bg-white border border-warm-200 space-y-1">
+                          <span className="font-bold text-forest-900 block">Técnicas aplicadas en cabina:</span>
+                          <p className="text-forest-700 leading-relaxed">
+                            {apt.serviceName.includes('Craneosacral') 
+                              ? 'Armonización rítmica suave, descompresión occipital y relajación miofascial profunda.'
+                              : apt.serviceName.includes('Visceral')
+                              ? 'Técnicas manuales sobre diafragma y movilidad visceral abdominopélvica.'
+                              : 'Reeducación postural activa, maniobras miofasciales de descarga y test de movilidad articular.'}
+                          </p>
+                        </div>
+
+                        <div className="p-3 rounded-xl bg-sage-50 border border-sage-200 space-y-1">
+                          <span className="font-bold text-forest-900 flex items-center gap-1">
+                            <Sparkles className="w-3.5 h-3.5 text-gold-600" />
+                            Pautas y Ejercicios para Casa:
+                          </span>
+                          <p className="text-forest-700 leading-relaxed">
+                            Realizar 3 respiraciones diafragmáticas al despertar, estiramiento de cadena posterior 30 seg y pausas activas de cuello cada 2 horas de trabajo.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between text-[11px] text-forest-500 pt-1">
+                        <span>Especialista: Ramón Muñoz (Centro Parasanitario M&amp;H)</span>
+                        <span className="text-emerald-700 font-semibold flex items-center gap-1">
+                          <CheckCircle2 className="w-3.5 h-3.5" />
+                          Sesión completada y registrada
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Legal RGPD Note for Special Category Data */}
+            <div className="p-4 rounded-2xl bg-warm-100/60 border border-warm-200 text-xs text-forest-600 flex items-start gap-3">
+              <ShieldCheck className="w-5 h-5 text-forest-800 shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <p className="font-semibold text-forest-900">Garantía de Privacidad y Acceso a Datos Parasanitarios</p>
+                <p className="leading-relaxed">
+                  Conforme al Reglamento General de Protección de Datos (RGPD UE 2016/679) y LOPDGDD, esta información está aislada y protegida con cifrado. Solo tú y el especialista autorizado tienen acceso a tu historial. Puedes solicitar rectificación o supresión en cualquier momento desde la pestaña de Privacidad.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        )}
 
         {/* TAB 1: CITAS */}
         {activeTab === 'citas' && (

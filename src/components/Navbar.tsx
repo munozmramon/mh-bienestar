@@ -19,6 +19,7 @@ import {
   Sun,
   Moon
 } from 'lucide-react';
+import ViralShareModal from './ViralShareModal';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -26,6 +27,7 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [viralModalOpen, setViralModalOpen] = useState(false);
 
   const navLinks = [
     { name: 'Inicio', href: '/' },
@@ -195,6 +197,16 @@ export default function Navbar() {
               )}
             </div>
 
+            {/* Viral Share Quick CTA */}
+            <button
+              onClick={() => setViralModalOpen(true)}
+              className="hidden xl:flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-forest-900 dark:text-neon-lime bg-gold-100/90 dark:bg-obsidian-800 hover:bg-gold-200 dark:hover:bg-obsidian-750 border border-gold-300 dark:border-neon-lime/30 shadow-soft-sm transition-all"
+              title="Invita a un amigo y gana 15€"
+            >
+              <Gift className="w-3.5 h-3.5 text-gold-600 dark:text-neon-lime animate-pulse" />
+              <span>Gana 15€</span>
+            </button>
+
             {/* Direct Booking CTA */}
             <Link
               href="/reservar"
@@ -257,6 +269,17 @@ export default function Navbar() {
               Portal Cliente (Mi Cuenta)
             </Link>
 
+            <button
+              onClick={() => { setMobileMenuOpen(false); setViralModalOpen(true); }}
+              className="flex items-center justify-between w-full px-3 py-2.5 rounded-xl text-sm font-semibold text-forest-900 dark:text-neon-lime bg-gold-100/70 dark:bg-obsidian-800 border border-gold-300 dark:border-neon-lime/30"
+            >
+              <span className="flex items-center gap-2">
+                <Gift className="w-4 h-4 text-gold-600 dark:text-neon-lime" />
+                <span>Invita a un Amigo y Gana 15€</span>
+              </span>
+              <span className="px-2 py-0.5 rounded-full bg-gold-200 text-gold-900 dark:bg-neon-lime/20 dark:text-neon-lime text-[10px] font-bold">150 pts</span>
+            </button>
+
             <Link
               href="/admin"
               onClick={() => setMobileMenuOpen(false)}
@@ -280,6 +303,9 @@ export default function Navbar() {
           </div>
         </div>
       )}
+
+      {/* Global Referral Viral Modal */}
+      <ViralShareModal isOpen={viralModalOpen} onClose={() => setViralModalOpen(false)} />
     </header>
   );
 }
