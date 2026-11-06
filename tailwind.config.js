@@ -1,0 +1,86 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        sage: {
+          50: '#F4F6F4',
+          100: '#E6EBE6',
+          200: '#CED8CD',
+          300: '#B2C2B0',
+          400: '#8A9A86',
+          500: '#72856E',
+          600: '#5A6C56',
+          700: '#465443',
+          800: '#343F32',
+          900: '#242C23',
+        },
+        forest: {
+          50: '#F0F4F1',
+          100: '#DCE5DE',
+          200: '#B9CBC0',
+          300: '#8FAC99',
+          400: '#578366',
+          500: '#3D684C',
+          600: '#2E4E3B',
+          700: '#233D2D',
+          800: '#1C2F23',
+          900: '#142219',
+          950: '#0B130E',
+        },
+        warm: {
+          50: '#FDFBF9',
+          100: '#FAF8F5',
+          200: '#F4EFE6',
+          300: '#EBE3D5',
+          400: '#DCD1BE',
+          500: '#C7B79E',
+          600: '#AFA087',
+          700: '#8E8069',
+          800: '#6C6250',
+          900: '#4A4337',
+        },
+        sand: {
+          50: '#FBF9F5',
+          100: '#F6F2EA',
+          200: '#ECE3D3',
+          300: '#DFD1B8',
+          400: '#CFBD9C',
+          500: '#BEA780',
+          600: '#A68D64',
+          700: '#836F4F',
+          800: '#64543C',
+          900: '#463A2B',
+        },
+        gold: {
+          50: '#FBF9F0',
+          100: '#F6F1DC',
+          200: '#EDE0B5',
+          300: '#E1CA8B',
+          400: '#D4AF37',
+          500: '#C5A880',
+          600: '#AA884E',
+          700: '#856736',
+          800: '#644D29',
+          900: '#47361D',
+        }
+      },
+      fontFamily: {
+        serif: ['var(--font-playfair)', 'Georgia', 'serif'],
+        sans: ['var(--font-inter)', 'system-ui', '-apple-system', 'sans-serif'],
+      },
+      boxShadow: {
+        'soft-sm': '0 2px 8px -2px rgba(28, 47, 35, 0.05)',
+        'soft-md': '0 6px 20px -4px rgba(28, 47, 35, 0.08)',
+        'soft-lg': '0 12px 32px -6px rgba(28, 47, 35, 0.12)',
+        'soft-xl': '0 20px 48px -8px rgba(28, 47, 35, 0.16)',
+      }
+    },
+  },
+  plugins: [],
+};
