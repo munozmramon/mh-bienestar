@@ -51,6 +51,16 @@ export default function ViralShareModal({ isOpen, onClose }: ViralShareModalProp
     }
   }, [isOpen, shareUrl]);
 
+  // Keyboard Escape listener
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const handleCopyLink = () => {
@@ -82,50 +92,54 @@ export default function ViralShareModal({ isOpen, onClose }: ViralShareModalProp
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200">
+    <div 
+      className="fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
+      onClick={onClose}
+    >
       <div 
-        className="bg-forest-950 text-warm-100 rounded-3xl max-w-lg w-full border border-forest-800 shadow-soft-2xl overflow-hidden relative animate-in zoom-in-95 duration-200"
+        className="bg-forest-950 text-warm-100 rounded-3xl max-w-lg w-full border border-forest-800 shadow-2xl relative max-h-[90vh] flex flex-col my-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Decorative Top Accent */}
-        <div className="h-2 w-full bg-gradient-to-r from-gold-500 via-neon-lime to-emerald-400" />
+        {/* Sticky Header with Close Button */}
+        <div className="sticky top-0 z-30 flex items-center justify-between p-4 bg-forest-950/95 backdrop-blur-md border-b border-forest-800/80 rounded-t-3xl">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-ping" />
+            <span className="text-xs font-bold text-neon-lime">Invita y Gana 15€</span>
+          </div>
 
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-5 right-5 p-1.5 rounded-full bg-forest-900 hover:bg-forest-800 text-warm-300 hover:text-white transition-colors border border-forest-700"
-          aria-label="Cerrar ventana"
-        >
-          <X className="w-5 h-5" />
-        </button>
+          <button
+            onClick={onClose}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-forest-900 hover:bg-forest-800 text-white font-bold text-xs border border-forest-700 transition-colors shadow-sm"
+            aria-label="Cerrar ventana"
+          >
+            <span>Cerrar</span>
+            <X className="w-4 h-4 text-white" />
+          </button>
+        </div>
 
-        <div className="p-6 sm:p-8 space-y-6">
+        {/* Scrollable Body */}
+        <div className="p-5 sm:p-7 space-y-5 overflow-y-auto">
           
           {/* Header */}
-          <div className="text-center space-y-2">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-forest-800/80 text-neon-lime border border-neon-lime/30">
-              <Sparkles className="w-3.5 h-3.5 text-neon-lime" />
-              <span>Programa Viral de Recomendación M&amp;H</span>
-            </div>
-            
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-warm-50 tracking-tight">
+          <div className="text-center space-y-1.5">
+            <h3 className="font-serif text-xl sm:text-2xl font-bold text-warm-50 tracking-tight">
               Regala 10€ a tus amigos y gana 15€ en puntos
             </h3>
             
             <p className="text-xs sm:text-sm text-sage-200/90 leading-relaxed max-w-md mx-auto">
-              Cada amigo que reserve con tu código recibe <strong>10€ de descuento</strong> de bienvenida en Orcera. Cuando termine su sesión, tú recibes <strong>150 puntos (15€)</strong> para tus tratamientos o bonos.
+              Cada amigo que reserve con tu código recibe <strong>10€ de descuento</strong> en su primera sesión en Orcera. Al terminarla, tú recibes <strong>150 puntos (15€)</strong> acumulables para tus citas.
             </p>
           </div>
 
           {/* Quick Share Buttons */}
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             
             {/* Primary Action: Direct WhatsApp */}
             <a
               href={`https://wa.me/?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3.5 px-5 rounded-full text-sm font-bold text-obsidian-950 bg-neon-emerald hover:bg-emerald-400 active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 shadow-soft-md"
+              className="w-full py-3.5 px-5 rounded-2xl text-sm font-bold text-obsidian-950 bg-neon-emerald hover:bg-emerald-400 active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 shadow-soft-md"
             >
               <MessageCircle className="w-5 h-5" />
               <span>Compartir por WhatsApp (1 Clic)</span>
@@ -134,7 +148,7 @@ export default function ViralShareModal({ isOpen, onClose }: ViralShareModalProp
             {/* Native Mobile Share (Instagram, Telegram, SMS, etc.) */}
             <button
               onClick={handleNativeShare}
-              className="w-full py-3 px-5 rounded-full text-xs sm:text-sm font-semibold text-white bg-forest-800 hover:bg-forest-750 active:scale-[0.98] transition-all flex items-center justify-center gap-2 border border-forest-700"
+              className="w-full py-2.5 px-5 rounded-2xl text-xs sm:text-sm font-semibold text-white bg-forest-800 hover:bg-forest-750 active:scale-[0.98] transition-all flex items-center justify-center gap-2 border border-forest-700"
             >
               <Share2 className="w-4 h-4 text-neon-lime" />
               <span>Compartir en Redes (Instagram, Facebook, Más)</span>
@@ -142,7 +156,7 @@ export default function ViralShareModal({ isOpen, onClose }: ViralShareModalProp
           </div>
 
           {/* Personal Code & Link Box */}
-          <div className="p-4 rounded-2xl bg-forest-900/90 border border-forest-800 space-y-3">
+          <div className="p-3.5 rounded-2xl bg-forest-900/90 border border-forest-800 space-y-2.5">
             
             <div className="flex items-center justify-between text-xs">
               <span className="text-sage-300 font-medium">Tu Código de Amigo:</span>
@@ -183,8 +197,8 @@ export default function ViralShareModal({ isOpen, onClose }: ViralShareModalProp
 
           {/* Dynamic QR Section for In-Person Sharing */}
           {qrCodeUrl && (
-            <div className="p-4 rounded-2xl bg-forest-900/50 border border-forest-800/80 flex items-center gap-4 text-left">
-              <div className="w-20 h-20 bg-white p-1 rounded-xl shrink-0 shadow-soft-sm">
+            <div className="p-3.5 rounded-2xl bg-forest-900/50 border border-forest-800/80 flex items-center gap-3.5 text-left">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white p-1 rounded-xl shrink-0 shadow-soft-sm">
                 <img src={qrCodeUrl} alt="Código QR de recomendación" className="w-full h-full object-contain" />
               </div>
               <div className="space-y-1">
@@ -199,10 +213,14 @@ export default function ViralShareModal({ isOpen, onClose }: ViralShareModalProp
             </div>
           )}
 
-          {/* Social Proof Footer */}
-          <div className="text-center text-[11px] text-sage-400 pt-1 border-t border-forest-800/80 flex items-center justify-center gap-2">
-            <Users className="w-3.5 h-3.5 text-gold-400" />
-            <span>Sin límites: recomienda a tantos amigos como quieras y acumula sesiones gratuitas.</span>
+          {/* Bottom Close Button */}
+          <div className="pt-2">
+            <button
+              onClick={onClose}
+              className="w-full py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs border border-white/20 transition-all active:scale-[0.98]"
+            >
+              Cerrar Ventana ✕
+            </button>
           </div>
 
         </div>

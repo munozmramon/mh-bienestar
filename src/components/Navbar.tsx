@@ -34,7 +34,6 @@ export default function Navbar() {
     { name: 'Servicios', href: '/servicios' },
     { name: 'Bonos & Regalos', href: '/bonos-y-regalos' },
     { name: 'Opiniones', href: '/opiniones' },
-    { name: 'Blog', href: '/blog' },
   ];
 
   const isAdmin = currentUser?.role === 'admin' || currentUser?.role === 'staff';
