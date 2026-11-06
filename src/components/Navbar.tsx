@@ -44,8 +44,12 @@ export default function Navbar() {
           
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-2xl bg-forest-800 dark:bg-obsidian-800 flex items-center justify-center text-warm-100 shadow-soft-sm group-hover:bg-forest-700 dark:group-hover:border-neon-lime transition-colors border border-gold-400/30 dark:border-neon-lime/40">
-              <span className="font-serif font-bold text-lg tracking-wider text-gold-300 dark:text-neon-lime">M&amp;H</span>
+            <div className="w-12 h-12 rounded-full overflow-hidden bg-white p-0.5 shadow-soft-sm group-hover:scale-105 transition-all border border-warm-300 dark:border-neon-lime/50 shrink-0">
+              <img 
+                src="/logo.png" 
+                alt="Centro Parasanitario M&H" 
+                className="w-full h-full object-contain rounded-full"
+              />
             </div>
             <div className="flex flex-col">
               <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-forest-900 dark:text-white group-hover:text-forest-700 dark:group-hover:text-neon-lime transition-colors">

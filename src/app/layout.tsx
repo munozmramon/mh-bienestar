@@ -36,8 +36,13 @@ export const metadata: Metadata = {
     type: 'website',
   },
   icons: {
-    icon: '/icons/logo.svg',
-    apple: '/icons/logo.svg',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/logo.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/logo.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
   manifest: '/manifest.json',
 };

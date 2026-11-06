@@ -16,8 +16,12 @@ export default function Footer() {
           {/* Identity & Concept */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-forest-800 dark:bg-obsidian-800 border border-gold-400/40 dark:border-neon-lime/40 flex items-center justify-center text-gold-300 dark:text-neon-lime font-serif font-bold text-lg">
-                M&amp;H
+              <div className="w-12 h-12 rounded-full overflow-hidden bg-white p-0.5 border border-gold-400/40 dark:border-neon-lime/40 shrink-0">
+                <img 
+                  src="/logo.png" 
+                  alt="Centro Parasanitario M&H" 
+                  className="w-full h-full object-contain rounded-full"
+                />
               </div>
               <div>
                 <span className="font-serif text-xl font-bold text-warm-50 dark:text-white tracking-tight">
