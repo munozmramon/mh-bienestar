@@ -42,8 +42,8 @@ export default function ViralShareModal({ isOpen, onClose }: ViralShareModalProp
         width: 240,
         margin: 1,
         color: {
-          dark: '#16281E',
-          light: '#FAF8F5'
+          dark: '#3B1238',
+          light: '#FFFFFF'
         }
       })
       .then(url => setQrCodeUrl(url))
@@ -97,19 +97,19 @@ export default function ViralShareModal({ isOpen, onClose }: ViralShareModalProp
       onClick={onClose}
     >
       <div 
-        className="bg-forest-950 text-warm-100 rounded-3xl max-w-lg w-full border border-forest-800 shadow-2xl relative max-h-[90vh] flex flex-col my-auto"
+        className="bg-[#1A132E] text-white rounded-3xl max-w-lg w-full border border-purple-900/50 shadow-2xl relative max-h-[90vh] flex flex-col my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Sticky Header with Close Button */}
-        <div className="sticky top-0 z-30 flex items-center justify-between p-4 bg-forest-950/95 backdrop-blur-md border-b border-forest-800/80 rounded-t-3xl">
+        <div className="sticky top-0 z-30 flex items-center justify-between p-4 bg-[#1A132E]/95 backdrop-blur-md border-b border-purple-900/60 rounded-t-3xl">
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-ping" />
-            <span className="text-xs font-bold text-neon-lime">Invita y Gana 15€</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-[#7C3AED] animate-ping" />
+            <span className="text-xs font-bold text-[#A78BFA]">Invita y Gana 15€</span>
           </div>
 
           <button
             onClick={onClose}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-forest-900 hover:bg-forest-800 text-white font-bold text-xs border border-forest-700 transition-colors shadow-sm"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-950/80 hover:bg-purple-900 text-white font-bold text-xs border border-purple-800/80 transition-colors shadow-sm"
             aria-label="Cerrar ventana"
           >
             <span>Cerrar</span>
@@ -122,11 +122,11 @@ export default function ViralShareModal({ isOpen, onClose }: ViralShareModalProp
           
           {/* Header */}
           <div className="text-center space-y-1.5">
-            <h3 className="font-serif text-xl sm:text-2xl font-bold text-warm-50 tracking-tight">
+            <h3 className="font-serif text-xl sm:text-2xl font-bold text-white tracking-tight">
               Regala 10€ a tus amigos y gana 15€ en puntos
             </h3>
             
-            <p className="text-xs sm:text-sm text-sage-200/90 leading-relaxed max-w-md mx-auto">
+            <p className="text-xs sm:text-sm text-purple-200/90 leading-relaxed max-w-md mx-auto">
               Cada amigo que reserve con tu código recibe <strong>10€ de descuento</strong> en su primera sesión en Orcera. Al terminarla, tú recibes <strong>150 puntos (15€)</strong> acumulables para tus citas.
             </p>
           </div>
@@ -139,50 +139,50 @@ export default function ViralShareModal({ isOpen, onClose }: ViralShareModalProp
               href={`https://wa.me/?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3.5 px-5 rounded-2xl text-sm font-bold text-obsidian-950 bg-neon-emerald hover:bg-emerald-400 active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 shadow-soft-md"
+              className="w-full py-3.5 px-5 rounded-2xl text-sm font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 shadow-md shadow-emerald-900/30"
             >
-              <MessageCircle className="w-5 h-5" />
+              <MessageCircle className="w-5 h-5 text-white" />
               <span>Compartir por WhatsApp (1 Clic)</span>
             </a>
 
             {/* Native Mobile Share (Instagram, Telegram, SMS, etc.) */}
             <button
               onClick={handleNativeShare}
-              className="w-full py-2.5 px-5 rounded-2xl text-xs sm:text-sm font-semibold text-white bg-forest-800 hover:bg-forest-750 active:scale-[0.98] transition-all flex items-center justify-center gap-2 border border-forest-700"
+              className="w-full py-2.5 px-5 rounded-2xl text-xs sm:text-sm font-semibold text-white bg-purple-900/40 hover:bg-purple-900/70 active:scale-[0.98] transition-all flex items-center justify-center gap-2 border border-purple-700/50"
             >
-              <Share2 className="w-4 h-4 text-neon-lime" />
+              <Share2 className="w-4 h-4 text-[#A78BFA]" />
               <span>Compartir en Redes (Instagram, Facebook, Más)</span>
             </button>
           </div>
 
           {/* Personal Code & Link Box */}
-          <div className="p-3.5 rounded-2xl bg-forest-900/90 border border-forest-800 space-y-2.5">
+          <div className="p-3.5 rounded-2xl bg-purple-950/40 border border-purple-900/50 space-y-2.5">
             
             <div className="flex items-center justify-between text-xs">
-              <span className="text-sage-300 font-medium">Tu Código de Amigo:</span>
+              <span className="text-purple-300 font-medium">Tu Código de Amigo:</span>
               <button
                 onClick={handleCopyCode}
-                className="font-mono font-bold text-sm text-gold-300 hover:text-white flex items-center gap-1.5 transition-colors"
+                className="font-mono font-bold text-sm text-amber-300 hover:text-white flex items-center gap-1.5 transition-colors"
               >
                 <span>{referralCode}</span>
-                {copiedCode ? <Check className="w-3.5 h-3.5 text-neon-lime" /> : <Copy className="w-3.5 h-3.5" />}
+                {copiedCode ? <Check className="w-3.5 h-3.5 text-[#A78BFA]" /> : <Copy className="w-3.5 h-3.5" />}
               </button>
             </div>
 
-            <div className="pt-2 border-t border-forest-800 flex items-center gap-2">
+            <div className="pt-2 border-t border-purple-900/40 flex items-center gap-2">
               <input
                 type="text"
                 readOnly
                 value={shareUrl}
-                className="flex-1 bg-forest-950 px-3 py-2 rounded-xl text-xs font-mono text-sage-200 border border-forest-800 truncate focus:outline-none"
+                className="flex-1 bg-[#0F0A1C] px-3 py-2 rounded-xl text-xs font-mono text-purple-200 border border-purple-900/50 truncate focus:outline-none"
               />
               <button
                 onClick={handleCopyLink}
-                className="py-2 px-3 rounded-xl text-xs font-semibold bg-forest-800 hover:bg-forest-700 text-warm-100 flex items-center gap-1.5 shrink-0 border border-forest-700 transition-colors"
+                className="py-2 px-3 rounded-xl text-xs font-semibold bg-[#7C3AED] hover:bg-[#6D28D9] text-white flex items-center gap-1.5 shrink-0 transition-colors shadow-sm"
               >
                 {copiedLink ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-neon-lime" />
+                    <Check className="w-3.5 h-3.5" />
                     <span>Copiado</span>
                   </>
                 ) : (
@@ -197,16 +197,16 @@ export default function ViralShareModal({ isOpen, onClose }: ViralShareModalProp
 
           {/* Dynamic QR Section for In-Person Sharing */}
           {qrCodeUrl && (
-            <div className="p-3.5 rounded-2xl bg-forest-900/50 border border-forest-800/80 flex items-center gap-3.5 text-left">
+            <div className="p-3.5 rounded-2xl bg-purple-950/30 border border-purple-900/40 flex items-center gap-3.5 text-left">
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white p-1 rounded-xl shrink-0 shadow-soft-sm">
                 <img src={qrCodeUrl} alt="Código QR de recomendación" className="w-full h-full object-contain" />
               </div>
               <div className="space-y-1">
-                <h4 className="text-xs font-bold text-warm-50 flex items-center gap-1.5">
-                  <QrCode className="w-3.5 h-3.5 text-neon-lime" />
+                <h4 className="text-xs font-bold text-white flex items-center gap-1.5">
+                  <QrCode className="w-3.5 h-3.5 text-[#A78BFA]" />
                   <span>Código QR para Escaneo Directo</span>
                 </h4>
-                <p className="text-[11px] text-sage-300 leading-tight">
+                <p className="text-[11px] text-purple-200/80 leading-tight">
                   Muéstrale esta pantalla a tu amigo o familiar en Orcera para que apunte con la cámara de su móvil y reserve al instante.
                 </p>
               </div>

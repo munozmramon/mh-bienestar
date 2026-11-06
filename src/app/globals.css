@@ -4,16 +4,16 @@
 
 :root {
   --background: #FFFFFF;
-  --foreground: #0F172A;
+  --foreground: #1E1B2E;
   --card-bg: #FFFFFF;
-  --border-color: #E2E8F0;
+  --border-color: #E9E5F0;
 }
 
 .dark {
-  --background: #0E0F12;
-  --foreground: #F5F7F2;
-  --card-bg: #16171C;
-  --border-color: rgba(255, 255, 255, 0.08);
+  --background: #0F0A1C;
+  --foreground: #F8F6FC;
+  --card-bg: #1A132E;
+  --border-color: rgba(237, 233, 254, 0.12);
 }
 
 body {

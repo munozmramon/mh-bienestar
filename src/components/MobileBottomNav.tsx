@@ -36,7 +36,7 @@ export default function MobileBottomNav() {
   return (
     <>
       {/* Floating Bottom Nav (Mobile Only) */}
-      <nav aria-label="Navegación móvil inferior" className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-obsidian-950/95 backdrop-blur-xl border-t border-slate-200 dark:border-white/10 px-2 py-1.5 shadow-2xl safe-area-pb">
+      <nav aria-label="Navegación móvil inferior" className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#0F0A1C]/95 backdrop-blur-xl border-t border-slate-200 dark:border-purple-900/30 px-2 py-1.5 shadow-2xl safe-area-pb">
         <div className="flex items-center justify-around max-w-md mx-auto">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -49,9 +49,9 @@ export default function MobileBottomNav() {
                 <button
                   key="more-menu-btn"
                   onClick={() => setMoreDrawerOpen(true)}
-                  className="flex flex-col items-center justify-center py-1 px-3 rounded-2xl text-slate-600 dark:text-obsidian-300 hover:text-slate-900 dark:hover:text-white transition-all"
+                  className="flex flex-col items-center justify-center py-1 px-3 rounded-2xl text-slate-600 dark:text-purple-300 hover:text-slate-900 dark:hover:text-white transition-all"
                 >
-                  <div className="p-1.5 rounded-xl bg-transparent active:bg-slate-100 dark:active:bg-obsidian-800">
+                  <div className="p-1.5 rounded-xl bg-transparent active:bg-purple-100 dark:active:bg-purple-950/50">
                     <Menu className="w-5 h-5 stroke-[2]" />
                   </div>
                   <span className="text-[10.5px] mt-0.5 tracking-tight font-medium">Más</span>
@@ -65,13 +65,13 @@ export default function MobileBottomNav() {
                 href={item.href}
                 className={`flex flex-col items-center justify-center py-1 px-3 rounded-2xl transition-all duration-200 ${
                   isActive
-                    ? 'text-[#10B981] dark:text-[#34D399] font-bold scale-105'
-                    : 'text-slate-500 dark:text-obsidian-400 hover:text-slate-900 dark:hover:text-white'
+                    ? 'text-[#7C3AED] dark:text-[#A78BFA] font-bold scale-105'
+                    : 'text-slate-500 dark:text-purple-300/70 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
                 <div className={`p-1.5 rounded-xl transition-all ${
                   isActive 
-                    ? 'bg-[#10B981]/15 dark:bg-emerald-950/40' 
+                    ? 'bg-[#EDE9FE] dark:bg-purple-950/60' 
                     : 'bg-transparent'
                 }`}>
                   <Icon className={`w-5 h-5 ${isActive ? 'stroke-[2.5]' : 'stroke-[1.8]'}`} />
@@ -92,20 +92,20 @@ export default function MobileBottomNav() {
             className="absolute inset-0"
             onClick={() => setMoreDrawerOpen(false)}
           />
-          <div className="relative bg-[#F8F7F2] dark:bg-obsidian-900 rounded-t-3xl border-t border-warm-300 dark:border-white/10 p-6 space-y-4 max-h-[85vh] overflow-y-auto shadow-2xl">
-            <div className="flex items-center justify-between pb-3 border-b border-warm-200 dark:border-white/10">
+          <div className="relative bg-[#FAF7FD] dark:bg-[#1A132E] rounded-t-3xl border-t border-purple-200 dark:border-purple-900/40 p-6 space-y-4 max-h-[85vh] overflow-y-auto shadow-2xl">
+            <div className="flex items-center justify-between pb-3 border-b border-purple-100 dark:border-purple-900/30">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-full overflow-hidden bg-white p-0.5 border border-warm-300">
+                <div className="w-9 h-9 rounded-full overflow-hidden bg-white p-0.5 border border-purple-200 dark:border-purple-800">
                   <img src="/logo.png" alt="M&H" className="w-full h-full object-contain rounded-full" />
                 </div>
                 <div>
-                  <h3 className="font-serif font-bold text-base text-forest-950 dark:text-white">M&amp;H Bienestar Integral</h3>
-                  <p className="text-[11px] text-forest-600 dark:text-obsidian-400 italic">Tu bienestar, nuestra esencia</p>
+                  <h3 className="font-serif font-bold text-base text-[#3B1238] dark:text-white">M&amp;H Bienestar Integral</h3>
+                  <p className="text-[11px] text-purple-700/80 dark:text-purple-300 italic">Tu bienestar, nuestra esencia</p>
                 </div>
               </div>
               <button
                 onClick={() => setMoreDrawerOpen(false)}
-                className="p-2 rounded-full hover:bg-warm-200 dark:hover:bg-obsidian-800 text-forest-700 dark:text-white"
+                className="p-2 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/40 text-[#3B1238] dark:text-white"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -115,42 +115,42 @@ export default function MobileBottomNav() {
               <Link
                 href="/servicios"
                 onClick={() => setMoreDrawerOpen(false)}
-                className="flex items-center gap-3 p-3.5 rounded-2xl bg-white dark:bg-obsidian-800 border border-warm-200 dark:border-white/10 shadow-soft-xs"
+                className="flex items-center gap-3 p-3.5 rounded-2xl bg-white dark:bg-purple-950/40 border border-purple-100 dark:border-purple-900/30 shadow-soft-xs"
               >
-                <div className="w-9 h-9 rounded-xl bg-[#2E5D4A]/10 text-[#2E5D4A] dark:text-neon-lime flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-[#EDE9FE] text-[#7C3AED] dark:bg-purple-900/50 dark:text-[#A78BFA] flex items-center justify-center shrink-0">
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-forest-900 dark:text-white">Servicios</p>
-                  <p className="text-[10px] text-forest-600 dark:text-obsidian-400">Ver terapias</p>
+                  <p className="text-xs font-bold text-[#3B1238] dark:text-white">Servicios</p>
+                  <p className="text-[10px] text-purple-600 dark:text-purple-300">Ver terapias</p>
                 </div>
               </Link>
 
               <Link
                 href="/mi-cuenta"
                 onClick={() => setMoreDrawerOpen(false)}
-                className="flex items-center gap-3 p-3.5 rounded-2xl bg-white dark:bg-obsidian-800 border border-warm-200 dark:border-white/10 shadow-soft-xs"
+                className="flex items-center gap-3 p-3.5 rounded-2xl bg-white dark:bg-purple-950/40 border border-purple-100 dark:border-purple-900/30 shadow-soft-xs"
               >
-                <div className="w-9 h-9 rounded-xl bg-[#D4AF7C]/20 text-[#D4AF7C] dark:text-neon-lime flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-purple-100 text-[#7C3AED] dark:bg-purple-900/50 dark:text-[#A78BFA] flex items-center justify-center shrink-0">
                   <User className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-forest-900 dark:text-white">Tu Perfil</p>
-                  <p className="text-[10px] text-forest-600 dark:text-obsidian-400">Historia RH</p>
+                  <p className="text-xs font-bold text-[#3B1238] dark:text-white">Tu Perfil</p>
+                  <p className="text-[10px] text-purple-600 dark:text-purple-300">Historia RH</p>
                 </div>
               </Link>
 
               <Link
                 href="/bonos-y-regalos"
                 onClick={() => setMoreDrawerOpen(false)}
-                className="flex items-center gap-3 p-3.5 rounded-2xl bg-white dark:bg-obsidian-800 border border-warm-200 dark:border-white/10 shadow-soft-xs"
+                className="flex items-center gap-3 p-3.5 rounded-2xl bg-white dark:bg-purple-950/40 border border-purple-100 dark:border-purple-900/30 shadow-soft-xs"
               >
-                <div className="w-9 h-9 rounded-xl bg-gold-100 dark:bg-gold-500/20 text-gold-700 dark:text-neon-lime flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300 flex items-center justify-center shrink-0">
                   <Gift className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-forest-900 dark:text-white">Bonos</p>
-                  <p className="text-[10px] text-forest-600 dark:text-obsidian-400">Tarjetas regalo</p>
+                  <p className="text-xs font-bold text-[#3B1238] dark:text-white">Bonos</p>
+                  <p className="text-[10px] text-purple-600 dark:text-purple-300">Tarjetas regalo</p>
                 </div>
               </Link>
 
@@ -159,24 +159,24 @@ export default function MobileBottomNav() {
                   setMoreDrawerOpen(false);
                   setViralModalOpen(true);
                 }}
-                className="flex items-center gap-3 p-3.5 rounded-2xl bg-gradient-to-br from-amber-500/10 to-emerald-500/10 border border-amber-300 dark:border-white/10 shadow-soft-xs text-left"
+                className="flex items-center gap-3 p-3.5 rounded-2xl bg-gradient-to-br from-amber-500/10 to-purple-500/10 border border-amber-300 dark:border-purple-800 shadow-soft-xs text-left"
               >
                 <div className="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0">
                   <Share2 className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-forest-900 dark:text-white">Gana 15€</p>
-                  <p className="text-[10px] text-amber-700 dark:text-neon-lime font-medium">Invita amigos</p>
+                  <p className="text-xs font-bold text-[#3B1238] dark:text-white">Gana 15€</p>
+                  <p className="text-[10px] text-amber-700 dark:text-amber-300 font-medium">Invita amigos</p>
                 </div>
               </button>
             </div>
 
-            <div className="pt-2 border-t border-warm-200 dark:border-white/10 space-y-2">
+            <div className="pt-2 border-t border-purple-100 dark:border-purple-900/30 space-y-2">
               <a
                 href={`https://wa.me/${businessConfig.whatsapp}?text=Hola%20M%26H%20Bienestar%20Integral%2C%20quisiera%20hacer%20una%20consulta.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-soft-sm"
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold shadow-soft-sm"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>WhatsApp Centro Orcera (651 30 87 38)</span>
@@ -186,9 +186,9 @@ export default function MobileBottomNav() {
                 <Link
                   href="/admin"
                   onClick={() => setMoreDrawerOpen(false)}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-2xl bg-forest-900 dark:bg-obsidian-800 text-white text-xs font-bold border border-warm-300 dark:border-white/10"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-2xl bg-[#3B1238] dark:bg-purple-950/80 text-white text-xs font-bold border border-purple-800/40"
                 >
-                  <ShieldCheck className="w-4 h-4 text-neon-lime" />
+                  <ShieldCheck className="w-4 h-4 text-[#A78BFA]" />
                   <span>Panel de Administración RH</span>
                 </Link>
               )}

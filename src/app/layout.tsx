@@ -122,7 +122,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-warm-50 dark:bg-obsidian-900 text-forest-900 dark:text-obsidian-100 antialiased selection:bg-neon-lime selection:text-obsidian-950 transition-colors duration-300">
+      <body className="min-h-screen flex flex-col bg-white dark:bg-[#0F0A1C] text-slate-900 dark:text-purple-100 antialiased selection:bg-[#EDE9FE] selection:text-[#3B1238] transition-colors duration-300">
         <ThemeProvider>
           <StoreProvider>
             <Navbar />

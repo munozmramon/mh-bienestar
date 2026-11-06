@@ -98,7 +98,7 @@ export default function ServiciosPage() {
                 onClick={() => setViewMode('compact')}
                 className={`p-1.5 rounded-lg transition-colors ${
                   viewMode === 'compact'
-                    ? 'bg-[#2E5D4A] dark:bg-neon-lime text-white dark:text-obsidian-950 font-bold'
+                    ? 'bg-[#7C3AED] dark:bg-neon-lime text-white dark:text-obsidian-950 font-bold'
                     : 'text-forest-600 dark:text-obsidian-300 hover:text-forest-900'
                 }`}
                 title="Vista Lista Móvil (Diseño M&H)"
@@ -109,7 +109,7 @@ export default function ServiciosPage() {
                 onClick={() => setViewMode('grid')}
                 className={`p-1.5 rounded-lg transition-colors ${
                   viewMode === 'grid'
-                    ? 'bg-[#2E5D4A] dark:bg-neon-lime text-white dark:text-obsidian-950 font-bold'
+                    ? 'bg-[#7C3AED] dark:bg-neon-lime text-white dark:text-obsidian-950 font-bold'
                     : 'text-forest-600 dark:text-obsidian-300 hover:text-forest-900'
                 }`}
                 title="Vista Cuadrícula Completa"
@@ -138,11 +138,11 @@ export default function ServiciosPage() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
-                      <h3 className="font-serif text-base sm:text-lg font-bold text-forest-950 dark:text-white truncate group-hover:text-[#2E5D4A] dark:group-hover:text-neon-lime transition-colors">
+                      <h3 className="font-serif text-base sm:text-lg font-bold text-forest-950 dark:text-white truncate group-hover:text-[#7C3AED] dark:group-hover:text-neon-lime transition-colors">
                         {service.name}
                       </h3>
                       {service.badge && (
-                        <span className="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#D4AF7C]/20 text-[#2E5D4A] dark:text-neon-lime border border-[#D4AF7C]/40">
+                        <span className="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#D4AF7C]/20 text-[#7C3AED] dark:text-neon-lime border border-[#D4AF7C]/40">
                           {service.badge}
                         </span>
                       )}
@@ -151,7 +151,7 @@ export default function ServiciosPage() {
                       {service.shortDescription}
                     </p>
                     <div className="flex items-center gap-3 mt-1 text-[11px] text-forest-500 dark:text-obsidian-400 font-medium">
-                      <span className="text-[#2E5D4A] dark:text-neon-lime font-bold">{service.price}€</span>
+                      <span className="text-[#7C3AED] dark:text-neon-lime font-bold">{service.price}€</span>
                       <span>·</span>
                       <span>{service.durationMinutes} min</span>
                       {!service.available && (
@@ -167,14 +167,14 @@ export default function ServiciosPage() {
                 <div className="flex items-center gap-2 shrink-0">
                   <Link
                     href={`/reservar?servicio=${service.id}`}
-                    className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#2E5D4A] hover:bg-[#234738] dark:bg-neon-lime dark:text-obsidian-950 transition-colors shadow-soft-xs"
+                    className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#7C3AED] hover:bg-[#6D28D9] dark:bg-neon-lime dark:text-obsidian-950 transition-colors shadow-soft-xs"
                   >
                     <Calendar className="w-3.5 h-3.5" />
                     <span>Reservar</span>
                   </Link>
                   <Link
                     href={`/servicios/${service.slug}`}
-                    className="w-9 h-9 rounded-full bg-[#F8F7F2] dark:bg-obsidian-800 hover:bg-white dark:hover:bg-obsidian-700 border border-warm-200 dark:border-white/10 flex items-center justify-center text-forest-600 dark:text-obsidian-300 group-hover:text-[#2E5D4A] dark:group-hover:text-neon-lime transition-colors"
+                    className="w-9 h-9 rounded-full bg-[#F8F7F2] dark:bg-obsidian-800 hover:bg-white dark:hover:bg-obsidian-700 border border-warm-200 dark:border-white/10 flex items-center justify-center text-forest-600 dark:text-obsidian-300 group-hover:text-[#7C3AED] dark:group-hover:text-neon-lime transition-colors"
                   >
                     <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
                   </Link>

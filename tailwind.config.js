@@ -9,51 +9,53 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Modern Dark Palette (Inspired by ugcviralstudio.com)
+        // Deep Amethyst Night (Modo Noche Sereno & Relajante)
         obsidian: {
-          950: '#08090B',
-          900: '#0E0F12', // Main background
-          850: '#121418',
-          800: '#16171C', // Card surface
-          700: '#1E2027', // Hover surfaces
-          600: '#2A2D36',
-          500: '#3D414D',
-          400: '#646A7A',
-          300: '#949BA8',
-          200: '#CBD0D9',
-          100: '#F5F7F2', // Crisp light text
+          950: '#0A0614',
+          900: '#0F0A1C', // Fondo principal noche
+          850: '#150F26',
+          800: '#1A132E', // Superficie de tarjetas noche
+          750: '#221A3D',
+          700: '#2A204B', // Superficie hover noche
+          600: '#392C63',
+          500: '#52408A',
+          400: '#7E6CB0',
+          300: '#ADA0D4',
+          200: '#D6CEF0',
+          100: '#F5F3FF', // Texto luminoso
         },
         neon: {
-          lime: '#C8FF3E',    // High-impact cyber lime
-          emerald: '#3DDC84', // Minty energetic emerald
-          glow: 'rgba(200, 255, 62, 0.35)',
+          lime: '#A78BFA',    // Amatista luminosa para contraste noche
+          emerald: '#7C3AED', // Violeta Amatista noble
+          glow: 'rgba(124, 58, 237, 0.35)',
         },
 
-        // Organic Day Palette (Centro Parasanitario M&H)
+        // Zen Lavanda & Bruma Suave
         sage: {
-          50: '#F4F6F4',
-          100: '#E6EBE6',
-          200: '#CED8CD',
-          300: '#B2C2B0',
-          400: '#8A9A86',
-          500: '#72856E',
-          600: '#5A6C56',
-          700: '#465443',
-          800: '#343F32',
-          900: '#242C23',
+          50: '#FAF8FC',
+          100: '#F3EAFD',
+          200: '#EDE9FE',
+          300: '#DDD6FE',
+          400: '#C4B5FD',
+          500: '#A78BFA',
+          600: '#8B5CF6',
+          700: '#7C3AED',
+          800: '#5B21B6',
+          900: '#3B1238',
         },
+        // Ciruela Noble & Profundidad
         forest: {
-          50: '#F0F4F1',
-          100: '#DCE5DE',
-          200: '#B9CBC0',
-          300: '#8FAC99',
-          400: '#578366',
-          500: '#3D684C',
-          600: '#2E4E3B',
-          700: '#233D2D',
-          800: '#1C2F23',
-          900: '#142219',
-          950: '#0B130E',
+          50: '#FAF5FA',
+          100: '#F3E8F3',
+          200: '#E6CFE6',
+          300: '#CCA3CC',
+          400: '#9E5B9E',
+          500: '#7C3AED',
+          600: '#6B2165',
+          700: '#53194F',
+          800: '#3B1238', // Ciruela Noble Principal
+          900: '#270925', // Ciruela oscuro
+          950: '#1A0818',
         },
         warm: {
           50: '#FDFBF9',
@@ -79,22 +81,22 @@ module.exports = {
           800: '#644D29',
           900: '#47361D',
         },
-        // High-Conversion Vibrant Palette: M&H Bienestar Integral
+        // Zen Lavanda & Ciruela Noble Palette: M&H Bienestar Integral
         mh: {
-          emerald: '#044E39',    // Verde Esmeralda Joya (Fuerza, salud y prestigio)
-          emeraldDark: '#023325',// Esmeralda ultra profundo
-          mint: '#10B981',       // Verde Menta Vibrante (Botones de acción, llamadas a reserva)
-          mintDark: '#059669',   // Hover verde menta
-          mintLight: '#ECFDF5',  // Fondo menta sutil
-          gold: '#D4AF37',       // Oro Champagne (Premios, fidelidad, ahorro)
-          amber: '#F59E0B',      // Ámbar cálido para ofertas y urgencia
-          pearl: '#F9FAFB',      // Blanco perla ultra-limpio (adiós al crema descolorido)
-          pure: '#FFFFFF',       // Blanco puro nítido
-          salud: '#044E39',      // Retro-compatibility mapped to modern emerald
-          natural: '#10B981',    // Retro-compatibility mapped to energetic mint
-          dorado: '#D4AF37',     // Retro-compatibility mapped to champagne gold
-          crema: '#FFFFFF',      // Clean white instead of dull cream
-          fondo: '#F9FAFB',
+          plum: '#3B1238',       // Ciruela Noble Profundo (Fuerza, calma y distinción)
+          plumDark: '#270925',   // Ciruela noche ultra profundo
+          plumMedium: '#53194F', // Ciruela medio elegante
+          violet: '#7C3AED',     // Violeta Amatista (Botones de acción, llamadas a reserva)
+          violetDark: '#6D28D9', // Hover violeta
+          violetLight: '#8B5CF6',// Lavanda luminosa para noche
+          lavender: '#EDE9FE',   // Lavanda suave para chips y badges
+          lavenderLight: '#F5F3FF', // Fondo bruma lavanda ultra-ligero
+          gold: '#D97706',       // Oro cálido (Premios, estrellas, club)
+          night: '#0F0A1C',      // Noche Amatista Profunda (Modo noche relajante, no verde)
+          cardNight: '#1A132E',  // Superficie de tarjetas modo noche
+          borderNight: 'rgba(237, 233, 254, 0.1)',
+          pure: '#FFFFFF',
+          pearl: '#F8F6FA',      // Blanco perla lavanda
         }
       },
       fontFamily: {

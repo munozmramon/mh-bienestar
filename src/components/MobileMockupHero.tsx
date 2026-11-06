@@ -120,7 +120,7 @@ export default function MobileMockupHero() {
               />
             </div>
             <div className="text-left">
-              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#2E5D4A] dark:text-white">
+              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#3B1238] dark:text-white">
                 M&amp;H <span className="font-sans font-light text-xl sm:text-2xl text-[#D4AF7C] dark:text-neon-lime uppercase tracking-widest">BIENESTAR INTEGRAL</span>
               </h1>
               <p className="font-serif italic text-sm sm:text-base text-forest-700/80 dark:text-obsidian-300">
@@ -140,7 +140,7 @@ export default function MobileMockupHero() {
               href={item.href}
               className="flex flex-col items-center justify-center p-3 sm:p-4 rounded-2xl bg-white/90 dark:bg-obsidian-850 border border-warm-200/90 dark:border-white/10 hover:border-[#D4AF7C] hover:shadow-soft-md transition-all text-center group"
             >
-              <div className="w-12 h-12 rounded-full bg-[#2E5D4A]/10 dark:bg-neon-lime/20 text-[#2E5D4A] dark:text-neon-lime flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-full bg-[#3B1238]/10 dark:bg-neon-lime/20 text-[#3B1238] dark:text-neon-lime flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
                 {item.icon}
               </div>
               <span className="text-xs sm:text-sm font-semibold text-forest-900 dark:text-white leading-tight">
@@ -194,7 +194,7 @@ export default function MobileMockupHero() {
 
                   <Link
                     href="/reservar"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-sm font-bold text-[#2E5D4A] bg-[#F8F7F2] hover:bg-white active:scale-95 transition-all shadow-soft-lg shrink-0 border border-[#D4AF7C]/40"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-sm font-bold text-[#3B1238] bg-[#F8F7F2] hover:bg-white active:scale-95 transition-all shadow-soft-lg shrink-0 border border-[#D4AF7C]/40"
                   >
                     <span>Reservar cita</span>
                     <ArrowRight className="w-4 h-4 text-[#D4AF7C]" />
@@ -211,7 +211,7 @@ export default function MobileMockupHero() {
                 href="/servicios"
                 className="flex flex-col items-center justify-center p-5 rounded-3xl bg-white dark:bg-obsidian-850 border border-warm-200/90 dark:border-white/10 hover:border-[#D4AF7C] shadow-soft-sm hover:shadow-soft-md transition-all text-center group active:scale-[0.98]"
               >
-                <div className="w-12 h-12 rounded-2xl bg-[#2E5D4A]/10 dark:bg-neon-lime/20 text-[#2E5D4A] dark:text-neon-lime flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-[#3B1238]/10 dark:bg-neon-lime/20 text-[#3B1238] dark:text-neon-lime flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
                   <Sparkles className="w-6 h-6" />
                 </div>
                 <h3 className="font-serif text-base font-bold text-forest-950 dark:text-white">
@@ -243,7 +243,7 @@ export default function MobileMockupHero() {
                 href="/mi-cuenta"
                 className="flex flex-col items-center justify-center p-5 rounded-3xl bg-white dark:bg-obsidian-850 border border-warm-200/90 dark:border-white/10 hover:border-[#D4AF7C] shadow-soft-sm hover:shadow-soft-md transition-all text-center group active:scale-[0.98]"
               >
-                <div className="w-12 h-12 rounded-2xl bg-[#A7B89F]/20 dark:bg-neon-lime/20 text-[#2E5D4A] dark:text-neon-lime flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-[#A7B89F]/20 dark:bg-neon-lime/20 text-[#3B1238] dark:text-neon-lime flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
                   <User className="w-6 h-6" />
                 </div>
                 <h3 className="font-serif text-base font-bold text-forest-950 dark:text-white">
@@ -288,7 +288,7 @@ export default function MobileMockupHero() {
                 </div>
                 <Link
                   href="/servicios"
-                  className="text-xs font-semibold text-[#2E5D4A] dark:text-neon-lime hover:underline"
+                  className="text-xs font-semibold text-[#3B1238] dark:text-neon-lime hover:underline"
                 >
                   Ver todos →
                 </Link>
@@ -314,7 +314,7 @@ export default function MobileMockupHero() {
                         </p>
                       </div>
                     </div>
-                    <ChevronRight className="w-4 h-4 text-forest-400 dark:text-obsidian-400 group-hover:text-[#2E5D4A] dark:group-hover:text-neon-lime group-hover:translate-x-0.5 transition-all" />
+                    <ChevronRight className="w-4 h-4 text-forest-400 dark:text-obsidian-400 group-hover:text-[#3B1238] dark:group-hover:text-neon-lime group-hover:translate-x-0.5 transition-all" />
                   </Link>
                 ))}
               </div>
@@ -323,7 +323,7 @@ export default function MobileMockupHero() {
             {/* TERTIARY SCREEN: MI PERFIL PREVIEW */}
             <div className="rounded-3xl bg-[#F8F7F2] dark:bg-obsidian-850 border border-warm-300/80 dark:border-white/10 p-5 shadow-soft-md">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-[11px] font-bold text-[#2E5D4A] dark:text-neon-lime uppercase tracking-wider">
+                <span className="text-[11px] font-bold text-[#3B1238] dark:text-neon-lime uppercase tracking-wider">
                   Acceso Cliente · Mi Historia RH
                 </span>
                 <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-[#D4AF7C]/20 text-[#D4AF7C] font-bold">
@@ -402,9 +402,9 @@ export default function MobileMockupHero() {
               </span>
               <div className="flex items-center gap-3">
                 <div className="flex flex-col items-center">
-                  <div className="w-9 h-9 rounded-full bg-[#2E5D4A] border border-white/60 shadow-soft-xs"></div>
+                  <div className="w-9 h-9 rounded-full bg-[#3B1238] border border-white/60 shadow-soft-xs"></div>
                   <span className="text-[10px] font-semibold text-forest-800 dark:text-obsidian-300 mt-1">Verde Salud</span>
-                  <span className="text-[9px] text-forest-500 dark:text-obsidian-400">#2E5D4A</span>
+                  <span className="text-[9px] text-forest-500 dark:text-obsidian-400">#3B1238</span>
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="w-9 h-9 rounded-full bg-[#A7B89F] border border-white/60 shadow-soft-xs"></div>
@@ -431,25 +431,25 @@ export default function MobileMockupHero() {
               </span>
               <div className="grid grid-cols-5 gap-2 text-center">
                 <div className="flex flex-col items-center">
-                  <div className="w-8 h-8 rounded-xl bg-white dark:bg-obsidian-800 border border-warm-200 dark:border-white/10 flex items-center justify-center text-[#2E5D4A] dark:text-neon-lime mb-1 shadow-soft-xs">
+                  <div className="w-8 h-8 rounded-xl bg-white dark:bg-obsidian-800 border border-warm-200 dark:border-white/10 flex items-center justify-center text-[#3B1238] dark:text-neon-lime mb-1 shadow-soft-xs">
                     <Calendar className="w-4 h-4" />
                   </div>
                   <span className="text-[9.5px] font-medium text-forest-800 dark:text-obsidian-300 leading-tight">Reservas Online</span>
                 </div>
                 <div className="flex flex-col items-center">
-                  <div className="w-8 h-8 rounded-xl bg-white dark:bg-obsidian-800 border border-warm-200 dark:border-white/10 flex items-center justify-center text-[#2E5D4A] dark:text-neon-lime mb-1 shadow-soft-xs">
+                  <div className="w-8 h-8 rounded-xl bg-white dark:bg-obsidian-800 border border-warm-200 dark:border-white/10 flex items-center justify-center text-[#3B1238] dark:text-neon-lime mb-1 shadow-soft-xs">
                     <Bell className="w-4 h-4" />
                   </div>
                   <span className="text-[9.5px] font-medium text-forest-800 dark:text-obsidian-300 leading-tight">Notificaciones</span>
                 </div>
                 <div className="flex flex-col items-center">
-                  <div className="w-8 h-8 rounded-xl bg-white dark:bg-obsidian-800 border border-warm-200 dark:border-white/10 flex items-center justify-center text-[#2E5D4A] dark:text-neon-lime mb-1 shadow-soft-xs">
+                  <div className="w-8 h-8 rounded-xl bg-white dark:bg-obsidian-800 border border-warm-200 dark:border-white/10 flex items-center justify-center text-[#3B1238] dark:text-neon-lime mb-1 shadow-soft-xs">
                     <Sparkles className="w-4 h-4" />
                   </div>
                   <span className="text-[9.5px] font-medium text-forest-800 dark:text-obsidian-300 leading-tight">Programas</span>
                 </div>
                 <div className="flex flex-col items-center">
-                  <div className="w-8 h-8 rounded-xl bg-white dark:bg-obsidian-800 border border-warm-200 dark:border-white/10 flex items-center justify-center text-[#2E5D4A] dark:text-neon-lime mb-1 shadow-soft-xs">
+                  <div className="w-8 h-8 rounded-xl bg-white dark:bg-obsidian-800 border border-warm-200 dark:border-white/10 flex items-center justify-center text-[#3B1238] dark:text-neon-lime mb-1 shadow-soft-xs">
                     <TrendingUp className="w-4 h-4" />
                   </div>
                   <span className="text-[9.5px] font-medium text-forest-800 dark:text-obsidian-300 leading-tight">Seguimiento</span>
@@ -466,15 +466,15 @@ export default function MobileMockupHero() {
             {/* Checkmark Bullets */}
             <div className="md:col-span-3 bg-white/80 dark:bg-obsidian-850 p-4 rounded-2xl border border-warm-200 dark:border-white/10 space-y-1.5 shadow-soft-xs">
               <div className="flex items-center gap-2 text-xs font-semibold text-forest-900 dark:text-white">
-                <CheckCircle2 className="w-4 h-4 text-[#2E5D4A] dark:text-neon-lime shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#3B1238] dark:text-neon-lime shrink-0" />
                 <span>Marca premium y cercana</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-semibold text-forest-900 dark:text-white">
-                <CheckCircle2 className="w-4 h-4 text-[#2E5D4A] dark:text-neon-lime shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#3B1238] dark:text-neon-lime shrink-0" />
                 <span>Experiencia integral de bienestar</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-semibold text-forest-900 dark:text-white">
-                <CheckCircle2 className="w-4 h-4 text-[#2E5D4A] dark:text-neon-lime shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#3B1238] dark:text-neon-lime shrink-0" />
                 <span>Conexión continua con tus cuidados</span>
               </div>
             </div>
@@ -482,7 +482,7 @@ export default function MobileMockupHero() {
           </div>
 
           {/* Slogan Banner */}
-          <div className="mt-6 py-2.5 px-4 rounded-xl bg-[#2E5D4A] text-white text-center font-serif tracking-widest text-xs uppercase shadow-soft-sm">
+          <div className="mt-6 py-2.5 px-4 rounded-xl bg-[#3B1238] text-white text-center font-serif tracking-widest text-xs uppercase shadow-soft-sm">
             M&amp;H BIENESTAR INTEGRAL · CUIDAMOS DE TI, CUERPO Y MENTE
           </div>
         </div>
@@ -531,7 +531,7 @@ export default function MobileMockupHero() {
               <Link
                 href="/reservar"
                 onClick={() => setWellnessTipModal(false)}
-                className="w-full text-center py-3 rounded-2xl bg-[#2E5D4A] hover:bg-[#234738] text-white text-xs font-bold shadow-soft-sm"
+                className="w-full text-center py-3 rounded-2xl bg-[#3B1238] hover:bg-[#270925] text-white text-xs font-bold shadow-soft-sm"
               >
                 Reservar Consulta con Terapeuta
               </Link>

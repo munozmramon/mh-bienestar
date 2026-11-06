@@ -53,10 +53,10 @@ export default function Navbar() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-forest-950 dark:text-white group-hover:text-forest-700 dark:group-hover:text-neon-lime transition-colors">
-                M&amp;H <span className="text-[#D4AF7C] dark:text-neon-lime font-sans font-medium text-lg tracking-widest uppercase">Bienestar Integral</span>
+              <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#3B1238] dark:text-white group-hover:text-[#7C3AED] dark:group-hover:text-[#A78BFA] transition-colors">
+                M&amp;H <span className="text-[#7C3AED] dark:text-[#A78BFA] font-sans font-medium text-lg tracking-widest uppercase">Bienestar Integral</span>
               </span>
-              <span className="text-[11px] font-serif italic text-forest-700/80 dark:text-obsidian-300">
+              <span className="text-[11px] font-serif italic text-slate-500 dark:text-slate-400">
                 Tu bienestar, nuestra esencia
               </span>
             </div>
@@ -72,8 +72,8 @@ export default function Navbar() {
                   href={link.href}
                   className={`px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${
                     isActive
-                      ? 'text-forest-800 dark:text-obsidian-950 bg-warm-200/80 dark:bg-neon-lime font-semibold shadow-soft-sm'
-                      : 'text-forest-700/80 dark:text-obsidian-200 hover:text-forest-900 dark:hover:text-neon-lime hover:bg-warm-200/40 dark:hover:bg-obsidian-800'
+                      ? 'text-[#3B1238] dark:text-white bg-[#EDE9FE] dark:bg-[#7C3AED]/25 font-bold shadow-soft-sm'
+                      : 'text-slate-600 dark:text-slate-300 hover:text-[#7C3AED] dark:hover:text-[#A78BFA] hover:bg-slate-100 dark:hover:bg-white/5'
                   }`}
                 >
                   {link.name}
@@ -85,16 +85,16 @@ export default function Navbar() {
           {/* Right Action Buttons */}
           <div className="hidden lg:flex items-center space-x-3">
             
-            {/* Theme Toggle Button: Día / Noche Moderno */}
+            {/* Theme Toggle Button: Día / Noche Amatista */}
             <button
               onClick={toggleTheme}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border border-warm-300 dark:border-white/10 bg-white/70 dark:bg-obsidian-800 text-forest-800 dark:text-obsidian-100 hover:bg-white dark:hover:bg-obsidian-700 shadow-soft-sm transition-all"
-              title={theme === 'dark' ? 'Cambiar a Modo Día (Orgánico)' : 'Cambiar a Modo Noche (Moderno)'}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-white/5 text-slate-800 dark:text-slate-200 hover:bg-white dark:hover:bg-white/10 shadow-soft-sm transition-all"
+              title={theme === 'dark' ? 'Cambiar a Modo Día' : 'Cambiar a Modo Noche Amatista'}
             >
               {theme === 'dark' ? (
                 <>
-                  <Moon className="w-4 h-4 text-neon-lime" />
-                  <span className="text-neon-lime font-bold">Noche</span>
+                  <Moon className="w-4 h-4 text-[#A78BFA]" />
+                  <span className="text-[#A78BFA] font-bold">Noche</span>
                 </>
               ) : (
                 <>
@@ -209,7 +209,7 @@ export default function Navbar() {
             {/* Direct Booking CTA */}
             <Link
               href="/reservar"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-[#10B981] hover:bg-[#059669] active:scale-[0.98] transition-all shadow-md hover:shadow-lg"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-[#7C3AED] hover:bg-[#6D28D9] active:scale-[0.98] transition-all shadow-md hover:shadow-lg"
             >
               <Calendar className="w-4 h-4 text-white" />
               <span>Pedir Cita</span>
@@ -220,14 +220,14 @@ export default function Navbar() {
           <div className="flex md:hidden items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-xl text-slate-700 dark:text-neon-lime bg-white/70 dark:bg-obsidian-800 border border-slate-200 dark:border-white/10"
+              className="p-2 rounded-xl text-slate-700 dark:text-[#A78BFA] bg-white/70 dark:bg-white/5 border border-slate-200 dark:border-white/10"
               title="Cambiar tema"
             >
-              {theme === 'dark' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4 text-amber-500" />}
+              {theme === 'dark' ? <Moon className="w-4 h-4 text-[#A78BFA]" /> : <Sun className="w-4 h-4 text-amber-500" />}
             </button>
             <Link
               href="/reservar"
-              className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-white bg-[#10B981] shadow-sm"
+              className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-white bg-[#7C3AED] shadow-sm"
             >
               Pedir Cita
             </Link>

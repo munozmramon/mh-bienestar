@@ -141,8 +141,8 @@ export default function Footer() {
         </div>
 
         {/* Mockup Slogan Footer Banner */}
-        <div className="mt-8 py-3 rounded-2xl bg-[#2E5D4A]/50 dark:bg-obsidian-900 border border-[#A7B89F]/30 dark:border-white/10 text-center">
-          <p className="font-serif tracking-widest uppercase text-xs font-semibold text-warm-100 dark:text-white">
+        <div className="mt-8 py-3 rounded-2xl bg-[#3B1238]/60 dark:bg-[#1A132E] border border-purple-800/40 dark:border-purple-900/30 text-center">
+          <p className="font-serif tracking-widest uppercase text-xs font-semibold text-white">
             M&amp;H BIENESTAR INTEGRAL · CUIDAMOS DE TI, CUERPO Y MENTE
           </p>
         </div>
