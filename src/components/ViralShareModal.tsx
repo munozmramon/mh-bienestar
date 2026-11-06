@@ -210,3 +210,4 @@ export default function ViralShareModal({ isOpen, onClose }: ViralShareModalProp
     </div>
   );
 }
+

@@ -404,3 +404,4 @@ export default function ClientAuthView({ initialMode = 'login', onSuccess }: Cli
     </div>
   );
 }
+

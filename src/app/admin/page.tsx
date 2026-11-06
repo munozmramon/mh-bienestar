@@ -35,6 +35,7 @@ import {
   X
 } from 'lucide-react';
 import QRCode from 'qrcode';
+import SocialContentStudio from '@/components/admin/SocialContentStudio';
 
 export default function AdminPage() {
   const { 
@@ -1533,89 +1534,7 @@ function AdminMarketing({ campaigns, referrals, onAddCampaign, onToggleCampaign 
 // SUB-COMPONENT: SOCIAL MEDIA CONTENT CENTER (INSTAGRAM / FACEBOOK TEMPLATES)
 // ---------------------------------------------------------------------------
 function AdminSocialHub() {
-  const [copiedId, setCopiedId] = useState<string | null>(null);
-
-  const posts = [
-    {
-      id: 'post-1',
-      platform: 'Instagram / Facebook Post',
-      theme: 'Pautas de Higiene Postural',
-      copyText: `🌿 ¿Sientes que tus hombros cargan con todo el cansancio de la semana?
-
-En M&H Bienestar (Orcera) sabemos que los hábitos repetitivos y el estrés diario provocan una rigidez acumulada que no siempre se alivia con reposo común.
-
-Mediante nuestra sesión de Reeducación Corporal evaluamos la alineación de tu columna y aplicamos técnicas manuales profundas para que recuperes tu movilidad natural.
-
-📍 Calle San José, 2 · Orcera (Jaén)
-📲 Reserva tu cita en un clic desde nuestra web oficial: https://quirosteopatiamh.es/reservar
-
-#MHBienestar #Orcera #Jaen #SierradeSegura #ReeducacionCorporal #BienestarNatural`,
-      image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 'post-2',
-      platform: 'Story / Reel Hook',
-      theme: 'Terapia Craneosacral y Calma Mental',
-      copyText: `✨ ¿Sufres de bruxismo nocturno o te cuesta desconectar al final del día?
-
-El ritmo craneosacral refleja directamente el estado de alerta de tu sistema nervioso. Nuestro tacto sutil y respetuoso devuelve la serenidad a tu mente y ligereza a tu rostro.
-
-🌸 Citas disponibles en Orcera. Enlace directo en bio.
-
-#Craneosacral #Relax #OrceraJaen #BienestarIntegral`,
-      image: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=800&q=80'
-    }
-  ];
-
-  const handleCopy = (id: string, text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2500);
-  };
-
-  return (
-    <div className="space-y-6">
-      <div>
-        <h3 className="font-serif text-xl font-bold text-forest-950">
-          Centro de Creación de Contenidos para Redes
-        </h3>
-        <p className="text-xs text-forest-600">
-          Plantillas oficiales listas para publicar en Instagram y Facebook con el tono de voz de M&amp;H Bienestar.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {posts.map((post) => (
-          <div key={post.id} className="bg-white rounded-3xl border border-warm-300 p-6 shadow-soft-sm space-y-4 flex flex-col justify-between">
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-forest-800 text-warm-100 uppercase">
-                  {post.platform}
-                </span>
-                <span className="text-xs text-gold-700 font-semibold">{post.theme}</span>
-              </div>
-
-              <div className="h-44 rounded-2xl overflow-hidden bg-forest-900">
-                <img src={post.image} alt={post.theme} className="w-full h-full object-cover" />
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-warm-50 border border-warm-200 text-xs text-forest-800 font-mono whitespace-pre-wrap leading-relaxed max-h-48 overflow-y-auto">
-                {post.copyText}
-              </div>
-            </div>
-
-            <button
-              onClick={() => handleCopy(post.id, post.copyText)}
-              className="w-full py-2.5 rounded-xl text-xs font-semibold bg-forest-800 hover:bg-forest-700 text-white inline-flex items-center justify-center gap-2 transition-all shadow-soft-sm"
-            >
-              {copiedId === post.id ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copiedId === post.id ? '¡Texto Copiado para Instagram!' : 'Copiar Texto para Publicar'}</span>
-            </button>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  return <SocialContentStudio />;
 }
 
 // ---------------------------------------------------------------------------
