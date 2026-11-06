@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { StoreProvider } from '@/lib/store/useStore';
+import { ThemeProvider } from '@/lib/theme/ThemeContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PWAInstallBanner from '@/components/PWAInstallBanner';
@@ -100,14 +101,16 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-warm-50 text-forest-900 antialiased selection:bg-sage-200 selection:text-forest-900">
-        <StoreProvider>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <PWAInstallBanner />
-          <CookieBanner />
-        </StoreProvider>
+      <body className="min-h-screen flex flex-col bg-warm-50 dark:bg-obsidian-900 text-forest-900 dark:text-obsidian-100 antialiased selection:bg-neon-lime selection:text-obsidian-950 transition-colors duration-300">
+        <ThemeProvider>
+          <StoreProvider>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <PWAInstallBanner />
+            <CookieBanner />
+          </StoreProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

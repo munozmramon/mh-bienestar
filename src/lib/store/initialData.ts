@@ -560,3 +560,47 @@ export const initialHealthRecords: HealthAssessmentRecord[] = [
     accessAuditedBy: "admin@mh-bienestar.es"
   }
 ];
+
+export const initialReviews = [
+  {
+    id: "rev-1",
+    clientName: "María G.",
+    rating: 5,
+    sessionAttended: "Reeducación Corporal",
+    comment: "Acudí por una sobrecarga constante en la zona lumbar y desde la primera sesión noté una descompresión increíble. La tranquilidad que se respira en el centro de Orcera es inigualable.",
+    date: "2026-10-20",
+    status: "approved" as const,
+    location: "Orcera (Jaén)"
+  },
+  {
+    id: "rev-2",
+    clientName: "Carlos R.",
+    rating: 5,
+    sessionAttended: "Técnica Craneosacral Suave",
+    comment: "La terapia craneosacral suave me ayudó muchísimo con la tensión mandibular y el estrés laboral. El trato es extraordinariamente respetuoso y delicado. Un lujo tener este nivel en la comarca.",
+    date: "2026-10-12",
+    status: "approved" as const,
+    location: "Beas de Segura"
+  },
+  {
+    id: "rev-3",
+    clientName: "Elena S.",
+    rating: 5,
+    sessionAttended: "Bienestar Visceral",
+    comment: "Reservar desde la web es comodísimo, te llegan los avisos al móvil y la atención en consulta es puntual, sin prisas. Muy recomendable el bienestar visceral si sufres de pesadez o tensión diafragmática.",
+    date: "2026-09-28",
+    status: "approved" as const,
+    location: "Orcera"
+  }
+];
+
+export const initialBlockedSlots = [
+  {
+    id: "blk-1",
+    date: "2026-11-14",
+    timeSlot: "12:30",
+    reason: "Mantenimiento y desinfección de cabina"
+  }
+];
+
+

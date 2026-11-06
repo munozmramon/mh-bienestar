@@ -656,3 +656,4 @@ export default function MiCuentaPage() {
     </div>
   );
 }
+

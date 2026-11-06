@@ -258,3 +258,4 @@ CREATE POLICY "Solo especialistas acceden a salud" ON public.health_assessment_r
       WHERE profiles.id = auth.uid() AND profiles.role IN ('admin', 'staff')
     )
   );
+

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,6 +9,27 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Modern Dark Palette (Inspired by ugcviralstudio.com)
+        obsidian: {
+          950: '#08090B',
+          900: '#0E0F12', // Main background
+          850: '#121418',
+          800: '#16171C', // Card surface
+          700: '#1E2027', // Hover surfaces
+          600: '#2A2D36',
+          500: '#3D414D',
+          400: '#646A7A',
+          300: '#949BA8',
+          200: '#CBD0D9',
+          100: '#F5F7F2', // Crisp light text
+        },
+        neon: {
+          lime: '#C8FF3E',    // High-impact cyber lime
+          emerald: '#3DDC84', // Minty energetic emerald
+          glow: 'rgba(200, 255, 62, 0.35)',
+        },
+
+        // Organic Day Palette (Centro Parasanitario M&H)
         sage: {
           50: '#F4F6F4',
           100: '#E6EBE6',
@@ -45,18 +67,6 @@ module.exports = {
           800: '#6C6250',
           900: '#4A4337',
         },
-        sand: {
-          50: '#FBF9F5',
-          100: '#F6F2EA',
-          200: '#ECE3D3',
-          300: '#DFD1B8',
-          400: '#CFBD9C',
-          500: '#BEA780',
-          600: '#A68D64',
-          700: '#836F4F',
-          800: '#64543C',
-          900: '#463A2B',
-        },
         gold: {
           50: '#FBF9F0',
           100: '#F6F1DC',
@@ -79,6 +89,8 @@ module.exports = {
         'soft-md': '0 6px 20px -4px rgba(28, 47, 35, 0.08)',
         'soft-lg': '0 12px 32px -6px rgba(28, 47, 35, 0.12)',
         'soft-xl': '0 20px 48px -8px rgba(28, 47, 35, 0.16)',
+        'neon-lime': '0 0 25px -4px rgba(200, 255, 62, 0.4)',
+        'neon-lime-lg': '0 0 45px -6px rgba(200, 255, 62, 0.55)',
       }
     },
   },

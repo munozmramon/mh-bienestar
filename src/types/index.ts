@@ -159,6 +159,24 @@ export interface CommercialClientNote {
   content: string; // Purely commercial/logistical (e.g. "Prefiere mañanas", "Viene recomendado por Ana")
 }
 
+export interface Review {
+  id: string;
+  clientName: string;
+  rating: number;
+  sessionAttended: string;
+  comment: string;
+  date: string;
+  status: 'pending' | 'approved' | 'rejected';
+  location: string;
+}
+
+export interface BlockedSlot {
+  id: string;
+  date: string;
+  timeSlot?: string; // empty means all day
+  reason: string;
+}
+
 export interface BusinessConfig {
   name: string;
   legalName: string;
@@ -178,3 +196,4 @@ export interface BusinessConfig {
   referralRewardPointsReferrer: number;
   referralRewardPointsReferee: number;
 }
+

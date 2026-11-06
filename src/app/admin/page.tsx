@@ -1525,3 +1525,4 @@ function AdminSettings({ businessConfig, auditLogs }: any) {
     </div>
   );
 }
+
