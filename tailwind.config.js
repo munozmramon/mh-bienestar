@@ -79,13 +79,22 @@ module.exports = {
           800: '#644D29',
           900: '#47361D',
         },
-        // Mockup Exact Palette: M&H Bienestar Integral
+        // High-Conversion Vibrant Palette: M&H Bienestar Integral
         mh: {
-          salud: '#2E5D4A',      // Verde Salud #2E5D4A
-          natural: '#A7B89F',    // Verde Natural #A7B89F
-          dorado: '#D4AF7C',     // Dorado Bienestar #D4AF7C
-          crema: '#F8F7F2',      // Crema Equilibrio #F8F7F2
-          fondo: '#FBFBF9',
+          emerald: '#044E39',    // Verde Esmeralda Joya (Fuerza, salud y prestigio)
+          emeraldDark: '#023325',// Esmeralda ultra profundo
+          mint: '#10B981',       // Verde Menta Vibrante (Botones de acción, llamadas a reserva)
+          mintDark: '#059669',   // Hover verde menta
+          mintLight: '#ECFDF5',  // Fondo menta sutil
+          gold: '#D4AF37',       // Oro Champagne (Premios, fidelidad, ahorro)
+          amber: '#F59E0B',      // Ámbar cálido para ofertas y urgencia
+          pearl: '#F9FAFB',      // Blanco perla ultra-limpio (adiós al crema descolorido)
+          pure: '#FFFFFF',       // Blanco puro nítido
+          salud: '#044E39',      // Retro-compatibility mapped to modern emerald
+          natural: '#10B981',    // Retro-compatibility mapped to energetic mint
+          dorado: '#D4AF37',     // Retro-compatibility mapped to champagne gold
+          crema: '#FFFFFF',      // Clean white instead of dull cream
+          fondo: '#F9FAFB',
         }
       },
       fontFamily: {

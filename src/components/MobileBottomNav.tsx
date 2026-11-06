@@ -36,7 +36,7 @@ export default function MobileBottomNav() {
   return (
     <>
       {/* Floating Bottom Nav (Mobile Only) */}
-      <nav aria-label="Navegación móvil inferior" className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#F8F7F2]/95 dark:bg-obsidian-950/95 backdrop-blur-xl border-t border-warm-300/80 dark:border-white/10 px-2 py-1.5 shadow-soft-2xl safe-area-pb">
+      <nav aria-label="Navegación móvil inferior" className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-obsidian-950/95 backdrop-blur-xl border-t border-slate-200 dark:border-white/10 px-2 py-1.5 shadow-2xl safe-area-pb">
         <div className="flex items-center justify-around max-w-md mx-auto">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -49,9 +49,9 @@ export default function MobileBottomNav() {
                 <button
                   key="more-menu-btn"
                   onClick={() => setMoreDrawerOpen(true)}
-                  className="flex flex-col items-center justify-center py-1 px-3 rounded-2xl text-forest-700/80 dark:text-obsidian-300 hover:text-forest-950 dark:hover:text-white transition-all"
+                  className="flex flex-col items-center justify-center py-1 px-3 rounded-2xl text-slate-600 dark:text-obsidian-300 hover:text-slate-900 dark:hover:text-white transition-all"
                 >
-                  <div className="p-1.5 rounded-xl bg-transparent active:bg-warm-200 dark:active:bg-obsidian-800">
+                  <div className="p-1.5 rounded-xl bg-transparent active:bg-slate-100 dark:active:bg-obsidian-800">
                     <Menu className="w-5 h-5 stroke-[2]" />
                   </div>
                   <span className="text-[10.5px] mt-0.5 tracking-tight font-medium">Más</span>
@@ -65,13 +65,13 @@ export default function MobileBottomNav() {
                 href={item.href}
                 className={`flex flex-col items-center justify-center py-1 px-3 rounded-2xl transition-all duration-200 ${
                   isActive
-                    ? 'text-[#2E5D4A] dark:text-neon-lime font-bold scale-105'
-                    : 'text-forest-700/70 dark:text-obsidian-400 hover:text-forest-900 dark:hover:text-white'
+                    ? 'text-[#10B981] dark:text-[#34D399] font-bold scale-105'
+                    : 'text-slate-500 dark:text-obsidian-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
                 <div className={`p-1.5 rounded-xl transition-all ${
                   isActive 
-                    ? 'bg-[#2E5D4A]/10 dark:bg-neon-lime/20' 
+                    ? 'bg-[#10B981]/15 dark:bg-emerald-950/40' 
                     : 'bg-transparent'
                 }`}>
                   <Icon className={`w-5 h-5 ${isActive ? 'stroke-[2.5]' : 'stroke-[1.8]'}`} />

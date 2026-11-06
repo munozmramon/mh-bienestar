@@ -210,9 +210,9 @@ export default function Navbar() {
             {/* Direct Booking CTA */}
             <Link
               href="/reservar"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-forest-800 hover:bg-forest-700 dark:bg-neon-lime dark:text-obsidian-950 dark:hover:bg-[#d8ff68] active:scale-[0.98] transition-all shadow-soft-md hover:shadow-soft-lg dark:shadow-neon-lime border border-gold-400/20 dark:border-transparent font-bold"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-[#10B981] hover:bg-[#059669] active:scale-[0.98] transition-all shadow-md hover:shadow-lg"
             >
-              <Calendar className="w-4 h-4 text-gold-300 dark:text-obsidian-950" />
+              <Calendar className="w-4 h-4 text-white" />
               <span>Pedir Cita</span>
             </Link>
           </div>
@@ -221,16 +221,16 @@ export default function Navbar() {
           <div className="flex md:hidden items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-xl text-forest-700 dark:text-neon-lime bg-white/70 dark:bg-obsidian-800 border border-warm-300 dark:border-white/10"
+              className="p-2 rounded-xl text-slate-700 dark:text-neon-lime bg-white/70 dark:bg-obsidian-800 border border-slate-200 dark:border-white/10"
               title="Cambiar tema"
             >
-              {theme === 'dark' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+              {theme === 'dark' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4 text-amber-500" />}
             </button>
             <Link
               href="/reservar"
-              className="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-white bg-forest-800 dark:bg-neon-lime dark:text-obsidian-950 shadow-soft-sm font-bold"
+              className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-white bg-[#10B981] shadow-sm"
             >
-              Cita
+              Pedir Cita
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

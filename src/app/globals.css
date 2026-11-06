@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --background: #FAF8F5;
-  --foreground: #1C2F23;
+  --background: #FFFFFF;
+  --foreground: #0F172A;
   --card-bg: #FFFFFF;
-  --border-color: #EBE3D5;
+  --border-color: #E2E8F0;
 }
 
 .dark {

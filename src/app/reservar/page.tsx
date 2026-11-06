@@ -68,14 +68,32 @@ function ReservarContent() {
     }
   }, [currentUser]);
 
-  // If service ID param changes
+  const selectedService = services.find(s => s.id === selectedServiceId) || availableServices[0];
+
+  // If service ID param or coupon param changes
   useEffect(() => {
     if (initialServiceId) {
       setSelectedServiceId(initialServiceId);
     }
-  }, [initialServiceId]);
 
-  const selectedService = services.find(s => s.id === selectedServiceId) || availableServices[0];
+    const couponParam = searchParams.get('coupon') || searchParams.get('cupon');
+    if (couponParam) {
+      setCouponCode(couponParam);
+      const currentPrice = selectedService ? selectedService.price : 45;
+      const res = validateCoupon(couponParam, currentPrice);
+      if (res.valid) {
+        setAppliedDiscount(res.discountAmount);
+        setCouponMessage(res.message);
+      }
+    }
+
+    const timeParam = searchParams.get('time');
+    if (timeParam) {
+      // e.g. "18:30 h" or "18:30"
+      const cleanTime = timeParam.replace(' h', '').trim();
+      setSelectedSlot(cleanTime);
+    }
+  }, [initialServiceId, searchParams, selectedService]);
 
   // Daily time slots
   const possibleSlots = [
@@ -267,55 +285,125 @@ function ReservarContent() {
 
               <div className="bg-white dark:bg-obsidian-800 p-5 rounded-3xl border border-warm-300 dark:border-white/10 shadow-soft-sm space-y-4">
                 
-                {/* Date Picker Input */}
-                <div>
-                  <label className="block text-xs font-bold text-forest-800 dark:text-obsidian-200 uppercase tracking-wider mb-1.5">
-                    Fecha de la cita
-                  </label>
-                  <input
-                    type="date"
-                    value={selectedDate}
-                    min="2026-11-06"
-                    onChange={(e) => {
-                      setSelectedDate(e.target.value);
-                      setSelectedSlot('');
-                    }}
-                    className="w-full px-4 py-2.5 rounded-xl text-sm bg-warm-50 dark:bg-obsidian-900 border border-warm-300 dark:border-white/10 text-forest-900 dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-forest-700 dark:focus:ring-neon-lime"
-                  />
-                  <p className="text-[11px] text-forest-500 dark:text-obsidian-400 mt-1">
-                    Atención de Lunes a Sábado. Domingos cerrado.
-                  </p>
-                </div>
-
-                {/* Slots Grid */}
+                {/* Quick Date Chips (1-tap mobile experience) */}
                 <div>
                   <label className="block text-xs font-bold text-forest-800 dark:text-obsidian-200 uppercase tracking-wider mb-2">
-                    Horarios para el {selectedDate}
+                    Selecciona el día
                   </label>
-
-                  <div className="grid grid-cols-3 gap-2.5">
-                    {possibleSlots.map((slot) => {
-                      const available = isSlotAvailable(selectedDate, slot);
-                      const isSelected = selectedSlot === slot;
-
+                  <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+                    {[
+                      { label: 'Hoy', date: '2026-11-07', sub: 'Sáb' },
+                      { label: 'Lun 9', date: '2026-11-09', sub: 'Nov' },
+                      { label: 'Mar 10', date: '2026-11-10', sub: 'Nov' },
+                      { label: 'Mié 11', date: '2026-11-11', sub: 'Nov' },
+                      { label: 'Jue 12', date: '2026-11-12', sub: 'Nov' },
+                      { label: 'Vie 13', date: '2026-11-13', sub: 'Nov' },
+                      { label: 'Sáb 14', date: '2026-11-14', sub: 'Nov' },
+                    ].map((d) => {
+                      const isDaySelected = selectedDate === d.date;
                       return (
                         <button
-                          key={slot}
-                          disabled={!available}
-                          onClick={() => setSelectedSlot(slot)}
-                          className={`py-2.5 px-2 rounded-xl text-xs font-semibold transition-all border ${
-                            !available
-                              ? 'bg-warm-100 dark:bg-obsidian-900 text-warm-400 dark:text-obsidian-600 border-warm-200 dark:border-white/5 cursor-not-allowed line-through'
-                              : isSelected
-                              ? 'bg-forest-800 dark:bg-neon-lime text-white dark:text-obsidian-950 border-forest-800 dark:border-neon-lime font-bold shadow-soft-sm'
-                              : 'bg-warm-50 dark:bg-obsidian-850 text-forest-800 dark:text-obsidian-200 hover:bg-forest-50 dark:hover:bg-obsidian-700 border-warm-300 dark:border-white/10'
+                          key={d.date}
+                          type="button"
+                          onClick={() => {
+                            setSelectedDate(d.date);
+                            setSelectedSlot('');
+                          }}
+                          className={`flex flex-col items-center justify-center py-2 px-3 rounded-2xl min-w-[62px] text-xs transition-all border shrink-0 ${
+                            isDaySelected
+                              ? 'bg-[#10B981] dark:bg-[#10B981] text-white border-[#10B981] font-bold shadow-md scale-105'
+                              : 'bg-slate-50 dark:bg-obsidian-850 hover:bg-white text-slate-700 dark:text-slate-300 border-slate-200 dark:border-white/10'
                           }`}
                         >
-                          {slot}
-                          {!available && <span className="block text-[9px]">Ocupado</span>}
+                          <span className="font-bold">{d.label}</span>
+                          <span className="text-[10px] opacity-80">{d.sub}</span>
                         </button>
                       );
                     })}
+                  </div>
+
+                  {/* Manual date picker fallback */}
+                  <div className="mt-2 flex items-center gap-2 text-xs text-slate-500">
+                    <span>O elige otra fecha:</span>
+                    <input
+                      type="date"
+                      value={selectedDate}
+                      min="2026-11-06"
+                      onChange={(e) => {
+                        setSelectedDate(e.target.value);
+                        setSelectedSlot('');
+                      }}
+                      className="px-2.5 py-1 rounded-lg text-xs bg-slate-100 dark:bg-obsidian-850 border border-slate-300 dark:border-white/10 text-slate-800 dark:text-white"
+                    />
+                  </div>
+                </div>
+
+                {/* Slots Grid grouped by Morning / Afternoon */}
+                <div>
+                  <label className="block text-xs font-bold text-forest-800 dark:text-obsidian-200 uppercase tracking-wider mb-2">
+                    Horas disponibles ({selectedDate})
+                  </label>
+
+                  <div className="space-y-3">
+                    {/* Morning */}
+                    <div>
+                      <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 block mb-1.5">
+                        🌅 Mañana
+                      </span>
+                      <div className="grid grid-cols-3 gap-2">
+                        {['09:30', '11:00', '12:30'].map((slot) => {
+                          const available = isSlotAvailable(selectedDate, slot);
+                          const isSelected = selectedSlot === slot;
+                          return (
+                            <button
+                              key={slot}
+                              type="button"
+                              disabled={!available}
+                              onClick={() => setSelectedSlot(slot)}
+                              className={`py-2 px-2 rounded-xl text-xs font-semibold transition-all border ${
+                                !available
+                                  ? 'bg-slate-100 dark:bg-obsidian-900 text-slate-400 dark:text-obsidian-600 border-slate-200 dark:border-white/5 cursor-not-allowed line-through'
+                                  : isSelected
+                                  ? 'bg-[#10B981] text-white border-[#10B981] font-bold shadow-soft-sm'
+                                  : 'bg-slate-50 dark:bg-obsidian-850 text-slate-800 dark:text-obsidian-200 hover:bg-emerald-50 dark:hover:bg-obsidian-700 border-slate-200 dark:border-white/10'
+                              }`}
+                            >
+                              {slot}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Afternoon */}
+                    <div>
+                      <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 block mb-1.5">
+                        🌇 Tarde
+                      </span>
+                      <div className="grid grid-cols-3 gap-2">
+                        {['16:30', '18:00', '19:30'].map((slot) => {
+                          const available = isSlotAvailable(selectedDate, slot);
+                          const isSelected = selectedSlot === slot;
+                          return (
+                            <button
+                              key={slot}
+                              type="button"
+                              disabled={!available}
+                              onClick={() => setSelectedSlot(slot)}
+                              className={`py-2 px-2 rounded-xl text-xs font-semibold transition-all border ${
+                                !available
+                                  ? 'bg-slate-100 dark:bg-obsidian-900 text-slate-400 dark:text-obsidian-600 border-slate-200 dark:border-white/5 cursor-not-allowed line-through'
+                                  : isSelected
+                                  ? 'bg-[#10B981] text-white border-[#10B981] font-bold shadow-soft-sm'
+                                  : 'bg-slate-50 dark:bg-obsidian-850 text-slate-800 dark:text-obsidian-200 hover:bg-emerald-50 dark:hover:bg-obsidian-700 border-slate-200 dark:border-white/10'
+                              }`}
+                            >
+                              {slot}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
