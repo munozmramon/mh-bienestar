@@ -78,6 +78,14 @@ module.exports = {
           700: '#856736',
           800: '#644D29',
           900: '#47361D',
+        },
+        // Mockup Exact Palette: M&H Bienestar Integral
+        mh: {
+          salud: '#2E5D4A',      // Verde Salud #2E5D4A
+          natural: '#A7B89F',    // Verde Natural #A7B89F
+          dorado: '#D4AF7C',     // Dorado Bienestar #D4AF7C
+          crema: '#F8F7F2',      // Crema Equilibrio #F8F7F2
+          fondo: '#FBFBF9',
         }
       },
       fontFamily: {

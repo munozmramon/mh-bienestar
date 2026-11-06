@@ -25,9 +25,9 @@ export default function Footer() {
               </div>
               <div>
                 <span className="font-serif text-xl font-bold text-warm-50 dark:text-white tracking-tight">
-                  M&amp;H <span className="text-gold-400 dark:text-neon-lime font-sans text-sm tracking-widest uppercase">Bienestar</span>
+                  M&amp;H <span className="text-[#D4AF7C] dark:text-neon-lime font-sans text-sm tracking-widest uppercase">Bienestar Integral</span>
                 </span>
-                <p className="text-xs text-sage-300 dark:text-obsidian-400">Centro Parasanitario</p>
+                <p className="text-xs font-serif italic text-sage-300 dark:text-obsidian-400">Tu bienestar, nuestra esencia</p>
               </div>
             </div>
             
@@ -138,6 +138,13 @@ export default function Footer() {
             </div>
           </div>
 
+        </div>
+
+        {/* Mockup Slogan Footer Banner */}
+        <div className="mt-8 py-3 rounded-2xl bg-[#2E5D4A]/50 dark:bg-obsidian-900 border border-[#A7B89F]/30 dark:border-white/10 text-center">
+          <p className="font-serif tracking-widest uppercase text-xs font-semibold text-warm-100 dark:text-white">
+            M&amp;H BIENESTAR INTEGRAL · CUIDAMOS DE TI, CUERPO Y MENTE
+          </p>
         </div>
 
         {/* Bottom Bar */}

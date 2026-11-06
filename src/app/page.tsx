@@ -18,6 +18,7 @@ import {
   MessageCircle, 
   HeartHandshake
 } from 'lucide-react';
+import MobileMockupHero from '@/components/MobileMockupHero';
 
 export default function HomePage() {
   const { services, businessConfig, currentUser } = useStore();
@@ -25,138 +26,10 @@ export default function HomePage() {
   const upcomingServices = services.filter(s => !s.available);
 
   return (
-    <div className="flex flex-col min-h-screen bg-warm-50 dark:bg-obsidian-900 text-forest-900 dark:text-obsidian-100 transition-colors duration-300">
+    <div className="flex flex-col min-h-screen bg-[#F8F7F2] dark:bg-obsidian-900 text-forest-900 dark:text-obsidian-100 transition-colors duration-300">
       
-      {/* 1. HERO SECTION */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-warm-100 via-warm-50 to-warm-100 dark:from-obsidian-950 dark:via-obsidian-900 dark:to-obsidian-950 pt-12 pb-20 md:pt-20 md:pb-32 border-b border-warm-200 dark:border-white/10">
-        <div className="absolute inset-0 opacity-40 dark:opacity-20 pointer-events-none bg-[radial-gradient(#8A9A86_1px,transparent_1px)] dark:bg-[radial-gradient(#C8FF3E_1px,transparent_1px)] [background-size:24px_24px]"></div>
-        
-        {/* Glow Spheres for modern dark mode */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-neon-lime/10 to-neon-emerald/10 blur-[130px] rounded-full pointer-events-none -z-0"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Left Column: Value Proposition */}
-            <div className="lg:col-span-7 space-y-6">
-              
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-sage-100 text-forest-800 dark:bg-obsidian-800 dark:text-neon-lime border border-sage-300/80 dark:border-neon-lime/30 shadow-soft-sm">
-                <Sparkles className="w-3.5 h-3.5 text-gold-600 dark:text-neon-lime" />
-                <span>Centro Parasanitario · Calle San José, 2, Orcera (Jaén)</span>
-              </div>
-
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-forest-950 dark:text-white tracking-tight leading-[1.12]">
-                Recupera la ligereza y el <span className="text-gold-700 dark:text-neon-lime italic font-normal">equilibrio natural</span> de tu cuerpo.
-              </h1>
-
-              <p className="text-base sm:text-lg text-forest-700/90 dark:text-obsidian-300 max-w-2xl leading-relaxed">
-                En <strong>M&amp;H Bienestar</strong> combinamos reeducación corporal, técnicas manuales profundas y armonización craneosacral suave. Un trato humano, sereno y personalizado en la comarca de la Sierra de Segura.
-              </p>
-
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-                <Link
-                  href="/reservar"
-                  className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl text-base font-bold text-white dark:text-obsidian-950 bg-forest-800 hover:bg-forest-700 dark:bg-gradient-to-r dark:from-neon-lime dark:to-neon-emerald active:scale-[0.98] transition-all shadow-soft-lg hover:shadow-soft-xl dark:shadow-neon-lime border border-gold-400/30 dark:border-transparent"
-                >
-                  <Calendar className="w-5 h-5 text-gold-300 dark:text-obsidian-950" />
-                  <span>Reservar Cita Online</span>
-                </Link>
-
-                <Link
-                  href="/servicios"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl text-base font-semibold text-forest-900 dark:text-obsidian-100 bg-white/80 dark:bg-obsidian-800 hover:bg-white dark:hover:bg-obsidian-700 border border-warm-300 dark:border-white/10 shadow-soft-sm transition-all"
-                >
-                  <span>Explorar Servicios</span>
-                  <ArrowRight className="w-4 h-4 text-sage-600 dark:text-neon-lime" />
-                </Link>
-              </div>
-
-              {/* Trust Indicators */}
-              <div className="pt-6 border-t border-warm-300/80 dark:border-white/10 grid grid-cols-3 gap-4">
-                <div>
-                  <div className="flex items-center gap-1 text-gold-600 dark:text-neon-lime">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-current text-gold-500 dark:text-neon-lime" />
-                    ))}
-                  </div>
-                  <p className="text-xs font-semibold text-forest-900 dark:text-white mt-1">4.9 / 5 en Opiniones</p>
-                  <p className="text-[11px] text-forest-600 dark:text-obsidian-400">Clientes de Orcera y comarca</p>
-                </div>
-
-                <div>
-                  <p className="text-lg font-serif font-bold text-forest-900 dark:text-neon-lime">100%</p>
-                  <p className="text-xs font-semibold text-forest-900 dark:text-white">Atención Individual</p>
-                  <p className="text-[11px] text-forest-600 dark:text-obsidian-400">Sin prisas ni interrupciones</p>
-                </div>
-
-                <div>
-                  <p className="text-lg font-serif font-bold text-forest-900 dark:text-neon-lime">24h</p>
-                  <p className="text-xs font-semibold text-forest-900 dark:text-white">Gestión Flexible</p>
-                  <p className="text-[11px] text-forest-600 dark:text-obsidian-400">Cancelación fácil desde tu móvil</p>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Right Column: Hero Visual Card */}
-            <div className="lg:col-span-5">
-              <div className="relative">
-                <div className="absolute -top-4 -left-4 w-72 h-72 bg-sage-200/50 dark:bg-neon-lime/10 rounded-full filter blur-3xl -z-10"></div>
-                <div className="absolute -bottom-4 -right-4 w-72 h-72 bg-gold-200/40 dark:bg-neon-emerald/10 rounded-full filter blur-3xl -z-10"></div>
-
-                <div className="rounded-3xl overflow-hidden shadow-soft-xl border border-warm-300/80 dark:border-white/10 bg-white dark:bg-obsidian-800 p-3">
-                  <div className="relative h-80 sm:h-96 w-full rounded-2xl overflow-hidden">
-                    <img
-                      src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1000&q=80"
-                      alt="Reeducación corporal y bienestar en Orcera M&H"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-forest-950/80 dark:from-obsidian-950/90 via-transparent to-transparent"></div>
-                    
-                    <div className="absolute bottom-4 left-4 right-4 text-white">
-                      <span className="inline-block px-2.5 py-1 rounded-lg text-xs font-semibold bg-gold-500/90 dark:bg-neon-lime text-forest-950 dark:text-obsidian-950 mb-2 font-bold">
-                        Sesión destacada
-                      </span>
-                      <h3 className="font-serif text-xl font-bold text-warm-50 dark:text-white">
-                        Reeducación Corporal &amp; Movilidad
-                      </h3>
-                      <p className="text-xs text-warm-200 dark:text-obsidian-300 mt-0.5">
-                        60 minutos de evaluación postural y trabajo manual profundo.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Quick Card Badge */}
-                  <div className="p-4 flex items-center justify-between text-xs text-forest-700 dark:text-obsidian-300">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4 text-gold-600 dark:text-neon-lime" />
-                      <span>C/ San José, 2 · Orcera</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-gold-600 dark:text-neon-lime" />
-                      <span>Citas de Lunes a Sábado</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Floating promo badge */}
-                <div className="absolute -bottom-6 -left-4 bg-white/95 dark:bg-obsidian-850 backdrop-blur-md border border-warm-300 dark:border-white/10 rounded-2xl p-3.5 shadow-soft-lg max-w-[260px] hidden sm:flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gold-100 dark:bg-neon-lime/20 text-gold-700 dark:text-neon-lime flex items-center justify-center shrink-0">
-                    <Gift className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-forest-900 dark:text-white">Cupón BIENVENIDA10</p>
-                    <p className="text-[11px] text-forest-600 dark:text-obsidian-400">10% dto. en tu primera reserva</p>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
+      {/* 1. M&H MOBILE APP EXPERIENCE HERO (MATCHING MOCKUP EXACTLY) */}
+      <MobileMockupHero />
 
       {/* 2. CATÁLOGO DE TRATAMIENTOS ACTIVOS */}
       <section className="py-20 bg-warm-50 dark:bg-obsidian-900">

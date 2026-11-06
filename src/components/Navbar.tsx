@@ -54,11 +54,11 @@ export default function Navbar() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-forest-900 dark:text-white group-hover:text-forest-700 dark:group-hover:text-neon-lime transition-colors">
-                M&amp;H <span className="text-gold-600 dark:text-neon-lime font-sans font-medium text-lg tracking-widest uppercase">Bienestar</span>
+              <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-forest-950 dark:text-white group-hover:text-forest-700 dark:group-hover:text-neon-lime transition-colors">
+                M&amp;H <span className="text-[#D4AF7C] dark:text-neon-lime font-sans font-medium text-lg tracking-widest uppercase">Bienestar Integral</span>
               </span>
-              <span className="text-[11px] font-medium tracking-wider text-sage-600 dark:text-obsidian-300 uppercase">
-                Centro Parasanitario · Orcera
+              <span className="text-[11px] font-serif italic text-forest-700/80 dark:text-obsidian-300">
+                Tu bienestar, nuestra esencia
               </span>
             </div>
           </Link>

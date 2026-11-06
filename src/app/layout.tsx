@@ -7,6 +7,7 @@ import Footer from '@/components/Footer';
 import PWAInstallBanner from '@/components/PWAInstallBanner';
 import CookieBanner from '@/components/CookieBanner';
 import ViralFloatingButton from '@/components/ViralFloatingButton';
+import MobileBottomNav from '@/components/MobileBottomNav';
 
 export const metadata: Metadata = {
   title: 'M&H BIENESTAR — Reeducación Corporal y Terapias Manuales en Orcera (Jaén)',
@@ -130,6 +131,7 @@ export default function RootLayout({
             <PWAInstallBanner />
             <ViralFloatingButton />
             <CookieBanner />
+            <MobileBottomNav />
           </StoreProvider>
         </ThemeProvider>
       </body>

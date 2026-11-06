@@ -27,7 +27,8 @@ import {
   Activity,
   Printer,
   Heart,
-  CheckCircle2
+  CheckCircle2,
+  Bell
 } from 'lucide-react';
 import QRCode from 'qrcode';
 import ClientAuthView from '@/components/ClientAuthView';
@@ -50,7 +51,7 @@ export default function MiCuentaPage() {
     businessConfig 
   } = useStore();
 
-  const [activeTab, setActiveTab] = useState<'historia' | 'citas' | 'bonos' | 'referidos' | 'privacidad'>('historia');
+  const [activeTab, setActiveTab] = useState<'historia' | 'citas' | 'bonos' | 'referidos' | 'privacidad' | 'notificaciones'>('historia');
   const [qrDataUrl, setQrDataUrl] = useState<string>('');
   const [copiedCode, setCopiedCode] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -58,6 +59,17 @@ export default function MiCuentaPage() {
   const [newDate, setNewDate] = useState('2026-11-09');
   const [newSlot, setNewSlot] = useState('11:00');
   const [actionMessage, setActionMessage] = useState<string>('');
+
+  // Check URL query parameters safely on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get('tab');
+      if (tabParam === 'notificaciones' || tabParam === 'citas' || tabParam === 'bonos' || tabParam === 'referidos' || tabParam === 'historia' || tabParam === 'privacidad') {
+        setActiveTab(tabParam as any);
+      }
+    }
+  }, []);
 
   // If no user is logged in, show client authentication portal (login / register)
   if (!currentUser) {
@@ -140,12 +152,12 @@ export default function MiCuentaPage() {
                 <h1 className="font-serif text-2xl sm:text-3xl font-bold text-forest-950">
                   {currentUser.name}
                 </h1>
-                <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-gold-100 text-gold-800 border border-gold-300">
-                  Socio M&amp;H
+                <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#D4AF7C]/20 text-[#2E5D4A] dark:text-white border border-[#D4AF7C]">
+                  👑 Cliente Premium
                 </span>
               </div>
               <p className="text-xs text-forest-600 mt-0.5">
-                {currentUser.email} · Tel: {currentUser.phone}
+                {currentUser.email} · Tel: {currentUser.phone} · Socio Club M&amp;H
               </p>
             </div>
           </div>
@@ -182,6 +194,7 @@ export default function MiCuentaPage() {
           {[
             { id: 'historia', label: '🌿 Mi Historia (Evolución)', icon: FileText },
             { id: 'citas', label: `Mis Citas (${upcomingAppointments.length})`, icon: Calendar },
+            { id: 'notificaciones', label: '🔔 Notificaciones', icon: Bell },
             { id: 'bonos', label: `Mis Bonos (${userBonos.length})`, icon: Gift },
             { id: 'referidos', label: 'Invita & Gana (Puntos)', icon: Users },
             { id: 'privacidad', label: 'Privacidad RGPD', icon: ShieldCheck },
@@ -476,6 +489,68 @@ export default function MiCuentaPage() {
               </div>
             )}
 
+          </div>
+        )}
+
+        {/* TAB: NOTIFICACIONES & RECORDATORIOS */}
+        {activeTab === 'notificaciones' && (
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-serif text-xl font-bold text-forest-950">Centro de Notificaciones &amp; Alertas</h3>
+                <p className="text-xs text-forest-600">Avisos automáticos de citas, pautas de salud y novedades en Orcera.</p>
+              </div>
+              <span className="text-[11px] font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800">
+                Canales Activos: WhatsApp &amp; SMS
+              </span>
+            </div>
+
+            <div className="space-y-3">
+              <div className="p-4 rounded-2xl bg-white border border-warm-300 shadow-soft-xs flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                  <Calendar className="w-5 h-5" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-serif font-bold text-sm text-forest-950">Recordatorio de Próxima Sesión</h4>
+                    <span className="text-[10px] text-forest-500">Programado</span>
+                  </div>
+                  <p className="text-xs text-forest-700 mt-1">
+                    Recibirás un recordatorio en tu WhatsApp ({currentUser.phone}) con 24 horas de antelación para confirmar tu asistencia o solicitar reajuste horario sin coste.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-white border border-warm-300 shadow-soft-xs flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+                  <Gift className="w-5 h-5" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-serif font-bold text-sm text-forest-950">Premio Club Bienestar Activo</h4>
+                    <span className="text-[10px] text-amber-800 font-bold">Disponible</span>
+                  </div>
+                  <p className="text-xs text-forest-700 mt-1">
+                    Tienes {currentUser.loyaltyPoints || 0} puntos acumulados. Puedes canjearlos en cualquier momento por una sesión gratuita de reeducación o un descuento especial para un familiar.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-white border border-warm-300 shadow-soft-xs flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-[#2E5D4A]/10 text-[#2E5D4A] flex items-center justify-center shrink-0">
+                  <Heart className="w-5 h-5" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-serif font-bold text-sm text-forest-950">Pauta Post-Tratamiento</h4>
+                    <span className="text-[10px] text-forest-500">M&amp;H Orcera</span>
+                  </div>
+                  <p className="text-xs text-forest-700 mt-1">
+                    Recuerda beber agua templada tras tu sesión manual para favorecer el drenaje tisular y evitar sobrecargas musculares durante las primeras 24 horas.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 

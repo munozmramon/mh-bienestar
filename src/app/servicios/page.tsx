@@ -12,13 +12,17 @@ import {
   ArrowRight, 
   Info,
   ShieldCheck,
-  Search
+  Search,
+  ChevronRight,
+  LayoutGrid,
+  List
 } from 'lucide-react';
 
 export default function ServiciosPage() {
   const { services, businessConfig } = useStore();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [viewMode, setViewMode] = useState<'compact' | 'grid'>('compact');
 
   const categories = [
     { id: 'all', label: 'Todos los Servicios' },
@@ -76,21 +80,111 @@ export default function ServiciosPage() {
             ))}
           </div>
 
-          {/* Search box */}
-          <div className="relative w-full md:w-72">
-            <Search className="w-4 h-4 text-forest-500 dark:text-obsidian-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              placeholder="Buscar por tratamiento..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 rounded-xl text-xs bg-white dark:bg-obsidian-800 border border-warm-300 dark:border-white/10 text-forest-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-forest-700 dark:focus:ring-neon-lime shadow-soft-sm"
-            />
+          {/* Search box & View Switcher */}
+          <div className="flex items-center gap-2 w-full md:w-auto">
+            <div className="relative flex-1 md:w-72">
+              <Search className="w-4 h-4 text-forest-500 dark:text-obsidian-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                placeholder="Buscar por tratamiento..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 rounded-xl text-xs bg-white dark:bg-obsidian-800 border border-warm-300 dark:border-white/10 text-forest-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-forest-700 dark:focus:ring-neon-lime shadow-soft-sm"
+              />
+            </div>
+
+            <div className="flex items-center bg-white dark:bg-obsidian-800 border border-warm-300 dark:border-white/10 rounded-xl p-0.5 shadow-soft-sm shrink-0">
+              <button
+                onClick={() => setViewMode('compact')}
+                className={`p-1.5 rounded-lg transition-colors ${
+                  viewMode === 'compact'
+                    ? 'bg-[#2E5D4A] dark:bg-neon-lime text-white dark:text-obsidian-950 font-bold'
+                    : 'text-forest-600 dark:text-obsidian-300 hover:text-forest-900'
+                }`}
+                title="Vista Lista Móvil (Diseño M&H)"
+              >
+                <List className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-1.5 rounded-lg transition-colors ${
+                  viewMode === 'grid'
+                    ? 'bg-[#2E5D4A] dark:bg-neon-lime text-white dark:text-obsidian-950 font-bold'
+                    : 'text-forest-600 dark:text-obsidian-300 hover:text-forest-900'
+                }`}
+                title="Vista Cuadrícula Completa"
+              >
+                <LayoutGrid className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Services List Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* COMPACT VIEW (Exact layout from Mockup Secondary Phone Screen) */}
+        {viewMode === 'compact' ? (
+          <div className="max-w-3xl mx-auto space-y-3.5 mb-16">
+            {filteredServices.map((service) => (
+              <div
+                key={service.id}
+                className="group rounded-3xl bg-white dark:bg-obsidian-850 border border-warm-200/90 dark:border-white/10 p-3 sm:p-4 shadow-soft-sm hover:shadow-soft-md hover:border-[#D4AF7C] transition-all flex items-center justify-between gap-3"
+              >
+                <Link href={`/servicios/${service.slug}`} className="flex items-center gap-3.5 flex-1 min-w-0">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shrink-0 bg-forest-900 dark:bg-obsidian-900 border border-warm-200 dark:border-white/10">
+                    <img
+                      src={service.imageUrl}
+                      alt={service.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-serif text-base sm:text-lg font-bold text-forest-950 dark:text-white truncate group-hover:text-[#2E5D4A] dark:group-hover:text-neon-lime transition-colors">
+                        {service.name}
+                      </h3>
+                      {service.badge && (
+                        <span className="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#D4AF7C]/20 text-[#2E5D4A] dark:text-neon-lime border border-[#D4AF7C]/40">
+                          {service.badge}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs text-forest-600 dark:text-obsidian-300 line-clamp-1 mt-0.5">
+                      {service.shortDescription}
+                    </p>
+                    <div className="flex items-center gap-3 mt-1 text-[11px] text-forest-500 dark:text-obsidian-400 font-medium">
+                      <span className="text-[#2E5D4A] dark:text-neon-lime font-bold">{service.price}€</span>
+                      <span>·</span>
+                      <span>{service.durationMinutes} min</span>
+                      {!service.available && (
+                        <>
+                          <span>·</span>
+                          <span className="text-amber-700 dark:text-amber-400 italic">Sujeto a lista de espera</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <Link
+                    href={`/reservar?servicio=${service.id}`}
+                    className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#2E5D4A] hover:bg-[#234738] dark:bg-neon-lime dark:text-obsidian-950 transition-colors shadow-soft-xs"
+                  >
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>Reservar</span>
+                  </Link>
+                  <Link
+                    href={`/servicios/${service.slug}`}
+                    className="w-9 h-9 rounded-full bg-[#F8F7F2] dark:bg-obsidian-800 hover:bg-white dark:hover:bg-obsidian-700 border border-warm-200 dark:border-white/10 flex items-center justify-center text-forest-600 dark:text-obsidian-300 group-hover:text-[#2E5D4A] dark:group-hover:text-neon-lime transition-colors"
+                  >
+                    <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          /* GRID VIEW (Traditional Grid Cards) */
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredServices.map((service) => (
             <div
               key={service.id}
@@ -195,6 +289,7 @@ export default function ServiciosPage() {
             </div>
           ))}
         </div>
+        )}
 
         {/* Guarantee Banner */}
         <div className="mt-16 p-8 rounded-3xl bg-forest-900 dark:bg-obsidian-850 text-warm-100 dark:text-white border border-forest-800 dark:border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-soft-lg">
