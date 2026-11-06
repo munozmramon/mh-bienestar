@@ -1,10 +1,17 @@
-const CACHE_NAME = 'mh-bienestar-v1';
+const CACHE_NAME = 'mh-bienestar-v2';
 const STATIC_ASSETS = [
   '/',
   '/manifest.json',
+  '/logo.png',
+  '/favicon.ico',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
   '/servicios',
   '/reservar',
-  '/mi-cuenta'
+  '/mi-cuenta',
+  '/bonos-y-regalos',
+  '/opiniones',
+  '/blog'
 ];
 
 self.addEventListener('install', (event) => {
