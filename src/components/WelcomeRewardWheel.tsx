@@ -66,7 +66,7 @@ export default function WelcomeRewardWheel() {
       {/* Floating Pill Trigger (Mobile and Desktop) */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-20 md:bottom-6 right-4 z-40 flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-bold text-xs shadow-soft-xl border border-white/50 active:scale-95 transition-all group"
+        className="fixed bottom-20 right-4 md:bottom-6 md:right-6 z-40 flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-bold text-xs shadow-soft-xl border border-white/50 active:scale-95 transition-all group"
       >
         <span className="w-6 h-6 rounded-full bg-white/90 flex items-center justify-center text-amber-700 shrink-0 group-hover:rotate-12 transition-transform">
           🎁

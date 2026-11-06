@@ -9,10 +9,10 @@ export default function ViralFloatingButton() {
 
   return (
     <>
-      <div className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-40">
+      <div className="fixed bottom-20 left-4 md:bottom-20 md:right-6 md:left-auto z-40">
         <button
           onClick={() => setModalOpen(true)}
-          className="group relative flex items-center gap-2.5 py-2.5 px-4 rounded-full bg-forest-900 text-gold-300 dark:bg-neon-lime dark:text-obsidian-950 border border-gold-400/40 dark:border-neon-lime shadow-soft-xl hover:scale-105 active:scale-95 transition-all duration-300"
+          className="group relative flex items-center gap-2 py-2 px-3 sm:py-2.5 sm:px-4 rounded-full bg-forest-900 text-gold-300 dark:bg-neon-lime dark:text-obsidian-950 border border-gold-400/40 dark:border-neon-lime shadow-soft-xl hover:scale-105 active:scale-95 transition-all duration-300"
           aria-label="Recomendar centro y ganar recompensas"
         >
           {/* Subtle pulse effect */}
