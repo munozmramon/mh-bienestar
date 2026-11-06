@@ -34,6 +34,20 @@ export const metadata: Metadata = {
     siteName: 'M&H BIENESTAR',
     locale: 'es_ES',
     type: 'website',
+    images: [
+      {
+        url: '/logo.png',
+        width: 800,
+        height: 800,
+        alt: 'Centro Parasanitario M&H Bienestar',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'M&H BIENESTAR — Centro Parasanitario en Orcera',
+    description: 'Reeducación corporal, técnicas manuales y bienestar en la Sierra de Segura.',
+    images: ['/logo.png'],
   },
   icons: {
     icon: [
