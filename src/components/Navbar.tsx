@@ -513,41 +513,42 @@ export default function Navbar() {
               </p>
             </div>
 
-            {/* Direct QR Code for Instant Phone Scan (if user is on PC or laptop) */}
-            <div className="p-4 rounded-2xl bg-zinc-850 border border-zinc-750 text-center space-y-2.5">
-              <span className="text-[11px] font-bold text-teal-400 uppercase tracking-wider block">
-                ⚡ Forma más directa (1 segundo):
+            {/* Opción 2 como opción principal prioritaria: Direct WhatsApp Link */}
+            <div className="p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 text-center space-y-3">
+              <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider block">
+                ⭐ Opción 1 clic: Enviártela a tu WhatsApp
               </span>
               <p className="text-xs text-zinc-200">
-                Apunta con la <strong>cámara de tu móvil</strong> a este código QR:
+                Pulsa el botón de abajo, envíate el mensaje a ti mismo en WhatsApp y tócalo desde tu móvil:
               </p>
+
+              <a
+                href="https://api.whatsapp.com/send?text=Abre%20e%20instala%20la%20App%20de%20M%26H%20Bienestar%20en%20tu%20m%C3%B3vil%3A%20https%3A%2F%2Fmh-bienestar.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3.5 px-4 rounded-xl text-sm font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] flex items-center justify-center gap-2.5 shadow-lg shadow-[#25D366]/20 transition-all hover:scale-[1.02]"
+              >
+                <MessageCircle className="w-5 h-5 fill-white stroke-[#25D366]" />
+                <span>Enviar enlace a mi móvil por WhatsApp</span>
+              </a>
+            </div>
+
+            {/* Alternativa secundaria: QR Code */}
+            <div className="p-3.5 rounded-2xl bg-zinc-850 border border-zinc-750 text-center space-y-2">
+              <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">
+                O también: Escanear con la cámara de tu móvil
+              </span>
               
               {qrCodeDataUrl ? (
-                <div className="bg-white p-2 rounded-2xl inline-block shadow-md border border-teal-500/30">
-                  <img src={qrCodeDataUrl} alt="Escanear con el móvil para instalar" className="w-36 h-36 mx-auto" />
+                <div className="bg-white p-1.5 rounded-xl inline-block shadow-md border border-zinc-700">
+                  <img src={qrCodeDataUrl} alt="Escanear con el móvil para instalar" className="w-28 h-28 mx-auto" />
                 </div>
               ) : (
-                <div className="w-36 h-36 bg-zinc-800 rounded-2xl mx-auto flex items-center justify-center text-xs text-zinc-500">
+                <div className="w-28 h-28 bg-zinc-800 rounded-xl mx-auto flex items-center justify-center text-xs text-zinc-500">
                   Generando QR...
                 </div>
               )}
-
-              <p className="text-[11px] text-zinc-400">
-                Al enfocarlo, aparecerá un enlace amarillo en tu móvil. <br/>
-                Tócalo y se abrirá directamente en tu teléfono.
-              </p>
             </div>
-
-            {/* Direct WhatsApp Share Link */}
-            <a
-              href="https://api.whatsapp.com/send?text=Abre%20e%20instala%20la%20App%20de%20M%26H%20Bienestar%20en%20tu%20m%C3%B3vil%3A%20https%3A%2F%2Fmh-bienestar.vercel.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] flex items-center justify-center gap-2 shadow-sm transition-all"
-            >
-              <MessageCircle className="w-4 h-4 fill-white stroke-[#25D366]" />
-              <span>Enviarme el enlace a mi WhatsApp</span>
-            </a>
 
             {/* If user is already browsing directly on their mobile device */}
             <div className="pt-2 border-t border-zinc-800 space-y-2 text-left">
