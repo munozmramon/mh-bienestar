@@ -7,14 +7,9 @@ import { useStore } from '@/lib/store/useStore';
 import { 
   Calendar as CalendarIcon, 
   Clock, 
-  User as UserIcon, 
-  Phone, 
-  Mail, 
   CheckCircle2, 
   AlertCircle, 
   Sparkles, 
-  Tag, 
-  ShieldCheck, 
   ArrowRight,
   MessageCircle,
   Copy,
@@ -89,21 +84,10 @@ function ReservarContent() {
 
     const timeParam = searchParams.get('time');
     if (timeParam) {
-      // e.g. "18:30 h" or "18:30"
       const cleanTime = timeParam.replace(' h', '').trim();
       setSelectedSlot(cleanTime);
     }
   }, [initialServiceId, searchParams, selectedService]);
-
-  // Daily time slots
-  const possibleSlots = [
-    '09:30',
-    '11:00',
-    '12:30',
-    '16:30',
-    '18:00',
-    '19:30'
-  ];
 
   // Apply Coupon
   const handleApplyCoupon = () => {
@@ -169,18 +153,18 @@ function ReservarContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF7FD] dark:bg-[#0F0A1C] text-slate-900 dark:text-purple-100 py-10 md:py-16 transition-colors duration-300">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 py-10 md:py-16 transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 space-y-2">
-          <span className="text-xs font-bold text-[#7C3AED] dark:text-[#A78BFA] tracking-wider uppercase">
+          <span className="text-xs font-bold text-teal-600 dark:text-teal-400 tracking-wider uppercase">
             Agenda Inteligente M&amp;H
           </span>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#3B1238] dark:text-white">
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-zinc-50 dark:text-zinc-100">
             Reserva tu Cita de Bienestar
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-purple-300/80">
+          <p className="text-xs sm:text-sm text-zinc-400">
             Comprobación de disponibilidad en tiempo real. Sin pagos por adelantado obligatorios ni esperas.
           </p>
         </div>
@@ -192,13 +176,13 @@ function ReservarContent() {
               onClick={() => setStep(1)}
               className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
                 step === 1 
-                  ? 'bg-[#7C3AED] text-white shadow-soft-sm font-bold' 
-                  : 'bg-purple-100 dark:bg-purple-950/60 text-purple-900 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-900/60'
+                  ? 'bg-teal-600 text-white shadow-md font-bold' 
+                  : 'bg-zinc-850 text-zinc-400 hover:bg-zinc-800'
               }`}
             >
               <span>1. Tratamiento &amp; Horario</span>
             </button>
-            <span className="text-purple-300 dark:text-purple-700">→</span>
+            <span className="text-zinc-600">→</span>
             <button
               onClick={() => {
                 if (selectedSlot) setStep(2);
@@ -206,8 +190,8 @@ function ReservarContent() {
               }}
               className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
                 step === 2 
-                  ? 'bg-[#7C3AED] text-white shadow-soft-sm font-bold' 
-                  : 'bg-purple-100 dark:bg-purple-950/60 text-purple-900 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-900/60'
+                  ? 'bg-teal-600 text-white shadow-md font-bold' 
+                  : 'bg-zinc-850 text-zinc-400 hover:bg-zinc-800'
               }`}
             >
               <span>2. Datos &amp; Confirmación</span>
@@ -216,8 +200,8 @@ function ReservarContent() {
         )}
 
         {errorMessage && (
-          <div className="mb-6 p-4 rounded-2xl bg-rose-50 dark:bg-rose-950/80 border border-rose-200 dark:border-rose-800 text-rose-800 dark:text-rose-300 text-xs flex items-start gap-2.5">
-            <AlertCircle className="w-4 h-4 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" />
+          <div className="mb-6 p-4 rounded-2xl bg-rose-500/20 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2.5">
+            <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
             <span className="font-medium">{errorMessage}</span>
           </div>
         )}
@@ -228,7 +212,7 @@ function ReservarContent() {
             
             {/* Service Selection */}
             <div className="md:col-span-6 space-y-4">
-              <h3 className="font-serif text-lg font-bold text-[#3B1238] dark:text-white flex items-center gap-2">
+              <h3 className="font-serif text-lg font-bold text-zinc-50 dark:text-zinc-100 flex items-center gap-2">
                 <span>1. Selecciona el servicio</span>
               </h3>
 
@@ -241,15 +225,15 @@ function ReservarContent() {
                       onClick={() => setSelectedServiceId(service.id)}
                       className={`p-4 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-3 ${
                         isSelected 
-                          ? 'bg-white dark:bg-[#1A132E] border-[#7C3AED] dark:border-[#7C3AED] shadow-soft-md ring-2 ring-[#7C3AED]/20' 
-                          : 'bg-white/90 dark:bg-[#1A132E]/60 border-purple-100 dark:border-purple-900/30 hover:bg-white dark:hover:bg-[#1A132E]'
+                          ? 'bg-zinc-900 border-teal-500 shadow-md ring-2 ring-teal-500/20' 
+                          : 'bg-zinc-900/60 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900'
                       }`}
                     >
                       <div className="space-y-0.5">
-                        <p className="font-serif font-bold text-[#3B1238] dark:text-white text-sm">{service.name}</p>
-                        <p className="text-xs text-slate-500 dark:text-purple-300/80 flex items-center gap-2">
+                        <p className="font-serif font-bold text-zinc-100 text-sm">{service.name}</p>
+                        <p className="text-xs text-zinc-400 flex items-center gap-2">
                           <span className="inline-flex items-center gap-1">
-                            <Clock className="w-3 h-3 text-[#7C3AED] dark:text-[#A78BFA]" />
+                            <Clock className="w-3 h-3 text-teal-400" />
                             {service.durationMinutes} min
                           </span>
                           <span>·</span>
@@ -258,9 +242,9 @@ function ReservarContent() {
                       </div>
 
                       <div className="text-right">
-                        <span className="font-serif font-bold text-[#3B1238] dark:text-[#A78BFA] text-base">{service.price}€</span>
+                        <span className="font-serif font-bold text-zinc-50 dark:text-zinc-100 text-base">{service.price}€</span>
                         {service.badge && (
-                          <p className="text-[10px] font-bold text-[#7C3AED] dark:text-purple-200 bg-purple-100 dark:bg-purple-950/80 px-1.5 py-0.5 rounded">
+                          <p className="text-[10px] font-bold text-teal-400 bg-teal-900/40 px-1.5 py-0.5 rounded border border-teal-500/30">
                             {service.badge}
                           </p>
                         )}
@@ -271,23 +255,23 @@ function ReservarContent() {
               </div>
 
               {/* Notice */}
-              <div className="p-3.5 rounded-2xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-900/50 text-xs text-[#3B1238] dark:text-purple-200 space-y-1">
-                <p className="font-semibold text-[#3B1238] dark:text-white">Ubicación de tu sesión:</p>
+              <div className="p-3.5 rounded-2xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-400 space-y-1">
+                <p className="font-semibold text-zinc-200">Ubicación de tu sesión:</p>
                 <p>Calle San José, 2, 23370 Orcera (Jaén) · Sala privada individual.</p>
               </div>
             </div>
 
             {/* Date & Time Slot Selection */}
             <div className="md:col-span-6 space-y-4">
-              <h3 className="font-serif text-lg font-bold text-[#3B1238] dark:text-white flex items-center gap-2">
+              <h3 className="font-serif text-lg font-bold text-zinc-50 dark:text-zinc-100 flex items-center gap-2">
                 <span>2. Fecha y hora disponible</span>
               </h3>
 
-              <div className="bg-white dark:bg-[#1A132E] p-5 rounded-3xl border border-slate-200 dark:border-purple-900/40 shadow-soft-sm space-y-4">
+              <div className="bg-zinc-900 p-5 rounded-3xl border border-zinc-800 shadow-sm space-y-4">
                 
-                {/* Quick Date Chips (1-tap mobile experience) */}
+                {/* Quick Date Chips */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-800 dark:text-purple-200 uppercase tracking-wider mb-2">
+                  <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-2">
                     Selecciona el día
                   </label>
                   <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
@@ -311,8 +295,8 @@ function ReservarContent() {
                           }}
                           className={`flex flex-col items-center justify-center py-2 px-3 rounded-2xl min-w-[62px] text-xs transition-all border shrink-0 ${
                             isDaySelected
-                              ? 'bg-[#7C3AED] dark:bg-[#7C3AED] text-white border-[#7C3AED] font-bold shadow-md scale-105'
-                              : 'bg-slate-50 dark:bg-purple-950/40 hover:bg-purple-50 text-slate-700 dark:text-purple-200 border-slate-200 dark:border-purple-900/30'
+                              ? 'bg-teal-600 text-white border-teal-600 font-bold shadow-md scale-105'
+                              : 'bg-zinc-850 text-zinc-300 border-zinc-750 hover:bg-zinc-800'
                           }`}
                         >
                           <span className="font-bold">{d.label}</span>
@@ -323,7 +307,7 @@ function ReservarContent() {
                   </div>
 
                   {/* Manual date picker fallback */}
-                  <div className="mt-2 flex items-center gap-2 text-xs text-slate-500 dark:text-purple-300/70">
+                  <div className="mt-2 flex items-center gap-2 text-xs text-zinc-400">
                     <span>O elige otra fecha:</span>
                     <input
                       type="date"
@@ -333,21 +317,21 @@ function ReservarContent() {
                         setSelectedDate(e.target.value);
                         setSelectedSlot('');
                       }}
-                      className="px-2.5 py-1 rounded-lg text-xs bg-slate-100 dark:bg-[#0F0A1C] border border-slate-300 dark:border-purple-900/40 text-slate-800 dark:text-white"
+                      className="px-2.5 py-1 rounded-lg text-xs bg-zinc-850 border border-zinc-750 text-zinc-100"
                     />
                   </div>
                 </div>
 
                 {/* Slots Grid grouped by Morning / Afternoon */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-800 dark:text-purple-200 uppercase tracking-wider mb-2">
+                  <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-2">
                     Horas disponibles ({selectedDate})
                   </label>
 
                   <div className="space-y-3">
                     {/* Morning */}
                     <div>
-                      <span className="text-[11px] font-semibold text-slate-500 dark:text-purple-300/70 block mb-1.5">
+                      <span className="text-[11px] font-semibold text-zinc-400 block mb-1.5">
                         🌅 Mañana
                       </span>
                       <div className="grid grid-cols-3 gap-2">
@@ -362,10 +346,10 @@ function ReservarContent() {
                               onClick={() => setSelectedSlot(slot)}
                               className={`py-2 px-2 rounded-xl text-xs font-semibold transition-all border ${
                                 !available
-                                  ? 'bg-slate-100 dark:bg-[#0F0A1C] text-slate-400 dark:text-purple-900/60 border-slate-200 dark:border-purple-900/20 cursor-not-allowed line-through'
+                                  ? 'bg-zinc-850/40 text-zinc-600 border-zinc-800 cursor-not-allowed line-through'
                                   : isSelected
-                                  ? 'bg-[#7C3AED] text-white border-[#7C3AED] font-bold shadow-soft-sm'
-                                  : 'bg-slate-50 dark:bg-purple-950/40 text-slate-800 dark:text-purple-200 hover:bg-purple-50 dark:hover:bg-purple-900/40 border-slate-200 dark:border-purple-900/30'
+                                  ? 'bg-teal-600 text-white border-teal-600 font-bold shadow-sm'
+                                  : 'bg-zinc-850 text-zinc-200 hover:bg-zinc-800 border-zinc-750'
                               }`}
                             >
                               {slot}
@@ -377,7 +361,7 @@ function ReservarContent() {
 
                     {/* Afternoon */}
                     <div>
-                      <span className="text-[11px] font-semibold text-slate-500 dark:text-purple-300/70 block mb-1.5">
+                      <span className="text-[11px] font-semibold text-zinc-400 block mb-1.5">
                         🌇 Tarde
                       </span>
                       <div className="grid grid-cols-3 gap-2">
@@ -392,10 +376,10 @@ function ReservarContent() {
                               onClick={() => setSelectedSlot(slot)}
                               className={`py-2 px-2 rounded-xl text-xs font-semibold transition-all border ${
                                 !available
-                                  ? 'bg-slate-100 dark:bg-[#0F0A1C] text-slate-400 dark:text-purple-900/60 border-slate-200 dark:border-purple-900/20 cursor-not-allowed line-through'
+                                  ? 'bg-zinc-850/40 text-zinc-600 border-zinc-800 cursor-not-allowed line-through'
                                   : isSelected
-                                  ? 'bg-[#7C3AED] text-white border-[#7C3AED] font-bold shadow-soft-sm'
-                                  : 'bg-slate-50 dark:bg-purple-950/40 text-slate-800 dark:text-purple-200 hover:bg-purple-50 dark:hover:bg-purple-900/40 border-slate-200 dark:border-purple-900/30'
+                                  ? 'bg-teal-600 text-white border-teal-600 font-bold shadow-sm'
+                                  : 'bg-zinc-850 text-zinc-200 hover:bg-zinc-800 border-zinc-750'
                               }`}
                             >
                               {slot}
@@ -408,9 +392,9 @@ function ReservarContent() {
                 </div>
 
                 {selectedSlot && (
-                  <div className="p-3 rounded-xl bg-purple-50 dark:bg-purple-950/50 border border-purple-200 dark:border-purple-800 text-xs text-[#3B1238] dark:text-purple-200 flex items-center justify-between">
-                    <span className="font-semibold">Horario seleccionado:</span>
-                    <span className="font-bold text-[#7C3AED] dark:text-[#A78BFA]">{selectedDate} a las {selectedSlot} h</span>
+                  <div className="p-3 rounded-xl bg-teal-900/30 border border-teal-500/40 text-xs text-zinc-100 flex items-center justify-between">
+                    <span className="font-semibold text-zinc-300">Horario seleccionado:</span>
+                    <span className="font-bold text-teal-400">{selectedDate} a las {selectedSlot} h</span>
                   </div>
                 )}
 
@@ -419,8 +403,8 @@ function ReservarContent() {
                   onClick={() => setStep(2)}
                   className={`w-full py-3.5 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
                     selectedSlot 
-                      ? 'bg-[#7C3AED] hover:bg-[#6D28D9] text-white shadow-soft-md font-bold' 
-                      : 'bg-purple-100 dark:bg-purple-950/30 text-purple-400 dark:text-purple-600 cursor-not-allowed'
+                      ? 'bg-teal-600 hover:bg-teal-500 text-white shadow-md shadow-teal-600/25 font-bold' 
+                      : 'bg-zinc-800 text-zinc-500 cursor-not-allowed'
                   }`}
                 >
                   <span>Continuar con mis datos</span>
@@ -435,21 +419,21 @@ function ReservarContent() {
 
         {/* STEP 2: CLIENT DETAILS & CONFIRMATION */}
         {step === 2 && (
-          <div className="bg-white dark:bg-[#1A132E] rounded-3xl border border-slate-200 dark:border-purple-900/40 p-6 sm:p-10 shadow-soft-lg space-y-8">
+          <div className="bg-zinc-900 rounded-3xl border border-zinc-800 p-6 sm:p-10 shadow-sm space-y-8">
             
             {/* Summary Banner */}
-            <div className="p-4 rounded-2xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-900/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+            <div className="p-4 rounded-2xl bg-zinc-850 border border-zinc-750 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
               <div>
-                <span className="text-purple-600 dark:text-purple-300 font-medium">Tratamiento elegido</span>
-                <p className="font-serif font-bold text-[#3B1238] dark:text-white text-base">{selectedService?.name}</p>
-                <p className="text-slate-600 dark:text-purple-300/80">{selectedDate} a las {selectedSlot} h ({selectedService?.durationMinutes} min)</p>
+                <span className="text-teal-400 font-medium">Tratamiento elegido</span>
+                <p className="font-serif font-bold text-zinc-50 dark:text-zinc-100 text-base">{selectedService?.name}</p>
+                <p className="text-zinc-400">{selectedDate} a las {selectedSlot} h ({selectedService?.durationMinutes} min)</p>
               </div>
 
               <div className="sm:text-right">
-                <span className="text-purple-600 dark:text-purple-300 font-medium">Total a abonar</span>
-                <p className="font-serif font-bold text-[#7C3AED] dark:text-[#A78BFA] text-xl">{finalPrice}€</p>
+                <span className="text-teal-400 font-medium">Total a abonar</span>
+                <p className="font-serif font-bold text-teal-400 text-xl">{finalPrice}€</p>
                 {appliedDiscount > 0 && (
-                  <span className="text-[10px] text-white font-bold bg-[#7C3AED] px-1.5 py-0.5 rounded">
+                  <span className="text-[10px] text-white font-bold bg-teal-600 px-1.5 py-0.5 rounded">
                     Descuento -{appliedDiscount}€ aplicado
                   </span>
                 )}
@@ -458,13 +442,13 @@ function ReservarContent() {
 
             {/* Client Inputs Form */}
             <div className="space-y-4">
-              <h3 className="font-serif text-lg font-bold text-[#3B1238] dark:text-white">
+              <h3 className="font-serif text-lg font-bold text-zinc-50 dark:text-zinc-100">
                 Tus datos de reserva
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 dark:text-purple-200 mb-1">
+                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
                     Nombre y Apellidos *
                   </label>
                   <input
@@ -473,12 +457,12 @@ function ReservarContent() {
                     value={clientName}
                     onChange={(e) => setClientName(e.target.value)}
                     placeholder="Ej. María García"
-                    className="w-full px-3.5 py-2.5 rounded-xl text-xs bg-slate-50 dark:bg-[#0F0A1C] border border-slate-300 dark:border-purple-900/40 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#7C3AED]"
+                    className="w-full px-3.5 py-2.5 rounded-xl text-xs bg-zinc-850 border border-zinc-750 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-teal-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 dark:text-purple-200 mb-1">
+                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
                     Teléfono Móvil (para recordatorio WhatsApp) *
                   </label>
                   <input
@@ -487,12 +471,12 @@ function ReservarContent() {
                     value={clientPhone}
                     onChange={(e) => setClientPhone(e.target.value)}
                     placeholder="Ej. 651 30 87 38"
-                    className="w-full px-3.5 py-2.5 rounded-xl text-xs bg-slate-50 dark:bg-[#0F0A1C] border border-slate-300 dark:border-purple-900/40 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#7C3AED]"
+                    className="w-full px-3.5 py-2.5 rounded-xl text-xs bg-zinc-850 border border-zinc-750 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-teal-500"
                   />
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block text-xs font-semibold text-slate-700 dark:text-purple-200 mb-1">
+                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
                     Correo Electrónico (para confirmación) *
                   </label>
                   <input
@@ -501,12 +485,12 @@ function ReservarContent() {
                     value={clientEmail}
                     onChange={(e) => setClientEmail(e.target.value)}
                     placeholder="tucorreo@ejemplo.com"
-                    className="w-full px-3.5 py-2.5 rounded-xl text-xs bg-slate-50 dark:bg-[#0F0A1C] border border-slate-300 dark:border-purple-900/40 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#7C3AED]"
+                    className="w-full px-3.5 py-2.5 rounded-xl text-xs bg-zinc-850 border border-zinc-750 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-teal-500"
                   />
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block text-xs font-semibold text-slate-700 dark:text-purple-200 mb-1">
+                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
                     Observaciones o notas previas (Opcional)
                   </label>
                   <textarea
@@ -514,16 +498,16 @@ function ReservarContent() {
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
                     placeholder="Ej. Sobrecarga en hombro derecho, dificultad para dormir..."
-                    className="w-full px-3.5 py-2 rounded-xl text-xs bg-slate-50 dark:bg-[#0F0A1C] border border-slate-300 dark:border-purple-900/40 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#7C3AED]"
+                    className="w-full px-3.5 py-2 rounded-xl text-xs bg-zinc-850 border border-zinc-750 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-teal-500"
                   />
                 </div>
               </div>
             </div>
 
             {/* Coupons and Referral Code */}
-            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-purple-950/30 border border-slate-200 dark:border-purple-900/40 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="p-4 rounded-2xl bg-zinc-850 border border-zinc-750 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-700 dark:text-purple-200 mb-1">
+                <label className="block text-xs font-semibold text-zinc-300 mb-1">
                   ¿Tienes un cupón de descuento?
                 </label>
                 <div className="flex gap-2">
@@ -532,23 +516,23 @@ function ReservarContent() {
                     placeholder="Ej. BIENVENIDA10"
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
-                    className="flex-1 px-3 py-2 rounded-xl text-xs bg-white dark:bg-[#0F0A1C] border border-slate-300 dark:border-purple-900/40 text-slate-900 dark:text-white uppercase"
+                    className="flex-1 px-3 py-2 rounded-xl text-xs bg-zinc-900 border border-zinc-700 text-zinc-100 uppercase"
                   />
                   <button
                     type="button"
                     onClick={handleApplyCoupon}
-                    className="px-3 py-2 rounded-xl text-xs font-semibold bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold"
+                    className="px-3 py-2 rounded-xl text-xs font-semibold bg-teal-600 hover:bg-teal-500 text-white font-bold transition-colors"
                   >
                     Aplicar
                   </button>
                 </div>
                 {couponMessage && (
-                  <p className="text-[11px] font-medium mt-1 text-[#7C3AED] dark:text-[#A78BFA]">{couponMessage}</p>
+                  <p className="text-[11px] font-medium mt-1 text-teal-400">{couponMessage}</p>
                 )}
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 dark:text-purple-200 mb-1">
+                <label className="block text-xs font-semibold text-zinc-300 mb-1">
                   Código de amigo / recomendación
                 </label>
                 <input
@@ -556,9 +540,9 @@ function ReservarContent() {
                   placeholder="Ej. MH-MARIA-82"
                   value={referralCode}
                   onChange={(e) => setReferralCode(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl text-xs bg-white dark:bg-[#0F0A1C] border border-slate-300 dark:border-purple-900/40 text-slate-900 dark:text-white uppercase"
+                  className="w-full px-3 py-2 rounded-xl text-xs bg-zinc-900 border border-zinc-700 text-zinc-100 uppercase"
                 />
-                <p className="text-[10px] text-slate-500 dark:text-purple-300/70 mt-1">
+                <p className="text-[10px] text-zinc-400 mt-1">
                   Recibirás 100 puntos extra al completar tu cita.
                 </p>
               </div>
@@ -566,7 +550,7 @@ function ReservarContent() {
 
             {/* Payment Method Option */}
             <div className="space-y-2">
-              <label className="block text-xs font-bold text-slate-800 dark:text-purple-200 uppercase tracking-wider">
+              <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider">
                 Preferencia de pago (en el centro)
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
@@ -582,8 +566,8 @@ function ReservarContent() {
                     onClick={() => setPaymentMethod(item.id as any)}
                     className={`p-2.5 rounded-xl text-xs font-medium border text-center transition-all ${
                       paymentMethod === item.id
-                        ? 'bg-[#7C3AED] text-white border-[#7C3AED] font-bold shadow-sm'
-                        : 'bg-slate-50 dark:bg-[#0F0A1C] text-slate-700 dark:text-purple-200 border-slate-200 dark:border-purple-900/30 hover:bg-white dark:hover:bg-purple-950/40'
+                        ? 'bg-teal-600 text-white border-teal-600 font-bold shadow-sm'
+                        : 'bg-zinc-850 text-zinc-300 border-zinc-750 hover:bg-zinc-800'
                     }`}
                   >
                     {item.label}
@@ -593,11 +577,11 @@ function ReservarContent() {
             </div>
 
             {/* Actions */}
-            <div className="pt-4 border-t border-slate-200 dark:border-purple-900/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="pt-4 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4">
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="text-xs font-semibold text-purple-700 dark:text-purple-300 hover:text-[#3B1238] dark:hover:text-white underline order-2 sm:order-1"
+                className="text-xs font-semibold text-teal-400 hover:text-teal-300 underline order-2 sm:order-1 transition-colors"
               >
                 ← Cambiar fecha o servicio
               </button>
@@ -606,7 +590,7 @@ function ReservarContent() {
                 type="button"
                 disabled={isSubmitting}
                 onClick={handleConfirmBooking}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-xl text-sm font-bold text-white bg-[#7C3AED] hover:bg-[#6D28D9] active:scale-[0.98] transition-all shadow-lg shadow-purple-600/30 order-1 sm:order-2"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-xl text-sm font-bold text-white bg-teal-600 hover:bg-teal-500 active:scale-[0.98] transition-all shadow-lg shadow-teal-600/30 order-1 sm:order-2"
               >
                 {isSubmitting ? 'Confirmando...' : `Confirmar Reserva (${finalPrice}€)`}
               </button>
@@ -617,46 +601,46 @@ function ReservarContent() {
 
         {/* STEP 3: BOOKING CONFIRMED SUCCESS */}
         {step === 3 && confirmedBooking && (
-          <div className="bg-white dark:bg-[#1A132E] rounded-3xl border border-slate-200 dark:border-purple-900/40 p-8 sm:p-12 shadow-soft-xl text-center space-y-6 animate-in fade-in zoom-in-95">
-            <div className="w-16 h-16 rounded-full bg-purple-100 dark:bg-purple-950/60 text-[#7C3AED] dark:text-[#A78BFA] flex items-center justify-center mx-auto border-2 border-purple-300 dark:border-purple-800">
+          <div className="bg-zinc-900 rounded-3xl border border-zinc-800 p-8 sm:p-12 shadow-2xl text-center space-y-6 animate-in fade-in zoom-in-95">
+            <div className="w-16 h-16 rounded-full bg-teal-900/40 text-teal-400 flex items-center justify-center mx-auto border-2 border-teal-500/50">
               <CheckCircle2 className="w-9 h-9" />
             </div>
 
             <div className="space-y-2">
-              <span className="text-xs font-bold text-[#7C3AED] dark:text-[#A78BFA] uppercase tracking-wider">
+              <span className="text-xs font-bold text-teal-400 uppercase tracking-wider">
                 ¡Cita Confirmada con Éxito!
               </span>
-              <h2 className="font-serif text-3xl font-bold text-[#3B1238] dark:text-white">
+              <h2 className="font-serif text-3xl font-bold text-zinc-50 dark:text-zinc-100">
                 Gracias, {confirmedBooking.clientName}
               </h2>
-              <p className="text-sm text-slate-600 dark:text-purple-300/80 max-w-lg mx-auto">
+              <p className="text-sm text-zinc-300 max-w-lg mx-auto">
                 Tu cita para <strong>{confirmedBooking.serviceName}</strong> ha quedado registrada en la agenda del Centro Parasanitario M&amp;H Orcera.
               </p>
             </div>
 
             {/* Appointment Ticket */}
-            <div className="max-w-md mx-auto p-5 rounded-2xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-900/40 text-left space-y-3 shadow-soft-sm">
-              <div className="flex items-center justify-between pb-3 border-b border-purple-200 dark:border-purple-900/30 text-xs">
-                <span className="font-semibold text-slate-700 dark:text-purple-300">Identificador</span>
-                <span className="font-mono font-bold text-[#7C3AED] dark:text-[#A78BFA]">{confirmedBooking.id}</span>
+            <div className="max-w-md mx-auto p-5 rounded-2xl bg-zinc-850 border border-zinc-750 text-left space-y-3 shadow-sm">
+              <div className="flex items-center justify-between pb-3 border-b border-zinc-750 text-xs">
+                <span className="font-semibold text-zinc-300">Identificador</span>
+                <span className="font-mono font-bold text-teal-400">{confirmedBooking.id}</span>
               </div>
 
               <div className="grid grid-cols-2 gap-3 text-xs">
                 <div>
-                  <span className="text-slate-500 dark:text-purple-300/70">Fecha</span>
-                  <p className="font-bold text-[#3B1238] dark:text-white">{confirmedBooking.date}</p>
+                  <span className="text-zinc-400">Fecha</span>
+                  <p className="font-bold text-zinc-100">{confirmedBooking.date}</p>
                 </div>
                 <div>
-                  <span className="text-slate-500 dark:text-purple-300/70">Hora</span>
-                  <p className="font-bold text-[#3B1238] dark:text-white">{confirmedBooking.timeSlot} h</p>
+                  <span className="text-zinc-400">Hora</span>
+                  <p className="font-bold text-zinc-100">{confirmedBooking.timeSlot} h</p>
                 </div>
                 <div>
-                  <span className="text-slate-500 dark:text-purple-300/70">Importe</span>
-                  <p className="font-bold text-[#7C3AED] dark:text-[#A78BFA]">{confirmedBooking.price}€</p>
+                  <span className="text-zinc-400">Importe</span>
+                  <p className="font-bold text-teal-400">{confirmedBooking.price}€</p>
                 </div>
                 <div>
-                  <span className="text-slate-500 dark:text-purple-300/70">Ubicación</span>
-                  <p className="font-bold text-[#3B1238] dark:text-white">C/ San José, 2, Orcera</p>
+                  <span className="text-zinc-400">Ubicación</span>
+                  <p className="font-bold text-zinc-100">C/ San José, 2, Orcera</p>
                 </div>
               </div>
             </div>
@@ -667,7 +651,7 @@ function ReservarContent() {
                 href={`https://wa.me/${businessConfig.whatsapp}?text=Hola%2C%20acabo%20de%20reservar%20cita%20(${confirmedBooking.id})%20para%20${encodeURIComponent(confirmedBooking.serviceName)}%20el%20${confirmedBooking.date}%20a%20las%20${confirmedBooking.timeSlot}h.%20Soy%20${encodeURIComponent(confirmedBooking.clientName)}.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-xs font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] transition-colors shadow-soft-sm"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-xs font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] transition-colors shadow-sm"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Abrir recordatorio en WhatsApp</span>
@@ -675,13 +659,13 @@ function ReservarContent() {
 
               <Link
                 href="/mi-cuenta"
-                className="w-full sm:w-auto px-6 py-3 rounded-xl text-xs font-semibold text-slate-800 dark:text-white bg-purple-100 dark:bg-purple-950/60 hover:bg-purple-200 dark:hover:bg-purple-900/60 border border-purple-200 dark:border-purple-800/40 transition-colors"
+                className="w-full sm:w-auto px-6 py-3 rounded-xl text-xs font-semibold text-zinc-200 bg-zinc-800 hover:bg-zinc-750 border border-zinc-700 transition-colors"
               >
                 Ver en Mi Portal Cliente
               </Link>
             </div>
 
-            <p className="text-[11px] text-slate-500 dark:text-purple-300/70">
+            <p className="text-[11px] text-zinc-400">
               ¿Necesitas modificar la cita? Puedes hacerlo con al menos 24h de antelación desde tu cuenta o llamando al 651 30 87 38.
             </p>
           </div>
@@ -695,8 +679,8 @@ function ReservarContent() {
 export default function ReservarPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-[60vh] flex items-center justify-center">
-        <p className="text-xs text-[#7C3AED] font-semibold">Cargando agenda de reservas...</p>
+      <div className="min-h-[60vh] flex items-center justify-center bg-zinc-950">
+        <p className="text-xs text-teal-400 font-semibold">Cargando agenda de reservas...</p>
       </div>
     }>
       <ReservarContent />

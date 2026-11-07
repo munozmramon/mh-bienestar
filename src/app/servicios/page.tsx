@@ -8,10 +8,8 @@ import {
   Clock, 
   Sparkles, 
   CheckCircle2, 
-  HelpCircle, 
   ArrowRight, 
   Info,
-  ShieldCheck,
   Search,
   ChevronRight,
   LayoutGrid,
@@ -41,21 +39,21 @@ export default function ServiciosPage() {
   });
 
   return (
-    <div className="min-h-screen bg-warm-50 dark:bg-obsidian-900 text-forest-900 dark:text-obsidian-100 py-12 md:py-20 transition-colors duration-300">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 py-12 md:py-20 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-sage-100 dark:bg-obsidian-800 text-forest-800 dark:text-neon-lime border border-sage-300 dark:border-neon-lime/30">
-            <Sparkles className="w-3.5 h-3.5 text-gold-600 dark:text-neon-lime" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-teal-900/40 text-teal-600 dark:text-teal-400 border border-teal-500/30">
+            <Sparkles className="w-3.5 h-3.5 text-teal-400" />
             <span>Centro Parasanitario M&amp;H · Orcera</span>
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-5xl font-bold text-forest-950 dark:text-white tracking-tight">
+          <h1 className="font-serif text-3xl sm:text-5xl font-bold text-zinc-50 dark:text-zinc-100 tracking-tight">
             Catálogo Integral de Cuidados &amp; Terapias
           </h1>
 
-          <p className="text-sm sm:text-base text-forest-700/80 dark:text-obsidian-300 leading-relaxed">
+          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
             Sesiones diseñadas con rigor anatómico y sensibilidad manual. Consulta tarifas, duración y disponibilidad para elegir la atención que tu cuerpo necesita.
           </p>
         </div>
@@ -71,8 +69,8 @@ export default function ServiciosPage() {
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all ${
                   selectedCategory === cat.id
-                    ? 'bg-forest-800 dark:bg-neon-lime text-white dark:text-obsidian-950 shadow-soft-sm font-bold'
-                    : 'bg-white dark:bg-obsidian-800 text-forest-700 dark:text-obsidian-200 hover:bg-warm-200 dark:hover:bg-obsidian-700 border border-warm-300 dark:border-white/10'
+                    ? 'bg-teal-600 text-white shadow-md font-bold'
+                    : 'bg-zinc-900 text-zinc-300 hover:bg-zinc-850 border border-zinc-800'
                 }`}
               >
                 {cat.label}
@@ -83,25 +81,25 @@ export default function ServiciosPage() {
           {/* Search box & View Switcher */}
           <div className="flex items-center gap-2 w-full md:w-auto">
             <div className="relative flex-1 md:w-72">
-              <Search className="w-4 h-4 text-forest-500 dark:text-obsidian-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 placeholder="Buscar por tratamiento..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-xl text-xs bg-white dark:bg-obsidian-800 border border-warm-300 dark:border-white/10 text-forest-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-forest-700 dark:focus:ring-neon-lime shadow-soft-sm"
+                className="w-full pl-10 pr-4 py-2 rounded-xl text-xs bg-zinc-900 border border-zinc-800 text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-teal-500 shadow-sm"
               />
             </div>
 
-            <div className="flex items-center bg-white dark:bg-obsidian-800 border border-warm-300 dark:border-white/10 rounded-xl p-0.5 shadow-soft-sm shrink-0">
+            <div className="flex items-center bg-zinc-900 border border-zinc-800 rounded-xl p-0.5 shadow-sm shrink-0">
               <button
                 onClick={() => setViewMode('compact')}
                 className={`p-1.5 rounded-lg transition-colors ${
                   viewMode === 'compact'
-                    ? 'bg-[#7C3AED] dark:bg-neon-lime text-white dark:text-obsidian-950 font-bold'
-                    : 'text-forest-600 dark:text-obsidian-300 hover:text-forest-900'
+                    ? 'bg-teal-600 text-white font-bold'
+                    : 'text-zinc-400 hover:text-zinc-100'
                 }`}
-                title="Vista Lista Móvil (Diseño M&H)"
+                title="Vista Lista Móvil"
               >
                 <List className="w-4 h-4" />
               </button>
@@ -109,8 +107,8 @@ export default function ServiciosPage() {
                 onClick={() => setViewMode('grid')}
                 className={`p-1.5 rounded-lg transition-colors ${
                   viewMode === 'grid'
-                    ? 'bg-[#7C3AED] dark:bg-neon-lime text-white dark:text-obsidian-950 font-bold'
-                    : 'text-forest-600 dark:text-obsidian-300 hover:text-forest-900'
+                    ? 'bg-teal-600 text-white font-bold'
+                    : 'text-zinc-400 hover:text-zinc-100'
                 }`}
                 title="Vista Cuadrícula Completa"
               >
@@ -120,16 +118,16 @@ export default function ServiciosPage() {
           </div>
         </div>
 
-        {/* COMPACT VIEW (Exact layout from Mockup Secondary Phone Screen) */}
+        {/* COMPACT VIEW */}
         {viewMode === 'compact' ? (
           <div className="max-w-3xl mx-auto space-y-3.5 mb-16">
             {filteredServices.map((service) => (
               <div
                 key={service.id}
-                className="group rounded-3xl bg-white dark:bg-obsidian-850 border border-warm-200/90 dark:border-white/10 p-3 sm:p-4 shadow-soft-sm hover:shadow-soft-md hover:border-[#D4AF7C] transition-all flex items-center justify-between gap-3"
+                className="group rounded-3xl bg-zinc-900 border border-zinc-800 p-3 sm:p-4 shadow-sm hover:shadow-md hover:border-teal-500/50 transition-all flex items-center justify-between gap-3"
               >
                 <Link href={`/servicios/${service.slug}`} className="flex items-center gap-3.5 flex-1 min-w-0">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shrink-0 bg-forest-900 dark:bg-obsidian-900 border border-warm-200 dark:border-white/10">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shrink-0 bg-zinc-800 border border-zinc-700">
                     <img
                       src={service.imageUrl}
                       alt={service.name}
@@ -138,26 +136,26 @@ export default function ServiciosPage() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
-                      <h3 className="font-serif text-base sm:text-lg font-bold text-forest-950 dark:text-white truncate group-hover:text-[#7C3AED] dark:group-hover:text-neon-lime transition-colors">
+                      <h3 className="font-serif text-base sm:text-lg font-bold text-zinc-100 truncate group-hover:text-teal-400 transition-colors">
                         {service.name}
                       </h3>
                       {service.badge && (
-                        <span className="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#D4AF7C]/20 text-[#7C3AED] dark:text-neon-lime border border-[#D4AF7C]/40">
+                        <span className="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-teal-900/40 text-teal-400 border border-teal-500/30">
                           {service.badge}
                         </span>
                       )}
                     </div>
-                    <p className="text-xs text-forest-600 dark:text-obsidian-300 line-clamp-1 mt-0.5">
+                    <p className="text-xs text-zinc-400 line-clamp-1 mt-0.5">
                       {service.shortDescription}
                     </p>
-                    <div className="flex items-center gap-3 mt-1 text-[11px] text-forest-500 dark:text-obsidian-400 font-medium">
-                      <span className="text-[#7C3AED] dark:text-neon-lime font-bold">{service.price}€</span>
+                    <div className="flex items-center gap-3 mt-1 text-[11px] text-zinc-400 font-medium">
+                      <span className="text-teal-400 font-bold">{service.price}€</span>
                       <span>·</span>
                       <span>{service.durationMinutes} min</span>
                       {!service.available && (
                         <>
                           <span>·</span>
-                          <span className="text-amber-700 dark:text-amber-400 italic">Sujeto a lista de espera</span>
+                          <span className="text-amber-400 italic">Sujeto a lista de espera</span>
                         </>
                       )}
                     </div>
@@ -167,14 +165,14 @@ export default function ServiciosPage() {
                 <div className="flex items-center gap-2 shrink-0">
                   <Link
                     href={`/reservar?servicio=${service.id}`}
-                    className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#7C3AED] hover:bg-[#6D28D9] dark:bg-neon-lime dark:text-obsidian-950 transition-colors shadow-soft-xs"
+                    className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-teal-600 hover:bg-teal-500 transition-colors shadow-sm shadow-teal-600/25"
                   >
                     <Calendar className="w-3.5 h-3.5" />
                     <span>Reservar</span>
                   </Link>
                   <Link
                     href={`/servicios/${service.slug}`}
-                    className="w-9 h-9 rounded-full bg-[#F8F7F2] dark:bg-obsidian-800 hover:bg-white dark:hover:bg-obsidian-700 border border-warm-200 dark:border-white/10 flex items-center justify-center text-forest-600 dark:text-obsidian-300 group-hover:text-[#7C3AED] dark:group-hover:text-neon-lime transition-colors"
+                    className="w-9 h-9 rounded-full bg-zinc-800 hover:bg-zinc-750 border border-zinc-700 flex items-center justify-center text-zinc-300 group-hover:text-teal-400 transition-colors"
                   >
                     <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
                   </Link>
@@ -183,18 +181,18 @@ export default function ServiciosPage() {
             ))}
           </div>
         ) : (
-          /* GRID VIEW (Traditional Grid Cards) */
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          /* GRID VIEW */
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {filteredServices.map((service) => (
             <div
               key={service.id}
-              className={`rounded-3xl bg-white dark:bg-obsidian-800 border overflow-hidden shadow-soft-sm hover:shadow-soft-md transition-all duration-300 flex flex-col justify-between ${
-                service.available ? 'border-warm-300 dark:border-white/10' : 'border-dashed border-warm-400/80 dark:border-white/20 opacity-95'
+              className={`rounded-3xl bg-zinc-900 border overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between ${
+                service.available ? 'border-zinc-800 hover:border-teal-500/50' : 'border-dashed border-zinc-700 opacity-95'
               }`}
             >
               <div>
                 {/* Image */}
-                <div className="relative h-60 w-full overflow-hidden bg-forest-900 dark:bg-obsidian-950">
+                <div className="relative h-60 w-full overflow-hidden bg-zinc-800">
                   <img
                     src={service.imageUrl}
                     alt={service.name}
@@ -202,45 +200,45 @@ export default function ServiciosPage() {
                   />
                   <div className="absolute top-4 left-4 flex flex-col gap-1.5">
                     {service.badge && (
-                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-white/95 dark:bg-obsidian-900/95 text-forest-800 dark:text-neon-lime shadow-soft-sm border dark:border-neon-lime/30">
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-zinc-900/90 text-teal-400 shadow-sm border border-teal-500/30">
                         {service.badge}
                       </span>
                     )}
                     {!service.available && (
-                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-950 text-amber-900 dark:text-amber-300 border border-amber-300 dark:border-amber-700 shadow-soft-sm">
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30 shadow-sm">
                         Sujeto a disponibilidad
                       </span>
                     )}
                   </div>
 
-                  <div className="absolute bottom-4 right-4 bg-forest-900/90 dark:bg-obsidian-900/90 text-white dark:text-neon-lime px-3 py-1.5 rounded-xl text-xs font-bold backdrop-blur-sm border dark:border-white/10">
-                    {service.price}€ <span className="text-warm-300 dark:text-obsidian-300 font-normal">/ {service.durationMinutes} min</span>
+                  <div className="absolute bottom-4 right-4 bg-zinc-900/90 text-teal-400 px-3 py-1.5 rounded-xl text-xs font-bold backdrop-blur-sm border border-zinc-700">
+                    {service.price}€ <span className="text-zinc-400 font-normal">/ {service.durationMinutes} min</span>
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-6 space-y-4">
                   <div>
-                    <h3 className="font-serif text-2xl font-bold text-forest-950 dark:text-white">
+                    <h3 className="font-serif text-2xl font-bold text-zinc-100">
                       {service.name}
                     </h3>
-                    <p className="text-xs text-sage-600 dark:text-neon-lime font-medium mt-0.5">
+                    <p className="text-xs text-teal-400 font-medium mt-0.5">
                       Profesional: {service.professionalName}
                     </p>
                   </div>
 
-                  <p className="text-sm text-forest-700/80 dark:text-obsidian-300 leading-relaxed">
+                  <p className="text-sm text-zinc-300 leading-relaxed">
                     {service.shortDescription}
                   </p>
 
                   <div className="pt-2">
-                    <p className="text-xs font-bold text-forest-900 dark:text-white uppercase tracking-wider mb-2">
+                    <p className="text-xs font-bold text-zinc-200 uppercase tracking-wider mb-2">
                       Alcance del tratamiento:
                     </p>
-                    <ul className="space-y-1.5 text-xs text-forest-700 dark:text-obsidian-300">
+                    <ul className="space-y-1.5 text-xs text-zinc-400">
                       {service.scopeAndBenefits.map((item, i) => (
                         <li key={i} className="flex items-start gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-sage-600 dark:text-neon-lime shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-teal-400 shrink-0 mt-0.5" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -248,8 +246,8 @@ export default function ServiciosPage() {
                   </div>
 
                   {service.statusNote && (
-                    <div className="p-3 rounded-xl bg-warm-100 dark:bg-obsidian-850 border border-warm-200 dark:border-white/10 text-xs text-forest-700 dark:text-neon-emerald flex items-start gap-2">
-                      <Info className="w-4 h-4 text-gold-600 dark:text-neon-emerald shrink-0 mt-0.5" />
+                    <div className="p-3 rounded-xl bg-zinc-850 border border-zinc-750 text-xs text-zinc-300 flex items-start gap-2">
+                      <Info className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                       <span>{service.statusNote}</span>
                     </div>
                   )}
@@ -257,10 +255,10 @@ export default function ServiciosPage() {
               </div>
 
               {/* Action Button */}
-              <div className="p-6 pt-0 border-t border-warm-100 dark:border-white/10 flex items-center justify-between gap-3 mt-4">
+              <div className="p-6 pt-0 border-t border-zinc-800 flex items-center justify-between gap-3 mt-4">
                 <Link
                   href={`/servicios/${service.slug}`}
-                  className="text-xs font-semibold text-forest-700 dark:text-obsidian-300 hover:text-forest-950 dark:hover:text-white underline inline-flex items-center gap-1"
+                  className="text-xs font-semibold text-zinc-400 hover:text-zinc-100 underline inline-flex items-center gap-1"
                 >
                   <span>Ver ficha y FAQs</span>
                   <ArrowRight className="w-3 h-3" />
@@ -269,9 +267,9 @@ export default function ServiciosPage() {
                 {service.available ? (
                   <Link
                     href={`/reservar?servicio=${service.id}`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-white dark:text-obsidian-950 bg-forest-800 hover:bg-forest-700 dark:bg-neon-lime dark:hover:bg-[#d8ff68] transition-colors shadow-soft-sm dark:shadow-neon-lime"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-teal-600 hover:bg-teal-500 transition-colors shadow-md shadow-teal-600/25"
                   >
-                    <Calendar className="w-3.5 h-3.5 text-gold-300 dark:text-obsidian-950" />
+                    <Calendar className="w-3.5 h-3.5 text-white" />
                     <span>Reservar Cita</span>
                   </Link>
                 ) : (
@@ -279,7 +277,7 @@ export default function ServiciosPage() {
                     href={`https://wa.me/${businessConfig.whatsapp}?text=Hola%2C%20quisiera%20consultar%20disponibilidad%20para%20${encodeURIComponent(service.name)}.`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold text-forest-800 dark:text-neon-lime bg-warm-200 dark:bg-obsidian-800 hover:bg-warm-300 dark:hover:bg-obsidian-750 border dark:border-white/10 transition-colors"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold text-amber-400 bg-zinc-850 hover:bg-zinc-800 border border-zinc-700 transition-colors"
                   >
                     <span>Lista de espera</span>
                   </a>
@@ -292,12 +290,12 @@ export default function ServiciosPage() {
         )}
 
         {/* Guarantee Banner */}
-        <div className="mt-16 p-8 rounded-3xl bg-forest-900 dark:bg-obsidian-850 text-warm-100 dark:text-white border border-forest-800 dark:border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-soft-lg">
+        <div className="mt-16 p-8 rounded-3xl bg-zinc-900 text-zinc-100 border border-zinc-800 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
           <div className="space-y-1 text-center md:text-left">
-            <h3 className="font-serif text-xl font-bold text-warm-50 dark:text-white">
+            <h3 className="font-serif text-xl font-bold text-zinc-50 dark:text-zinc-100">
               ¿No tienes claro qué sesión se ajusta mejor a tu situación?
             </h3>
-            <p className="text-xs sm:text-sm text-sage-200 dark:text-obsidian-300">
+            <p className="text-xs sm:text-sm text-zinc-400">
               Llámanos al {businessConfig.phone} o escríbenos por WhatsApp para asesorarte de manera personalizada antes de tu primera visita.
             </p>
           </div>
@@ -306,7 +304,7 @@ export default function ServiciosPage() {
             href={`https://wa.me/${businessConfig.whatsapp}?text=Hola%2C%20no%20s%C3%A9%20qu%C3%A9%20tratamiento%20es%20el%20m%C3%A1s%20adecuado%20para%20m%C3%AD.%20%C2%BFMe%20podr%C3%ADais%20orientar%3F`}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 rounded-xl text-xs sm:text-sm font-bold text-forest-950 dark:text-obsidian-950 bg-gold-400 dark:bg-neon-lime hover:bg-gold-300 dark:hover:bg-[#d8ff68] transition-colors shrink-0 shadow-soft-sm dark:shadow-neon-lime"
+            className="px-6 py-3 rounded-xl text-xs sm:text-sm font-bold text-white bg-teal-600 hover:bg-teal-500 transition-colors shrink-0 shadow-md shadow-teal-600/25"
           >
             Orientación Gratuita
           </a>

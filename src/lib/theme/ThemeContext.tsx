@@ -23,13 +23,16 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         setThemeState(saved);
         if (saved === 'dark') {
           document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
         } else {
           document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
         }
       } else {
-        // Default to dark as requested by the user
+        // Default to dark as in OrceraTour
         setThemeState('dark');
         document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
       }
     } catch (e) {
       document.documentElement.classList.add('dark');
@@ -43,8 +46,10 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       localStorage.setItem('mh_theme', newTheme);
       if (newTheme === 'dark') {
         document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
       } else {
         document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
       }
     } catch (e) {}
   };

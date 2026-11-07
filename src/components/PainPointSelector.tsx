@@ -3,15 +3,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { 
-  ArrowRight, 
   Sparkles, 
   CheckCircle2, 
   Calendar, 
-  Clock, 
-  Zap,
-  Activity,
-  Heart,
-  ChevronRight
+  Zap
 } from 'lucide-react';
 
 interface PainPoint {
@@ -84,21 +79,21 @@ export default function PainPointSelector() {
   const currentSelection = painPoints.find(p => p.id === selectedPainId) || painPoints[0];
 
   return (
-    <section className="py-8 sm:py-12 bg-gradient-to-b from-white via-[#F8F6FA] to-white dark:from-[#0F0A1C] dark:via-[#140E26] dark:to-[#0F0A1C] transition-colors">
+    <section className="py-10 sm:py-14 bg-zinc-950 text-zinc-100 transition-colors">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 space-y-2">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#EDE9FE] text-[#3B1238] dark:bg-[#7C3AED]/25 dark:text-[#DDD6FE] border border-purple-200 dark:border-purple-800 shadow-sm">
-            <Zap className="w-3.5 h-3.5 text-[#7C3AED] animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-teal-900/40 text-teal-600 dark:text-teal-300 border border-teal-500/30 shadow-sm">
+            <Zap className="w-3.5 h-3.5 text-teal-500 animate-pulse" />
             <span>Guía Rápida en 1 Toque</span>
           </div>
 
-          <h2 className="font-serif text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
-            ¿Qué necesitas <span className="text-[#7C3AED] dark:text-[#A78BFA]">aliviar hoy</span>?
+          <h2 className="font-serif text-2xl sm:text-4xl font-bold text-zinc-50 dark:text-zinc-100 tracking-tight">
+            ¿Qué necesitas <span className="text-teal-600 dark:text-teal-400">aliviar hoy</span>?
           </h2>
 
-          <p className="text-sm text-slate-600 dark:text-slate-300">
+          <p className="text-sm text-zinc-400">
             Toca tu principal molestia para ver de inmediato la solución recomendada por el especialista de Orcera.
           </p>
         </div>
@@ -113,30 +108,30 @@ export default function PainPointSelector() {
                 onClick={() => setSelectedPainId(point.id)}
                 className={`flex flex-col text-left p-4 sm:p-5 rounded-3xl transition-all duration-200 border relative ${
                   isSelected
-                    ? 'bg-white dark:bg-[#1A132E] border-[#7C3AED] shadow-xl ring-2 ring-[#7C3AED]/30 -translate-y-1'
-                    : 'bg-white/80 dark:bg-[#1A132E]/60 border-slate-200 dark:border-white/10 hover:border-purple-300 dark:hover:border-white/20 hover:bg-white'
+                    ? 'bg-zinc-900 border-teal-500 shadow-xl ring-2 ring-teal-500/30 -translate-y-1'
+                    : 'bg-zinc-900/60 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900'
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-3xl p-2 rounded-2xl bg-purple-50 dark:bg-white/5 border border-purple-100 dark:border-white/5">
+                  <span className="text-3xl p-2 rounded-2xl bg-zinc-800 border border-zinc-700/60">
                     {point.emoji}
                   </span>
                   {isSelected ? (
-                    <span className="w-6 h-6 rounded-full bg-[#7C3AED] text-white flex items-center justify-center text-xs font-bold">
+                    <span className="w-6 h-6 rounded-full bg-teal-600 text-white flex items-center justify-center text-xs font-bold shadow-sm">
                       ✓
                     </span>
                   ) : (
-                    <span className="w-6 h-6 rounded-full border border-slate-300 dark:border-white/20 text-transparent flex items-center justify-center text-xs">
+                    <span className="w-6 h-6 rounded-full border border-zinc-700 text-transparent flex items-center justify-center text-xs">
                       •
                     </span>
                   )}
                 </div>
 
-                <h3 className="font-bold text-base text-slate-900 dark:text-white leading-tight mb-1">
+                <h3 className="font-bold text-base text-zinc-100 leading-tight mb-1">
                   {point.title}
                 </h3>
 
-                <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">
+                <p className="text-xs text-zinc-400 line-clamp-2">
                   {point.subtitle}
                 </p>
               </button>
@@ -144,38 +139,38 @@ export default function PainPointSelector() {
           })}
         </div>
 
-        {/* Dynamic Recommendation Panel (Zen Ciruela & Amatista) */}
-        <div className="rounded-3xl bg-gradient-to-br from-[#3B1238] via-[#2A0B27] to-[#1F0820] text-white p-6 sm:p-8 shadow-2xl border border-purple-900/60 relative overflow-hidden">
+        {/* Dynamic Recommendation Panel */}
+        <div className="rounded-3xl bg-zinc-900 text-zinc-100 p-6 sm:p-8 shadow-2xl border border-zinc-800 relative overflow-hidden">
           
           {/* Subtle Ambient Glow */}
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[#7C3AED]/20 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             
             {/* Left Column: Solution Explanation */}
             <div className="lg:col-span-7 space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-[#7C3AED]/30 text-[#DDD6FE] border border-[#7C3AED]/40">
-                <Sparkles className="w-3.5 h-3.5 text-[#DDD6FE]" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-teal-900/40 text-teal-400 border border-teal-500/30">
+                <Sparkles className="w-3.5 h-3.5 text-teal-400" />
                 <span>{currentSelection.badge}</span>
               </div>
 
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-zinc-50 dark:text-zinc-100 leading-tight">
                 {currentSelection.recommendedServiceName}
               </h3>
 
-              <p className="text-xs sm:text-sm text-purple-100/90 leading-relaxed max-w-xl">
+              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-xl">
                 Diseñado específicamente para aliviar de raíz la molestia de <strong>{currentSelection.title.toLowerCase()}</strong> mediante técnicas manuales precisas, descompresión articular y reeducación funcional.
               </p>
 
               {/* Symptoms Checklist */}
               <div className="pt-2">
-                <p className="text-[11px] uppercase tracking-wider text-purple-200 font-bold mb-2">
+                <p className="text-[11px] uppercase tracking-wider text-zinc-400 font-bold mb-2">
                   Indicado si experimentas:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                   {currentSelection.symptoms.map((symptom, idx) => (
-                    <div key={idx} className="flex items-center gap-1.5 text-xs text-purple-100 bg-white/10 p-2 rounded-xl border border-white/10">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#A78BFA] shrink-0" />
+                    <div key={idx} className="flex items-center gap-1.5 text-xs text-zinc-200 bg-zinc-800/80 p-2 rounded-xl border border-zinc-700/60">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-teal-400 shrink-0" />
                       <span className="truncate">{symptom}</span>
                     </div>
                   ))}
@@ -184,34 +179,34 @@ export default function PainPointSelector() {
             </div>
 
             {/* Right Column: Price & Instant Booking Action */}
-            <div className="lg:col-span-5 bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 flex flex-col justify-between space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-white/10">
+            <div className="lg:col-span-5 bg-zinc-850/80 backdrop-blur-md rounded-2xl p-5 border border-zinc-750 flex flex-col justify-between space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-zinc-750">
                 <div>
-                  <span className="text-xs text-purple-200">Tarifa en Consulta</span>
+                  <span className="text-xs text-zinc-400">Tarifa en Consulta</span>
                   <div className="flex items-baseline gap-1.5">
-                    <span className="text-3xl font-bold font-serif text-white">{currentSelection.price}€</span>
-                    <span className="text-xs text-purple-200">/ {currentSelection.duration} min</span>
+                    <span className="text-3xl font-bold font-serif text-zinc-50 dark:text-zinc-100">{currentSelection.price}€</span>
+                    <span className="text-xs text-zinc-400">/ {currentSelection.duration} min</span>
                   </div>
                 </div>
 
                 <div className="text-right">
-                  <span className="inline-block px-2.5 py-1 rounded-lg bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold">
+                  <span className="inline-block px-2.5 py-1 rounded-lg bg-amber-500/20 border border-amber-500/40 text-amber-400 text-xs font-bold">
                     Atención 1 a 1
                   </span>
-                  <p className="text-[10px] text-purple-200 mt-0.5">Orcera (Jaén)</p>
+                  <p className="text-[10px] text-zinc-400 mt-0.5">Orcera (Jaén)</p>
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Link
                   href={`/reservar?servicio=${currentSelection.recommendedServiceId}`}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl bg-[#7C3AED] hover:bg-[#6D28D9] active:scale-[0.98] text-white text-sm font-bold shadow-lg hover:shadow-xl transition-all"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl bg-teal-600 hover:bg-teal-500 active:scale-[0.98] text-white text-sm font-bold shadow-md shadow-teal-600/25 transition-all"
                 >
                   <Calendar className="w-4 h-4" />
                   <span>Reservar Este Tratamiento →</span>
                 </Link>
 
-                <p className="text-[11px] text-center text-purple-200/80">
+                <p className="text-[11px] text-center text-zinc-400">
                   ⚡ Elige día y hora en 2 pasos · Sin esperas
                 </p>
               </div>

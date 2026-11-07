@@ -59,9 +59,9 @@ export default function PWAInstallBanner() {
   if (!showBanner && !isIOS) return null;
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:w-96 z-40 bg-white/95 dark:bg-obsidian-900/95 backdrop-blur-md rounded-3xl shadow-soft-xl border border-warm-300 dark:border-white/10 p-4 transition-all animate-in fade-in slide-in-from-bottom-4">
+    <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:w-96 z-40 bg-zinc-900/95 backdrop-blur-md rounded-3xl shadow-2xl border border-zinc-800 p-4 transition-all animate-in fade-in slide-in-from-bottom-4 text-zinc-100">
       <div className="flex items-center justify-between gap-3">
-        <div className="w-12 h-12 rounded-full overflow-hidden bg-white dark:bg-obsidian-800 p-0.5 border border-forest-600/30 dark:border-neon-lime/40 shrink-0 shadow-soft-sm">
+        <div className="w-12 h-12 rounded-full overflow-hidden bg-white p-0.5 border border-teal-500/40 shrink-0 shadow-sm">
           <img 
             src="/logo.png" 
             alt="M&H Bienestar" 
@@ -70,16 +70,16 @@ export default function PWAInstallBanner() {
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-1.5">
-            <h4 className="text-sm font-bold text-forest-900 dark:text-white">App M&amp;H Bienestar</h4>
-            <span className="text-[10px] bg-forest-100 dark:bg-neon-lime/20 text-forest-800 dark:text-neon-lime px-2 py-0.5 rounded-full font-semibold">PWA</span>
+            <h4 className="text-sm font-bold text-zinc-50 dark:text-zinc-100">App M&amp;H Bienestar</h4>
+            <span className="text-[10px] bg-teal-900/40 text-teal-400 border border-teal-500/30 px-2 py-0.5 rounded-full font-semibold">PWA</span>
           </div>
-          <p className="text-xs text-forest-700/80 dark:text-obsidian-300 mt-0.5 leading-snug">
+          <p className="text-xs text-zinc-400 mt-0.5 leading-snug">
             Instala la aplicación en tu pantalla de inicio para reservar en 1 clic.
           </p>
         </div>
         <button
           onClick={dismiss}
-          className="text-warm-500 hover:text-forest-900 dark:text-obsidian-400 dark:hover:text-white p-1 rounded-full hover:bg-warm-100 dark:hover:bg-white/10 transition-colors"
+          className="text-zinc-400 hover:text-zinc-100 p-1 rounded-full hover:bg-zinc-800 transition-colors"
           aria-label="Cerrar aviso"
         >
           <X className="w-4 h-4" />
@@ -89,14 +89,14 @@ export default function PWAInstallBanner() {
       <div className="mt-3.5 flex items-center gap-2">
         <button
           onClick={handleInstallClick}
-          className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-full text-xs font-semibold text-white bg-forest-800 hover:bg-forest-700 dark:bg-neon-lime dark:text-obsidian-950 dark:hover:bg-neon-lime/90 active:scale-[0.98] transition-all shadow-soft-sm"
+          className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-full text-xs font-bold text-white bg-teal-600 hover:bg-teal-500 active:scale-[0.98] transition-all shadow-md shadow-teal-600/25"
         >
-          <Download className="w-4 h-4 text-gold-300 dark:text-obsidian-950" />
+          <Download className="w-4 h-4 text-white" />
           <span>Instalar Aplicación</span>
         </button>
         <button
           onClick={dismiss}
-          className="py-2.5 px-4 rounded-full text-xs font-medium text-forest-700 dark:text-obsidian-300 hover:bg-warm-100 dark:hover:bg-white/10 transition-colors"
+          className="py-2.5 px-4 rounded-full text-xs font-medium text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 transition-colors"
         >
           Ahora no
         </button>

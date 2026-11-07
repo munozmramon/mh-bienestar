@@ -9,94 +9,129 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Deep Amethyst Night (Modo Noche Sereno & Relajante)
+        // OrceraTour Official Theme Palette
+        zinc: {
+          50: 'var(--zinc-50)',
+          100: 'var(--zinc-100)',
+          200: 'var(--zinc-200)',
+          300: 'var(--zinc-300)',
+          400: 'var(--zinc-400)',
+          500: 'var(--zinc-500)',
+          600: 'var(--zinc-600)',
+          700: 'var(--zinc-700)',
+          800: 'var(--zinc-800)',
+          900: 'var(--zinc-900)',
+          950: 'var(--zinc-950)',
+        },
+        teal: {
+          400: 'var(--teal-400)',
+          500: 'var(--teal-500)',
+          600: 'var(--teal-600)',
+          700: 'var(--teal-700)',
+          900: 'var(--teal-900)',
+          950: 'var(--teal-950)',
+        },
+        amber: {
+          400: 'var(--amber-400)',
+          500: 'var(--amber-500)',
+          950: 'var(--amber-950)',
+        },
+        emerald: {
+          50: 'var(--teal-950)',
+          100: 'var(--teal-900)',
+          200: 'var(--teal-900)',
+          300: 'var(--teal-400)',
+          400: 'var(--teal-400)',
+          500: 'var(--emerald-500)',
+          600: 'var(--teal-500)',
+          700: 'var(--teal-600)',
+          800: 'var(--teal-700)',
+          900: 'var(--teal-900)',
+          950: 'var(--teal-950)',
+        },
         obsidian: {
-          950: '#0A0614',
-          900: '#0F0A1C', // Fondo principal noche
-          850: '#150F26',
-          800: '#1A132E', // Superficie de tarjetas noche
-          750: '#221A3D',
-          700: '#2A204B', // Superficie hover noche
-          600: '#392C63',
-          500: '#52408A',
-          400: '#7E6CB0',
-          300: '#ADA0D4',
-          200: '#D6CEF0',
-          100: '#F5F3FF', // Texto luminoso
+          950: 'var(--zinc-950)',
+          900: 'var(--zinc-950)',
+          850: 'var(--zinc-900)',
+          800: 'var(--zinc-900)',
+          750: 'var(--zinc-800)',
+          700: 'var(--zinc-800)',
+          600: 'var(--zinc-700)',
+          500: 'var(--zinc-600)',
+          400: 'var(--zinc-500)',
+          300: 'var(--zinc-400)',
+          200: 'var(--zinc-200)',
+          100: 'var(--zinc-100)',
         },
         neon: {
-          lime: '#A78BFA',    // Amatista luminosa para contraste noche
-          emerald: '#7C3AED', // Violeta Amatista noble
-          glow: 'rgba(124, 58, 237, 0.35)',
+          lime: 'var(--teal-400)',
+          emerald: 'var(--teal-500)',
+          glow: 'rgba(20, 184, 166, 0.35)',
         },
-
-        // Zen Lavanda & Bruma Suave
         sage: {
-          50: '#FAF8FC',
-          100: '#F3EAFD',
-          200: '#EDE9FE',
-          300: '#DDD6FE',
-          400: '#C4B5FD',
-          500: '#A78BFA',
-          600: '#8B5CF6',
-          700: '#7C3AED',
-          800: '#5B21B6',
-          900: '#3B1238',
+          50: 'var(--zinc-950)',
+          100: 'var(--teal-900)',
+          200: 'var(--teal-950)',
+          300: 'var(--zinc-700)',
+          400: 'var(--zinc-600)',
+          500: 'var(--zinc-500)',
+          600: 'var(--teal-600)',
+          700: 'var(--teal-700)',
+          800: 'var(--zinc-100)',
+          900: 'var(--zinc-50)',
         },
-        // Ciruela Noble & Profundidad
         forest: {
-          50: '#FAF5FA',
-          100: '#F3E8F3',
-          200: '#E6CFE6',
-          300: '#CCA3CC',
-          400: '#9E5B9E',
-          500: '#7C3AED',
-          600: '#6B2165',
-          700: '#53194F',
-          800: '#3B1238', // Ciruela Noble Principal
-          900: '#270925', // Ciruela oscuro
-          950: '#1A0818',
+          50: 'var(--teal-950)',
+          100: 'var(--teal-900)',
+          200: 'var(--teal-900)',
+          300: 'var(--teal-400)',
+          400: 'var(--teal-500)',
+          500: 'var(--teal-600)',
+          600: 'var(--teal-700)',
+          700: 'var(--zinc-200)',
+          800: 'var(--zinc-100)',
+          900: 'var(--zinc-50)',
+          950: 'var(--zinc-50)',
         },
         warm: {
-          50: '#FDFBF9',
-          100: '#FAF8F5',
-          200: '#F4EFE6',
-          300: '#EBE3D5',
-          400: '#DCD1BE',
-          500: '#C7B79E',
-          600: '#AFA087',
-          700: '#8E8069',
-          800: '#6C6250',
-          900: '#4A4337',
+          50: 'var(--zinc-950)',
+          100: 'var(--zinc-900)',
+          200: 'var(--zinc-800)',
+          300: 'var(--zinc-700)',
+          400: 'var(--zinc-600)',
+          500: 'var(--zinc-500)',
+          600: 'var(--zinc-400)',
+          700: 'var(--zinc-300)',
+          800: 'var(--zinc-200)',
+          900: 'var(--zinc-100)',
         },
         gold: {
-          50: '#FBF9F0',
-          100: '#F6F1DC',
-          200: '#EDE0B5',
-          300: '#E1CA8B',
-          400: '#D4AF37',
-          500: '#C5A880',
-          600: '#AA884E',
-          700: '#856736',
-          800: '#644D29',
-          900: '#47361D',
+          50: 'var(--amber-950)',
+          100: 'var(--amber-950)',
+          200: 'var(--amber-400)',
+          300: 'var(--amber-400)',
+          400: 'var(--amber-400)',
+          500: 'var(--amber-500)',
+          600: 'var(--amber-500)',
+          700: 'var(--amber-500)',
+          800: 'var(--amber-500)',
+          900: 'var(--amber-950)',
         },
-        // Zen Lavanda & Ciruela Noble Palette: M&H Bienestar Integral
         mh: {
-          plum: '#3B1238',       // Ciruela Noble Profundo (Fuerza, calma y distinción)
-          plumDark: '#270925',   // Ciruela noche ultra profundo
-          plumMedium: '#53194F', // Ciruela medio elegante
-          violet: '#7C3AED',     // Violeta Amatista (Botones de acción, llamadas a reserva)
-          violetDark: '#6D28D9', // Hover violeta
-          violetLight: '#8B5CF6',// Lavanda luminosa para noche
-          lavender: '#EDE9FE',   // Lavanda suave para chips y badges
-          lavenderLight: '#F5F3FF', // Fondo bruma lavanda ultra-ligero
-          gold: '#D97706',       // Oro cálido (Premios, estrellas, club)
-          night: '#0F0A1C',      // Noche Amatista Profunda (Modo noche relajante, no verde)
-          cardNight: '#1A132E',  // Superficie de tarjetas modo noche
-          borderNight: 'rgba(237, 233, 254, 0.1)',
+          plum: 'var(--zinc-50)',
+          plumDark: 'var(--zinc-950)',
+          plumMedium: 'var(--teal-700)',
+          violet: 'var(--teal-500)',
+          violetDark: 'var(--teal-600)',
+          violetLight: 'var(--teal-400)',
+          lavender: 'var(--teal-900)',
+          lavenderLight: 'var(--teal-950)',
+          gold: 'var(--amber-500)',
+          night: 'var(--zinc-950)',
+          cardNight: 'var(--zinc-900)',
+          borderNight: 'var(--zinc-800)',
           pure: '#FFFFFF',
-          pearl: '#F8F6FA',      // Blanco perla lavanda
+          pearl: 'var(--zinc-950)',
         }
       },
       fontFamily: {

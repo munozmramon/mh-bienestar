@@ -39,13 +39,13 @@ export default function Navbar() {
   const isAdmin = currentUser?.role === 'admin' || currentUser?.role === 'staff';
 
   return (
-    <header className="sticky top-0 z-50 glass-panel border-b border-warm-300/60 dark:border-white/10 shadow-soft-sm transition-all duration-300">
+    <header className="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/80 shadow-soft-sm transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-12 h-12 rounded-full overflow-hidden bg-white p-0.5 shadow-soft-sm group-hover:scale-105 transition-all border border-warm-300 dark:border-neon-lime/50 shrink-0">
+            <div className="w-12 h-12 rounded-full overflow-hidden bg-white p-0.5 shadow-soft-sm group-hover:scale-105 transition-all border border-teal-500/40 shrink-0">
               <img 
                 src="/logo.png" 
                 alt="Centro Parasanitario M&H" 
@@ -53,10 +53,10 @@ export default function Navbar() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#3B1238] dark:text-white group-hover:text-[#7C3AED] dark:group-hover:text-[#A78BFA] transition-colors">
-                M&amp;H <span className="text-[#7C3AED] dark:text-[#A78BFA] font-sans font-medium text-lg tracking-widest uppercase">Bienestar Integral</span>
+              <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-zinc-50 dark:text-zinc-100 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                M&amp;H <span className="text-teal-600 dark:text-teal-400 font-sans font-medium text-lg tracking-widest uppercase">Bienestar Integral</span>
               </span>
-              <span className="text-[11px] font-serif italic text-slate-500 dark:text-slate-400">
+              <span className="text-[11px] font-serif italic text-zinc-500 dark:text-zinc-400">
                 Tu bienestar, nuestra esencia
               </span>
             </div>
@@ -72,8 +72,8 @@ export default function Navbar() {
                   href={link.href}
                   className={`px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${
                     isActive
-                      ? 'text-[#3B1238] dark:text-white bg-[#EDE9FE] dark:bg-[#7C3AED]/25 font-bold shadow-soft-sm'
-                      : 'text-slate-600 dark:text-slate-300 hover:text-[#7C3AED] dark:hover:text-[#A78BFA] hover:bg-slate-100 dark:hover:bg-white/5'
+                      ? 'text-teal-700 dark:text-teal-300 bg-teal-900/30 dark:bg-teal-950/80 border border-teal-500/40 font-bold shadow-soft-sm'
+                      : 'text-zinc-600 dark:text-zinc-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-zinc-800/30'
                   }`}
                 >
                   {link.name}
@@ -85,21 +85,21 @@ export default function Navbar() {
           {/* Right Action Buttons */}
           <div className="hidden lg:flex items-center space-x-3">
             
-            {/* Theme Toggle Button: Día / Noche Amatista */}
+            {/* Theme Toggle Button: Día / Noche (Estilo OrceraTour) */}
             <button
               onClick={toggleTheme}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-white/5 text-slate-800 dark:text-slate-200 hover:bg-white dark:hover:bg-white/10 shadow-soft-sm transition-all"
-              title={theme === 'dark' ? 'Cambiar a Modo Día' : 'Cambiar a Modo Noche Amatista'}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border border-zinc-800 bg-zinc-900/60 hover:bg-zinc-800/80 text-zinc-300 hover:text-white shadow-soft-sm transition-all"
+              title={theme === 'dark' ? 'Cambiar a Modo Día' : 'Cambiar a Modo Noche'}
             >
               {theme === 'dark' ? (
                 <>
-                  <Moon className="w-4 h-4 text-[#A78BFA]" />
-                  <span className="text-[#A78BFA] font-bold">Noche</span>
+                  <Moon className="w-4 h-4 text-teal-400" />
+                  <span className="text-teal-400 font-bold">Noche</span>
                 </>
               ) : (
                 <>
                   <Sun className="w-4 h-4 text-amber-500" />
-                  <span>Día</span>
+                  <span className="text-zinc-100 font-bold">Día</span>
                 </>
               )}
             </button>
@@ -206,10 +206,10 @@ export default function Navbar() {
               <span>Gana 15€</span>
             </button>
 
-            {/* Direct Booking CTA */}
+            {/* Direct Booking CTA (OrceraTour Teal) */}
             <Link
               href="/reservar"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-[#7C3AED] hover:bg-[#6D28D9] active:scale-[0.98] transition-all shadow-md hover:shadow-lg"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-teal-600 hover:bg-teal-500 active:scale-[0.98] transition-all shadow-md shadow-teal-600/25 hover:shadow-teal-500/40"
             >
               <Calendar className="w-4 h-4 text-white" />
               <span>Pedir Cita</span>
@@ -220,14 +220,14 @@ export default function Navbar() {
           <div className="flex md:hidden items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-xl text-slate-700 dark:text-[#A78BFA] bg-white/70 dark:bg-white/5 border border-slate-200 dark:border-white/10"
+              className="p-2 rounded-xl text-zinc-300 bg-zinc-900 border border-zinc-800"
               title="Cambiar tema"
             >
-              {theme === 'dark' ? <Moon className="w-4 h-4 text-[#A78BFA]" /> : <Sun className="w-4 h-4 text-amber-500" />}
+              {theme === 'dark' ? <Moon className="w-4 h-4 text-teal-400" /> : <Sun className="w-4 h-4 text-amber-500" />}
             </button>
             <Link
               href="/reservar"
-              className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-white bg-[#7C3AED] shadow-sm"
+              className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-white bg-teal-600 shadow-sm"
             >
               Pedir Cita
             </Link>
