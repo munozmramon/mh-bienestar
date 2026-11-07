@@ -38,6 +38,7 @@ export default function Navbar() {
   const [viralModalOpen, setViralModalOpen] = useState(false);
   const [installModalOpen, setInstallModalOpen] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [installClickedWithoutPrompt, setInstallClickedWithoutPrompt] = useState(false);
   const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string>('');
 
   React.useEffect(() => {
@@ -80,6 +81,7 @@ export default function Navbar() {
       setDeferredPrompt(null);
     } else {
       setInstallModalOpen(true);
+      setInstallClickedWithoutPrompt(true);
     }
   };
 
@@ -593,6 +595,20 @@ export default function Navbar() {
                   <Download className="w-5 h-5 text-white" />
                   <span>📲 Instalar App en este Dispositivo</span>
                 </button>
+
+                {installClickedWithoutPrompt && !deferredPrompt && (
+                  <div className="p-3 rounded-2xl bg-teal-950/80 border border-teal-500/50 text-teal-200 text-xs space-y-1.5 animate-in fade-in duration-200">
+                    <p className="font-bold flex items-center gap-1.5 text-white">
+                      <span>💡 ¿No te ha saltado la ventana automática?</span>
+                    </p>
+                    <p className="text-[11px] leading-relaxed text-zinc-200">
+                      En muchos teléfonos Android el navegador requiere 1 toque manual: <br />
+                      <strong>1.</strong> Desliza la pantalla un poquito hacia arriba para ver la barra del navegador. <br />
+                      <strong>2.</strong> Toca los <strong>3 puntos (⋮)</strong> arriba a la derecha (o las <strong>3 rayitas ≡</strong> abajo a la derecha en Samsung). <br />
+                      <strong>3.</strong> Pulsa <strong>«Añadir a pantalla de inicio»</strong> o <strong>«Instalar aplicación»</strong>.
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* Guía Paso a Paso para iPhone / iPad (Safari) */}

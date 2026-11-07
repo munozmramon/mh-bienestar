@@ -25,14 +25,14 @@ export const metadata: Metadata = {
   authors: [{ name: 'Centro Parasanitario M&H' }],
   creator: 'M&H BIENESTAR',
   publisher: 'Centro Parasanitario M&H',
-  metadataBase: new URL('https://quirosteopatiamh.es'),
+  metadataBase: new URL('https://mh-bienestar.vercel.app'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'M&H BIENESTAR — Reeducación Corporal en Orcera (Jaén)',
     description: 'Equilibrio, movilidad y serenidad para tu cuerpo en el corazón de la Sierra de Segura. Reserva tu sesión online.',
-    url: 'https://quirosteopatiamh.es',
+    url: 'https://mh-bienestar.vercel.app',
     siteName: 'M&H BIENESTAR',
     locale: 'es_ES',
     type: 'website',
@@ -66,7 +66,6 @@ export const metadata: Metadata = {
     statusBarStyle: 'black-translucent',
     title: 'M&H Bienestar',
   },
-  manifest: '/manifest.json',
 };
 
 export const viewport: Viewport = {
@@ -123,6 +122,7 @@ export default function RootLayout({
   return (
     <html lang="es" className="scroll-smooth">
       <head>
+        <link rel="manifest" href="/manifest.json" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
