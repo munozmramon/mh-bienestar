@@ -20,7 +20,10 @@ import {
   Moon,
   Home,
   Star,
-  Phone
+  Phone,
+  Smartphone,
+  Download,
+  Share2
 } from 'lucide-react';
 import ViralShareModal from './ViralShareModal';
 
@@ -31,6 +34,30 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [viralModalOpen, setViralModalOpen] = useState(false);
+  const [installModalOpen, setInstallModalOpen] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+
+  React.useEffect(() => {
+    const handleBeforeInstall = (e: any) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    };
+    window.addEventListener('beforeinstallprompt', handleBeforeInstall);
+    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
+  }, []);
+
+  const handleTriggerInstall = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      try {
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          setInstallModalOpen(false);
+        }
+      } catch (err) {}
+      setDeferredPrompt(null);
+    }
+  };
 
   const navLinks = [
     { name: 'Inicio', href: '/' },
@@ -413,6 +440,18 @@ export default function Navbar() {
                 <span className="text-[10px] font-bold text-teal-300 bg-teal-950 px-2 py-0.5 rounded-full border border-teal-500/20">150 pts</span>
               </button>
 
+              {/* Install PWA Button */}
+              <button
+                onClick={() => { setMobileMenuOpen(false); setInstallModalOpen(true); }}
+                className="w-full flex items-center justify-between p-3 rounded-2xl bg-teal-950/40 hover:bg-teal-950/60 border border-teal-500/30 text-left transition-colors"
+              >
+                <div className="flex items-center gap-2.5">
+                  <Smartphone className="w-4 h-4 text-teal-400" />
+                  <span className="text-xs font-semibold text-teal-200">Descargar App en mi Móvil</span>
+                </div>
+                <span className="text-[10px] font-bold text-teal-300 bg-teal-900/80 px-2 py-0.5 rounded-full border border-teal-500/20">Instalar</span>
+              </button>
+
             </div>
 
             {/* Drawer Footer with Clinic Contact */}
@@ -439,6 +478,72 @@ export default function Navbar() {
 
       {/* Global Referral Viral Modal */}
       <ViralShareModal isOpen={viralModalOpen} onClose={() => setViralModalOpen(false)} />
+
+      {/* Install Guidance Modal */}
+      {installModalOpen && (
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
+          <div className="bg-zinc-900 border border-zinc-800 rounded-3xl max-w-sm w-full p-6 text-zinc-100 space-y-4 shadow-2xl relative">
+            <button
+              onClick={() => setInstallModalOpen(false)}
+              className="absolute top-4 right-4 p-2 text-zinc-400 hover:text-white rounded-xl bg-zinc-800/80 transition-colors"
+              aria-label="Cerrar modal"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            <div className="text-center space-y-1.5 pt-2">
+              <div className="w-14 h-14 rounded-2xl bg-white p-1 mx-auto border-2 border-teal-500/40 shadow-md">
+                <img src="/logo.png" alt="M&H Bienestar" className="w-full h-full object-contain rounded-xl" />
+              </div>
+              <h3 className="font-serif text-lg font-bold text-white">Instalar App M&amp;H Bienestar</h3>
+              <p className="text-xs text-zinc-400">
+                Ábrela con 1 toque desde tu pantalla de inicio como una aplicación normal, sin barras de navegador.
+              </p>
+            </div>
+
+            {deferredPrompt ? (
+              <div className="pt-2">
+                <button
+                  onClick={handleTriggerInstall}
+                  className="w-full py-3 px-4 rounded-xl text-xs font-bold text-white bg-teal-600 hover:bg-teal-500 shadow-lg shadow-teal-600/30 flex items-center justify-center gap-2 transition-all"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Instalar ahora en 1 clic</span>
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-3 pt-2 text-xs">
+                {/* Android Guide */}
+                <div className="p-3 rounded-2xl bg-zinc-850 border border-zinc-750 space-y-1 text-left">
+                  <p className="font-bold text-teal-400 flex items-center gap-1.5">
+                    <span>📱 En Android (Chrome / Samsung)</span>
+                  </p>
+                  <p className="text-[11px] text-zinc-300 leading-relaxed">
+                    Toca los <strong>3 puntos (⋮)</strong> arriba a la derecha del navegador y selecciona <strong>"Instalar aplicación"</strong> o <strong>"Añadir a pantalla de inicio"</strong>.
+                  </p>
+                </div>
+
+                {/* iPhone Guide */}
+                <div className="p-3 rounded-2xl bg-zinc-850 border border-zinc-750 space-y-1 text-left">
+                  <p className="font-bold text-teal-400 flex items-center gap-1.5">
+                    <span>🍏 En iPhone (Safari)</span>
+                  </p>
+                  <p className="text-[11px] text-zinc-300 leading-relaxed">
+                    Toca el botón <strong>Compartir (⎋ cuadrado con flecha hacia arriba)</strong> en la barra inferior de Safari y elige <strong>"Añadir a la pantalla de inicio"</strong>.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            <button
+              onClick={() => setInstallModalOpen(false)}
+              className="w-full py-2.5 rounded-xl text-xs font-medium text-zinc-400 hover:text-white bg-zinc-800/60 transition-colors"
+            >
+              Entendido
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }
