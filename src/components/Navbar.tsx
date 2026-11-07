@@ -101,8 +101,8 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-20">
           
           {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-white p-0.5 shadow-soft-sm group-hover:scale-105 transition-all border border-teal-500/40 shrink-0">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink-0">
+            <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-white p-0.5 shadow-soft-sm group-hover:scale-105 transition-all border border-teal-500/40 shrink-0">
               <img 
                 src="/logo.png" 
                 alt="Centro Parasanitario M&H" 
@@ -110,8 +110,8 @@ export default function Navbar() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-base sm:text-2xl font-bold tracking-tight text-zinc-50 dark:text-zinc-100 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
-                M&amp;H <span className="text-teal-600 dark:text-teal-400 font-sans font-medium text-sm sm:text-lg tracking-widest uppercase">Bienestar</span>
+              <span className="font-serif text-sm sm:text-2xl font-bold tracking-tight text-zinc-50 dark:text-zinc-100 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                M&amp;H <span className="text-teal-600 dark:text-teal-400 font-sans font-medium text-xs sm:text-lg tracking-widest uppercase">Bienestar</span>
               </span>
               <span className="hidden sm:block text-[11px] font-serif italic text-zinc-500 dark:text-zinc-400">
                 Tu bienestar, nuestra esencia
@@ -303,7 +303,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Right Controls: Compartir, App, Tema, Menú */}
-          <div className="flex md:hidden items-center gap-1 sm:gap-1.5">
+          <div className="flex md:hidden items-center gap-1 sm:gap-1.5 shrink-0">
             {/* Botón 1-Clic Compartir */}
             <button
               onClick={() => setViralModalOpen(true)}
@@ -317,10 +317,10 @@ export default function Navbar() {
             {/* Botón Instalar App en el Móvil */}
             <button
               onClick={handleTriggerInstall}
-              className="px-2 py-1.5 rounded-xl bg-teal-500/15 hover:bg-teal-500/25 text-teal-300 border border-teal-500/30 text-[11px] font-bold flex items-center gap-1 transition shadow-sm"
+              className="px-2 py-1.5 rounded-xl bg-teal-500/20 hover:bg-teal-500/30 text-teal-300 border border-teal-500/40 text-[11px] font-bold flex items-center gap-1 transition shadow-sm ring-1 ring-teal-500/40"
               title="Instalar App M&H Bienestar"
             >
-              <Download className="w-3.5 h-3.5 text-teal-400" />
+              <Download className="w-3.5 h-3.5 text-teal-300 animate-bounce" />
               <span className="text-[10px]">App</span>
             </button>
 
