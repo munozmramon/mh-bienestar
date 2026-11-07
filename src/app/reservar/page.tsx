@@ -169,6 +169,32 @@ function ReservarContent() {
           </p>
         </div>
 
+        {/* Fast Lane WhatsApp Callout for Rural/Senior Users */}
+        <div className="mb-8 p-4 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/30 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-[#25D366] text-white flex items-center justify-center shrink-0 shadow-sm">
+              <MessageCircle className="w-5 h-5 fill-white stroke-[#25D366]" />
+            </div>
+            <div>
+              <p className="text-xs sm:text-sm font-bold text-zinc-100">
+                ¿Prefieres pedir tu cita directamente por WhatsApp sin formularios?
+              </p>
+              <p className="text-xs text-zinc-400">
+                Atención personal directa con el centro en Orcera · 651 30 87 38
+              </p>
+            </div>
+          </div>
+
+          <a
+            href="https://wa.me/34651308738?text=Hola%20M%26H%20Bienestar%2C%20quisiera%20pedir%20cita%20directamente%20para%20Orcera."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs shrink-0 shadow-sm transition-colors"
+          >
+            Abrir WhatsApp →
+          </a>
+        </div>
+
         {/* Step Indicator */}
         {step < 3 && (
           <div className="flex items-center justify-center gap-2 mb-8">

@@ -36,16 +36,16 @@ export const initialBusinessConfig: BusinessConfig = {
 export const initialServices: Service[] = [
   {
     id: "srv-reeducacion",
-    name: "Reeducación Corporal",
+    name: "Alivio de Espalda, Cuello y Lumbares (Reeducación)",
     slug: "reeducacion-corporal",
     category: "manual",
-    shortDescription: "Evaluación postural y técnicas manuales para recuperar la alineación, movilidad y aliviar sobrecargas musculares.",
-    fullDescription: "La reeducación corporal en M&H Bienestar combina técnicas manuales profundas y suaves de liberación miofascial y equilibrio biomecánico. Diseñado para personas con hábitos posturales exigentes, sobreesfuerzos laborales o rigidez acumulada, buscando una armonía física duradera.",
+    shortDescription: "Evaluación postural y descarga manual profunda para aliviar lumbago, ciática, dolor cervical y bloqueos de espalda.",
+    fullDescription: "La reeducación corporal en M&H Bienestar combina técnicas manuales profundas y descompresión articular. Diseñado para eliminar de raíz sobrecargas por trabajo físico, malas posturas o rigidez acumulada, devolviéndote la agilidad sin dolor.",
     scopeAndBenefits: [
-      "Alivio de tensiones y sobrecargas musculares crónicas",
-      "Mejora sustancial del rango de movimiento y flexibilidad",
-      "Conciencia postural en el día a día y en el trabajo",
-      "Sensación inmediata de ligereza y descompresión"
+      "Alivio de contracturas, lumbalgias, cervicales y ciática",
+      "Descompresión articular y mejora de la movilidad",
+      "Pautas posturales personalizadas para evitar recaídas",
+      "Sensación inmediata de ligereza y descanso profundo"
     ],
     durationMinutes: 60,
     price: 45,
@@ -67,15 +67,15 @@ export const initialServices: Service[] = [
   },
   {
     id: "srv-craneosacral",
-    name: "Técnica Craneosacral Suave",
+    name: "Alivio de Bruxismo, Migrañas y Estrés (Craneal Suave)",
     slug: "tecnica-craneosacral-suave",
     category: "craneal",
-    shortDescription: "Toque sutil y profundo que armoniza el ritmo craneosacral, calmando el sistema nervioso y reduciendo el estrés.",
-    fullDescription: "Una de las terapias manuales más refinadas y relajantes. A través de un contacto manual extraordinariamente suave sobre el cráneo, la columna y el sacro, facilitamos la liberación de tensiones meníngeas y la autorregulación natural del organismo.",
+    shortDescription: "Toque manual muy sutil para relajar mandíbula apretada, jaquecas tensionales y desconectar la mente del estrés diario.",
+    fullDescription: "Una de las terapias manuales más reparadoras y relajantes. A través de un contacto extraordinariamente suave sobre cráneo, nuca y columna, calmamos el sistema nervioso en alerta, liberando la tensión de mandíbula (bruxismo) y dolores de cabeza.",
     scopeAndBenefits: [
-      "Profunda relajación del sistema nervioso central",
-      "Alivio del estrés, insomnio y estados de hiperalerta",
-      "Alivio en molestias cefálicas tensionales y mandíbula (bruxismo)",
+      "Alivio de bruxismo nocturno y tensión en mandíbula",
+      "Disminución de cefaleas tensionales y pesadez en la nuca",
+      "Calma profunda del sistema nervioso y mejora del sueño",
       "Recuperación de la serenidad mental y claridad"
     ],
     durationMinutes: 50,
@@ -94,16 +94,16 @@ export const initialServices: Service[] = [
   },
   {
     id: "srv-visceral",
-    name: "Bienestar Visceral",
+    name: "Alivio Digestivo y Tensión Abdominal (Visceral)",
     slug: "bienestar-visceral",
     category: "visceral",
-    shortDescription: "Terapia manual suave en la zona abdominal y diafragmática para favorecer la movilidad orgánica y la distensión.",
-    fullDescription: "Las tensiones emocionales y las malas posturas a menudo se somatizan en el diafragma y la cavidad abdominal. Mediante manipulaciones suaves y respetuosas, ayudamos a liberar adherencias funcionales, mejorando la respiración y la digestión relajada.",
+    shortDescription: "Maniobras suaves en diafragma y abdomen para favorecer la digestión ligera, respiración amplia y distensión.",
+    fullDescription: "El estrés y las posturas cerradas suelen acumularse en el diafragma y la zona digestiva. Con maniobras manuales suaves y respetuosas ayudamos a liberar la tensión abdominal y mejorar el tránsito y la respiración profunda.",
     scopeAndBenefits: [
-      "Descompresión del diafragma y mejora de la capacidad respiratoria",
-      "Alivio de la pesadez y distensión abdominal funcional",
-      "Armonización de reflejos somatoviscerales que causan dolor lumbar",
-      "Gran ligereza en la zona media del cuerpo"
+      "Descompresión del diafragma y respiración libre sin ahogo",
+      "Alivio de la hinchazón, pesadez y distensión estomacal",
+      "Alivio de reflejos que causan dolor reflejo en la zona lumbar",
+      "Gran ligereza corporal en la zona media"
     ],
     durationMinutes: 50,
     price: 45,

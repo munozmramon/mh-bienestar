@@ -6,7 +6,8 @@ import {
   Sparkles, 
   CheckCircle2, 
   Calendar, 
-  Zap
+  Zap,
+  MessageCircle
 } from 'lucide-react';
 
 interface PainPoint {
@@ -200,14 +201,24 @@ export default function PainPointSelector() {
               <div className="space-y-2">
                 <Link
                   href={`/reservar?servicio=${currentSelection.recommendedServiceId}`}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl bg-teal-600 hover:bg-teal-500 active:scale-[0.98] text-white text-sm font-bold shadow-md shadow-teal-600/25 transition-all"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-2xl bg-teal-600 hover:bg-teal-500 active:scale-[0.98] text-white text-xs sm:text-sm font-bold shadow-md shadow-teal-600/25 transition-all"
                 >
                   <Calendar className="w-4 h-4" />
-                  <span>Reservar Este Tratamiento →</span>
+                  <span>Reservar Día y Hora en la Web →</span>
                 </Link>
 
+                <a
+                  href={`https://wa.me/34651308738?text=Hola%20M%26H%20Bienestar%2C%20he%20visto%20en%20la%20app%20el%20tratamiento%20para%20${encodeURIComponent(currentSelection.title)}%20(${encodeURIComponent(currentSelection.recommendedServiceName)}).%20%C2%BFQu%C3%A9%20d%C3%ADa%20y%20hora%20ten%C3%A9is%20disponible%20en%20Orcera%3F`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold shadow-md transition-colors"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Pedir Cita Directa por WhatsApp</span>
+                </a>
+
                 <p className="text-[11px] text-center text-zinc-400">
-                  ⚡ Elige día y hora en 2 pasos · Sin esperas
+                  ⚡ Elige día y hora online o escríbenos directamente sin esperas
                 </p>
               </div>
             </div>

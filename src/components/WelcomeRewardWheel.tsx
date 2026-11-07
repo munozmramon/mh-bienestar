@@ -70,16 +70,29 @@ export default function WelcomeRewardWheel() {
 
   return (
     <>
-      {/* Floating Pill Trigger (Positioned cleanly on bottom-right, separated from Viral button) */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-20 right-4 md:bottom-6 md:right-6 z-40 flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-500 hover:to-teal-400 text-white font-bold text-xs shadow-lg shadow-teal-900/30 border border-teal-400/30 active:scale-95 transition-all group"
-      >
-        <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-white shrink-0 group-hover:rotate-12 transition-transform">
-          🎯
-        </span>
-        <span className="tracking-tight">Ruleta de Premios (Tira Gratis)</span>
-      </button>
+      {/* In-Flow Interactive Banner Trigger */}
+      <div className="rounded-3xl bg-gradient-to-br from-teal-950/70 via-zinc-900 to-zinc-900 p-6 sm:p-8 border-2 border-teal-500/40 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        <div className="space-y-2 max-w-xl">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-teal-900/40 text-teal-400 border border-teal-500/30">
+            <Sparkles className="w-3.5 h-3.5 text-teal-400" />
+            <span>Premios Exclusivos M&amp;H Orcera</span>
+          </div>
+          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-zinc-50 dark:text-zinc-100">
+            ¿Aún no has probado tu suerte hoy?
+          </h3>
+          <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+            Gira la ruleta interactiva de bienvenida y llévate hasta 15€ de descuento directo o 10 minutos de relajación extra para tu sesión.
+          </p>
+        </div>
+
+        <button
+          onClick={() => setIsOpen(true)}
+          className="px-6 py-3.5 rounded-2xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-teal-600/30 active:scale-95 transition-all shrink-0 flex items-center gap-2 group"
+        >
+          <span className="text-base group-hover:rotate-45 transition-transform">🎯</span>
+          <span>¡Girar Ruleta y Ganar Premio! →</span>
+        </button>
+      </div>
 
       {/* Modal */}
       {isOpen && (

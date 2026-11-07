@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PWAInstallBanner from '@/components/PWAInstallBanner';
 import CookieBanner from '@/components/CookieBanner';
-import ViralFloatingButton from '@/components/ViralFloatingButton';
+import WhatsAppFloatingButton from '@/components/WhatsAppFloatingButton';
 import MobileBottomNav from '@/components/MobileBottomNav';
 
 export const metadata: Metadata = {
@@ -129,7 +129,7 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
             <Footer />
             <PWAInstallBanner />
-            <ViralFloatingButton />
+            <WhatsAppFloatingButton />
             <CookieBanner />
             <MobileBottomNav />
           </StoreProvider>

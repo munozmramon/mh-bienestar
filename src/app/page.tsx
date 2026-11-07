@@ -24,6 +24,7 @@ import PainPointSelector from '@/components/PainPointSelector';
 import LastMinuteDeals from '@/components/LastMinuteDeals';
 import BodyTensionQuiz from '@/components/BodyTensionQuiz';
 import WelcomeRewardWheel from '@/components/WelcomeRewardWheel';
+import GoogleReviewsSection from '@/components/GoogleReviewsSection';
 
 export default function HomePage() {
   const { services, businessConfig, currentUser } = useStore();
@@ -243,21 +244,33 @@ export default function HomePage() {
                 </div>
 
                 {/* Footer Action */}
-                <div className="p-6 pt-0 border-t border-zinc-800/80 flex items-center justify-between gap-3 mt-4">
+                <div className="p-6 pt-0 border-t border-zinc-800/80 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mt-4">
                   <Link
                     href={`/servicios/${service.slug}`}
-                    className="text-xs font-medium text-zinc-400 hover:text-zinc-100 underline"
+                    className="text-xs font-medium text-zinc-400 hover:text-zinc-100 underline text-center sm:text-left"
                   >
                     Detalles y preguntas
                   </Link>
 
-                  <Link
-                    href={`/reservar?servicio=${service.id}`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-teal-600 hover:bg-teal-500 transition-colors shadow-sm"
-                  >
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>Reservar Cita</span>
-                  </Link>
+                  <div className="flex items-center gap-2">
+                    <a
+                      href={`https://wa.me/34651308738?text=Hola%2C%20quisiera%20pedir%20cita%20para%20${encodeURIComponent(service.name)}%20en%20Orcera.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white transition-colors"
+                      title="Pedir cita por WhatsApp"
+                    >
+                      <MessageCircle className="w-4 h-4 fill-white stroke-[#25D366]" />
+                    </a>
+
+                    <Link
+                      href={`/reservar?servicio=${service.id}`}
+                      className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-teal-600 hover:bg-teal-500 transition-colors shadow-sm"
+                    >
+                      <Calendar className="w-3.5 h-3.5" />
+                      <span>Reservar Cita</span>
+                    </Link>
+                  </div>
                 </div>
 
               </div>
@@ -361,83 +374,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. OPINIONES REALES & COMPROMISO ÉTICO */}
-      <section className="py-16 bg-zinc-950 border-t border-zinc-800/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 7. RESEÑAS VERIFICADAS DE GOOGLE MAPS */}
+      <GoogleReviewsSection />
 
-          <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
-            <span className="text-xs font-bold tracking-widest text-teal-600 dark:text-teal-400 uppercase">
-              Opiniones Transparentes
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-zinc-50 dark:text-zinc-100">
-              La confianza de quienes cuidan su cuerpo con nosotros
-            </h2>
-            <p className="text-sm text-zinc-400">
-              Solicitamos valoraciones honestas a cada usuario tras su visita. Sin condicionar, con total transparencia ética.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-3xl bg-zinc-900 border border-zinc-800/80 shadow-sm space-y-4">
-              <div className="flex items-center gap-1 text-amber-500">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-current" />
-                ))}
-              </div>
-              <p className="text-sm text-zinc-300 leading-relaxed italic">
-                &ldquo;Acudí por una sobrecarga constante en la zona lumbar y desde la primera sesión de reeducación corporal noté una descompresión increíble. La tranquilidad que se respira en el centro de Orcera es inigualable.&rdquo;
-              </p>
-              <div className="pt-2 border-t border-zinc-800 flex items-center justify-between text-xs">
-                <div>
-                  <p className="font-bold text-zinc-50 dark:text-zinc-100">María G.</p>
-                  <p className="text-zinc-500">Orcera (Jaén)</p>
-                </div>
-                <span className="text-teal-600 dark:text-teal-400 font-medium">Cliente habitual</span>
-              </div>
-            </div>
-
-            <div className="p-6 rounded-3xl bg-zinc-900 border border-zinc-800/80 shadow-sm space-y-4">
-              <div className="flex items-center gap-1 text-amber-500">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-current" />
-                ))}
-              </div>
-              <p className="text-sm text-zinc-300 leading-relaxed italic">
-                &ldquo;La terapia craneosacral suave me ayudó muchísimo con la tensión mandibular y el estrés laboral. El trato es extraordinariamente respetuoso y delicado. Un lujo tener este nivel en la comarca.&rdquo;
-              </p>
-              <div className="pt-2 border-t border-zinc-800 flex items-center justify-between text-xs">
-                <div>
-                  <p className="font-bold text-zinc-50 dark:text-zinc-100">Carlos R.</p>
-                  <p className="text-zinc-500">Beas de Segura</p>
-                </div>
-                <span className="text-teal-600 dark:text-teal-400 font-medium">Reeducación corporal</span>
-              </div>
-            </div>
-
-            <div className="p-6 rounded-3xl bg-zinc-900 border border-zinc-800/80 shadow-sm space-y-4">
-              <div className="flex items-center gap-1 text-amber-500">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-current" />
-                ))}
-              </div>
-              <p className="text-sm text-zinc-300 leading-relaxed italic">
-                &ldquo;Poder reservar cita desde el móvil en un minuto y recibir el recordatorio por WhatsApp es comodísimo. Y los bonos con descuento se amortizan solísimos si vienes con regularidad.&rdquo;
-              </p>
-              <div className="pt-2 border-t border-zinc-800 flex items-center justify-between text-xs">
-                <div>
-                  <p className="font-bold text-zinc-50 dark:text-zinc-100">Ana Belén M.</p>
-                  <p className="text-zinc-500">Segura de la Sierra</p>
-                </div>
-                <span className="text-teal-600 dark:text-teal-400 font-medium">Club M&amp;H</span>
-              </div>
-            </div>
-          </div>
-
+      {/* 8. RULETA DE BIENVENIDA Y PREMIOS */}
+      <section className="py-12 bg-zinc-950 border-t border-zinc-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <WelcomeRewardWheel />
         </div>
       </section>
-
-      {/* 8. RULETA DE PREMIOS FLOTANTE (GAMIFICACIÓN Y RETENCIÓN) */}
-      <WelcomeRewardWheel />
 
     </div>
   );

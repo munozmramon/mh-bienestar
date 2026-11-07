@@ -8,7 +8,8 @@ import {
   ArrowRight, 
   Gift, 
   RefreshCw, 
-  X
+  X,
+  MessageCircle
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -217,10 +218,20 @@ export default function BodyTensionQuiz() {
                   <Link
                     href="/reservar?coupon=TEST10"
                     onClick={() => setIsOpen(false)}
-                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-teal-600 hover:bg-teal-500 text-white text-sm font-bold shadow-md shadow-teal-600/25 transition-all"
+                    className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl bg-teal-600 hover:bg-teal-500 text-white text-xs sm:text-sm font-bold shadow-md shadow-teal-600/25 transition-all"
                   >
-                    <span>Reservar Cita y Aplicar 10€ Dto. →</span>
+                    <span>Reservar Cita y Aplicar 10€ Dto. Online →</span>
                   </Link>
+
+                  <a
+                    href="https://wa.me/34651308738?text=Hola%20M%26H%20Bienestar%2C%20he%20realizado%20el%20test%20de%20tensi%C3%B3n%20en%20la%20app%20y%20tengo%20el%20cup%C3%B3n%20TEST10%20(-10%E2%82%AC).%20%C2%BFQu%C3%A9%20d%C3%ADa%20y%20hora%20ten%C3%A9is%20libre%20en%20Orcera%3F"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold shadow-sm transition-colors"
+                  >
+                    <MessageCircle className="w-4 h-4 fill-white stroke-[#25D366]" />
+                    <span>Pedir Cita y Canjear 10€ por WhatsApp</span>
+                  </a>
 
                   <button
                     onClick={resetQuiz}

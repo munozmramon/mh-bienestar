@@ -13,7 +13,8 @@ import {
   Search,
   ChevronRight,
   LayoutGrid,
-  List
+  List,
+  MessageCircle
 } from 'lucide-react';
 
 export default function ServiciosPage() {
@@ -163,6 +164,15 @@ export default function ServiciosPage() {
                 </Link>
 
                 <div className="flex items-center gap-2 shrink-0">
+                  <a
+                    href={`https://wa.me/${businessConfig.whatsapp}?text=Hola%2C%20quisiera%20pedir%20cita%20para%20${encodeURIComponent(service.name)}%20en%20Orcera.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white transition-colors"
+                    title="Pedir cita por WhatsApp"
+                  >
+                    <MessageCircle className="w-4 h-4 fill-white stroke-[#25D366]" />
+                  </a>
                   <Link
                     href={`/reservar?servicio=${service.id}`}
                     className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-teal-600 hover:bg-teal-500 transition-colors shadow-sm shadow-teal-600/25"
@@ -265,13 +275,24 @@ export default function ServiciosPage() {
                 </Link>
 
                 {service.available ? (
-                  <Link
-                    href={`/reservar?servicio=${service.id}`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-teal-600 hover:bg-teal-500 transition-colors shadow-md shadow-teal-600/25"
-                  >
-                    <Calendar className="w-3.5 h-3.5 text-white" />
-                    <span>Reservar Cita</span>
-                  </Link>
+                  <div className="flex items-center gap-2">
+                    <a
+                      href={`https://wa.me/${businessConfig.whatsapp}?text=Hola%2C%20quisiera%20pedir%20cita%20para%20${encodeURIComponent(service.name)}%20en%20Orcera.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white transition-colors"
+                      title="Pedir cita por WhatsApp"
+                    >
+                      <MessageCircle className="w-4 h-4 fill-white stroke-[#25D366]" />
+                    </a>
+                    <Link
+                      href={`/reservar?servicio=${service.id}`}
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-teal-600 hover:bg-teal-500 transition-colors shadow-md shadow-teal-600/25"
+                    >
+                      <Calendar className="w-3.5 h-3.5 text-white" />
+                      <span>Reservar Cita</span>
+                    </Link>
+                  </div>
                 ) : (
                   <a
                     href={`https://wa.me/${businessConfig.whatsapp}?text=Hola%2C%20quisiera%20consultar%20disponibilidad%20para%20${encodeURIComponent(service.name)}.`}

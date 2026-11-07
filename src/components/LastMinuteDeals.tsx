@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Clock, ArrowRight, Flame } from 'lucide-react';
+import { Clock, ArrowRight, Flame, MessageCircle } from 'lucide-react';
 
 export default function LastMinuteDeals() {
   const deals = [
@@ -103,12 +103,24 @@ export default function LastMinuteDeals() {
                   <span className="font-serif text-2xl font-bold text-zinc-50 dark:text-zinc-100">{deal.discountedPrice}€</span>
                 </div>
 
-                <Link
-                  href={`/reservar?servicio=${deal.serviceId}&time=${deal.time}`}
-                  className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-teal-600 hover:bg-teal-500 shadow-sm shadow-teal-600/25 active:scale-95 transition-all"
-                >
-                  Aprovechar →
-                </Link>
+                <div className="flex items-center gap-1.5">
+                  <a
+                    href={`https://wa.me/34651308738?text=Hola%20M%26H%20Bienestar%2C%20quisiera%20reservar%20el%20hueco%20de%20%C3%BAltima%20hora%20para%20${encodeURIComponent(deal.serviceName)}%20(${encodeURIComponent(deal.date)}%20a%20las%20${deal.time})%20por%20${deal.discountedPrice}%E2%82%AC.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white transition-colors"
+                    title="Aprovechar por WhatsApp"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5 fill-white stroke-[#25D366]" />
+                  </a>
+
+                  <Link
+                    href={`/reservar?servicio=${deal.serviceId}&time=${deal.time}`}
+                    className="px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-teal-600 hover:bg-teal-500 shadow-sm shadow-teal-600/25 active:scale-95 transition-all"
+                  >
+                    Reservar →
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
