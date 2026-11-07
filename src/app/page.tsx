@@ -113,21 +113,21 @@ export default function HomePage() {
                 <div className="rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-obsidian-800 p-3">
                   <div className="relative h-80 sm:h-96 w-full rounded-2xl overflow-hidden">
                     <img
-                      src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1000&q=80"
-                      alt="Reeducación corporal y bienestar en Orcera M&H"
-                      className="w-full h-full object-cover"
+                      src="/images/hero-bienestar-orcera.jpg"
+                      alt="Cabina de bienestar y terapia manual en Orcera M&H"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/30 to-transparent"></div>
 
                     <div className="absolute bottom-4 left-4 right-4 text-white">
-                      <span className="inline-block px-2.5 py-1 rounded-lg text-xs font-bold bg-[#10B981] text-white mb-2 shadow-sm">
-                        Sesión Estrella
+                      <span className="inline-block px-2.5 py-1 rounded-lg text-xs font-bold bg-teal-600 text-white mb-2 shadow-sm">
+                        Espacio Sereno en Orcera
                       </span>
                       <h3 className="font-serif text-xl sm:text-2xl font-bold text-white">
-                        Reeducación Corporal &amp; Movilidad
+                        Tu Momento de Paz y Alivio
                       </h3>
-                      <p className="text-xs text-slate-200 mt-1">
-                        60 minutos de evaluación anatómica y descarga manual profunda.
+                      <p className="text-xs text-zinc-200 mt-1">
+                        Cabina de madera, aceites naturales y sosiego en la Sierra de Segura.
                       </p>
                     </div>
                   </div>

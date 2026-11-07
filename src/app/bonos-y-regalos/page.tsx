@@ -224,6 +224,28 @@ export default function BonosYRegalosPage() {
             </p>
           </div>
 
+          {/* Visual Gift Showcase Card */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-teal-950/60 via-zinc-900 to-amber-950/30 border border-teal-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+            <div className="flex items-center gap-3.5">
+              <div className="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center justify-center text-2xl shrink-0 shadow-inner">
+                🎁
+              </div>
+              <div>
+                <p className="font-serif text-sm font-bold text-zinc-100">
+                  Un Regalo Inolvidable de Salud y Desconexión en Orcera
+                </p>
+                <p className="text-xs text-zinc-400 mt-0.5">
+                  Tu ser querido recibe una tarjeta con tu dedicatoria, canjeable en cabina privada de quiromasaje y bienestar.
+                </p>
+              </div>
+            </div>
+            <div className="shrink-0">
+              <span className="text-[11px] font-bold text-teal-300 bg-teal-950 px-3 py-1 rounded-full border border-teal-500/30">
+                Envío por WhatsApp o Email
+              </span>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Form */}

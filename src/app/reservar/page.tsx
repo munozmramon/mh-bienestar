@@ -644,6 +644,26 @@ function ReservarContent() {
               </p>
             </div>
 
+            {/* Visual Welcome & Hospitality Banner */}
+            <div className="max-w-md mx-auto rounded-2xl overflow-hidden border border-zinc-750 relative shadow-lg">
+              <div className="relative h-44 w-full">
+                <img
+                  src="/images/hero-bienestar-orcera.jpg"
+                  alt="Tu camilla de bienestar en Orcera te espera"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"></div>
+                <div className="absolute bottom-3 left-4 right-4 text-left">
+                  <span className="text-[10px] font-bold text-teal-300 uppercase tracking-wider bg-teal-950/80 px-2 py-0.5 rounded border border-teal-500/30">
+                    Hospitalidad M&amp;H Orcera
+                  </span>
+                  <p className="text-xs text-zinc-100 font-semibold mt-1">
+                    ☕ Tu camilla está preparada. Te recibiremos con una infusión relajante para que comiences a desconectar desde el primer minuto.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Appointment Ticket */}
             <div className="max-w-md mx-auto p-5 rounded-2xl bg-zinc-850 border border-zinc-750 text-left space-y-3 shadow-sm">
               <div className="flex items-center justify-between pb-3 border-b border-zinc-750 text-xs">

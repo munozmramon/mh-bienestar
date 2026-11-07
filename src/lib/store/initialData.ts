@@ -51,7 +51,7 @@ export const initialServices: Service[] = [
     price: 45,
     available: true,
     professionalName: "Especialista M&H",
-    imageUrl: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "/images/hero-bienestar-orcera.jpg",
     badge: "Más Solicitado",
     featured: true,
     faqs: [

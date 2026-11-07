@@ -98,19 +98,26 @@ export default function BodyTensionQuiz() {
         <div className="absolute -top-12 -right-12 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="space-y-2 max-w-xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-teal-900/40 text-teal-400 border border-teal-500/30">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Test Interactivo de 30 Segundos</span>
+          <div className="flex items-start gap-4 max-w-xl">
+            {/* Friendly Avatar Icon */}
+            <div className="hidden sm:flex w-14 h-14 rounded-2xl bg-teal-950 text-teal-400 border border-teal-500/30 items-center justify-center text-2xl shrink-0 shadow-inner">
+              🧘
             </div>
 
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-zinc-50 dark:text-zinc-100">
-              ¿Cuál es tu nivel de sobrecarga corporal?
-            </h3>
+            <div className="space-y-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-teal-900/40 text-teal-400 border border-teal-500/30">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Test Interactivo de 30 Segundos</span>
+              </div>
 
-            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-              Responde 3 preguntas rápidas sobre tus hábitos y recibe un diagnóstico funcional preliminar junto a un <strong>Cupón Exclusivo de 10€</strong> para tu primera sesión en Orcera.
-            </p>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-zinc-50 dark:text-zinc-100">
+                ¿Cuál es tu nivel de sobrecarga corporal?
+              </h3>
+
+              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                Responde 3 preguntas rápidas sobre tus hábitos y recibe un diagnóstico funcional preliminar junto a un <strong>Cupón Exclusivo de 10€</strong> para tu primera sesión en Orcera.
+              </p>
+            </div>
           </div>
 
           <button
