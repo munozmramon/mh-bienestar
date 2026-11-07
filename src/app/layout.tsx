@@ -54,11 +54,17 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/favicon.ico' },
-      { url: '/logo.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: [
-      { url: '/logo.png', sizes: '180x180', type: 'image/png' },
+      { url: '/icons/icon-192.png', sizes: '180x180', type: 'image/png' },
     ],
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'M&H Bienestar',
   },
   manifest: '/manifest.json',
 };
@@ -120,6 +126,19 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').catch(function(err) {
+                    console.log('SW registration note:', err);
+                  });
+                });
+              }
+            `
+          }}
         />
       </head>
       <body className="min-h-screen flex flex-col bg-zinc-950 text-zinc-100 antialiased selection:bg-teal-950 selection:text-teal-400 transition-colors duration-300">

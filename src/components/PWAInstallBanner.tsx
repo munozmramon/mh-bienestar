@@ -40,14 +40,17 @@ export default function PWAInstallBanner() {
 
   const handleInstallClick = async () => {
     if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === 'accepted') {
-        setShowBanner(false);
-      }
+      try {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          setShowBanner(false);
+        }
+      } catch (err) {}
       setDeferredPrompt(null);
-    } else if (isIOS) {
-      alert("Para instalar en iPhone: pulsa el botón Compartir (cuadrado con flecha hacia arriba) y selecciona 'Añadir a la pantalla de inicio'.");
+    } else {
+      window.dispatchEvent(new CustomEvent('open-pwa-install'));
+      setShowBanner(false);
     }
   };
 

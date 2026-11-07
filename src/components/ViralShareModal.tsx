@@ -145,14 +145,34 @@ export default function ViralShareModal({ isOpen, onClose }: ViralShareModalProp
               <span>Compartir por WhatsApp (1 Clic)</span>
             </a>
 
-            {/* Native Mobile Share (Instagram, Telegram, SMS, etc.) */}
+            {/* Native Mobile Share (Instagram, WhatsApp, SMS, etc.) */}
             <button
               onClick={handleNativeShare}
               className="w-full py-2.5 px-5 rounded-2xl text-xs sm:text-sm font-semibold text-zinc-200 bg-zinc-900 hover:bg-zinc-850 active:scale-[0.98] transition-all flex items-center justify-center gap-2 border border-zinc-800"
             >
               <Share2 className="w-4 h-4 text-teal-400" />
-              <span>Compartir en Redes (Instagram, Facebook, Más)</span>
+              <span>Compartir en Mis Apps (Nativo Móvil)</span>
             </button>
+
+            {/* Canales Rápidos (Oliversia style) */}
+            <div className="grid grid-cols-2 gap-2 pt-0.5">
+              <a
+                href={`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${whatsappMessage}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-2 px-3 rounded-xl bg-sky-950/60 hover:bg-sky-900/60 border border-sky-500/30 text-center transition flex items-center justify-center gap-1.5"
+              >
+                <span className="text-xs font-bold text-sky-300">Telegram</span>
+              </a>
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('🌿 ¡Te recomiendo el Centro Parasanitario M&H Bienestar en Orcera! Si reservas desde aquí te regalan 10€:')}&url=${encodeURIComponent(shareUrl)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-2 px-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-center transition flex items-center justify-center gap-1.5"
+              >
+                <span className="text-xs font-bold text-zinc-300">X (Twitter)</span>
+              </a>
+            </div>
           </div>
 
           {/* Personal Code & Link Box */}

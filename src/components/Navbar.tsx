@@ -54,20 +54,32 @@ export default function Navbar() {
       e.preventDefault();
       setDeferredPrompt(e);
     };
+    const handleOpenInstall = () => setInstallModalOpen(true);
+    const handleOpenViral = () => setViralModalOpen(true);
+
     window.addEventListener('beforeinstallprompt', handleBeforeInstall);
-    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
+    window.addEventListener('open-pwa-install', handleOpenInstall);
+    window.addEventListener('open-viral-share', handleOpenViral);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
+      window.removeEventListener('open-pwa-install', handleOpenInstall);
+      window.removeEventListener('open-viral-share', handleOpenViral);
+    };
   }, []);
 
   const handleTriggerInstall = async () => {
     if (deferredPrompt) {
-      deferredPrompt.prompt();
       try {
+        deferredPrompt.prompt();
         const { outcome } = await deferredPrompt.userChoice;
         if (outcome === 'accepted') {
           setInstallModalOpen(false);
         }
       } catch (err) {}
       setDeferredPrompt(null);
+    } else {
+      setInstallModalOpen(true);
     }
   };
 
@@ -288,23 +300,46 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Right Controls */}
-          <div className="flex md:hidden items-center gap-2">
+          {/* Mobile Right Controls (Arquitectura Oliversia: Viral, App, Tema, Menú) */}
+          <div className="flex md:hidden items-center gap-1 sm:gap-1.5">
+            {/* Botón 1-Clic Viralizar / Compartir */}
+            <button
+              onClick={() => setViralModalOpen(true)}
+              className="px-2 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 text-[11px] font-bold flex items-center gap-1 transition shadow-sm"
+              title="Compartir y Viralizar M&H Bienestar"
+            >
+              <Share2 className="w-3.5 h-3.5 text-amber-400" />
+              <span className="text-[10px]">Viral</span>
+            </button>
+
+            {/* Botón Instalar App en el Móvil */}
+            <button
+              onClick={handleTriggerInstall}
+              className="px-2 py-1.5 rounded-xl bg-teal-500/15 hover:bg-teal-500/25 text-teal-300 border border-teal-500/30 text-[11px] font-bold flex items-center gap-1 transition shadow-sm"
+              title="Instalar App M&H Bienestar"
+            >
+              <Download className="w-3.5 h-3.5 text-teal-400" />
+              <span className="text-[10px]">App</span>
+            </button>
+
+            {/* Selector de Tema */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-xl text-zinc-300 hover:text-white bg-zinc-900/90 border border-zinc-800 shadow-sm transition-colors"
-              title={theme === 'dark' ? 'Cambiar a Modo Día' : 'Cambiar a Modo Noche'}
+              className="p-1.5 rounded-xl text-zinc-300 hover:text-white bg-zinc-900 border border-zinc-800 shadow-sm transition-colors"
+              title={theme === 'dark' ? 'Modo Día' : 'Modo Noche'}
               aria-label="Cambiar tema"
             >
-              {theme === 'dark' ? <Moon className="w-4 h-4 text-teal-400" /> : <Sun className="w-4 h-4 text-amber-500" />}
+              {theme === 'dark' ? <Moon className="w-3.5 h-3.5 text-teal-400" /> : <Sun className="w-3.5 h-3.5 text-amber-500" />}
             </button>
+
+            {/* Menú Maestro de Navegación */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-zinc-100 bg-zinc-900 border border-zinc-800 hover:bg-zinc-850 shadow-sm transition-all"
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-zinc-100 bg-zinc-900 border border-zinc-800 hover:bg-zinc-850 shadow-sm transition-all"
               aria-label="Abrir menú de navegación"
             >
               <Menu className="w-4 h-4 text-teal-400" />
-              <span className="text-xs font-semibold">Menú</span>
+              <span className="text-[11px] font-semibold">Menú</span>
             </button>
           </div>
         </div>
@@ -466,21 +501,40 @@ export default function Navbar() {
 
             </div>
 
-            {/* Drawer Footer with Clinic Contact */}
-            <div className="pt-4 border-t border-zinc-850 space-y-2 text-center text-xs text-zinc-400">
-              <p className="text-[11px] font-medium text-zinc-300">
-                📍 Calle San José, 2 · Orcera (Jaén)
-              </p>
-              <a
-                href={`tel:${businessConfig.phone ? businessConfig.phone.replace(/\s+/g, '') : '651308738'}`}
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-teal-400 hover:underline"
-              >
-                <Phone className="w-3.5 h-3.5" />
-                <span>{businessConfig.phone || '651 30 87 38'}</span>
-              </a>
-              <p className="text-[10px] text-zinc-500">
-                Atención presencial bajo cita previa
-              </p>
+            {/* Drawer Footer with Quick Action Grid (Viralizar & Instalar App estilo Oliversia) & Clinic Contact */}
+            <div className="pt-4 border-t border-zinc-850 space-y-3">
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={() => { setMobileMenuOpen(false); setViralModalOpen(true); }}
+                  className="w-full py-2.5 px-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 text-xs font-bold flex items-center justify-center gap-1.5 transition shadow-sm"
+                >
+                  <Share2 className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Viralizar</span>
+                </button>
+                <button
+                  onClick={() => { setMobileMenuOpen(false); handleTriggerInstall(); }}
+                  className="w-full py-2.5 px-2 rounded-xl bg-teal-500/15 hover:bg-teal-500/25 text-teal-300 border border-teal-500/30 text-xs font-bold flex items-center justify-center gap-1.5 transition shadow-sm"
+                >
+                  <Download className="w-3.5 h-3.5 text-teal-400" />
+                  <span>Instalar App</span>
+                </button>
+              </div>
+
+              <div className="text-center text-xs text-zinc-400 space-y-1">
+                <p className="text-[11px] font-medium text-zinc-300">
+                  📍 Calle San José, 2 · Orcera (Jaén)
+                </p>
+                <a
+                  href={`tel:${businessConfig.phone ? businessConfig.phone.replace(/\s+/g, '') : '651308738'}`}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-teal-400 hover:underline"
+                >
+                  <Phone className="w-3.5 h-3.5" />
+                  <span>{businessConfig.phone || '651 30 87 38'}</span>
+                </a>
+                <p className="text-[10px] text-zinc-500">
+                  Atención presencial bajo cita previa
+                </p>
+              </div>
             </div>
 
           </div>
@@ -491,93 +545,147 @@ export default function Navbar() {
       {/* Global Referral Viral Modal */}
       <ViralShareModal isOpen={viralModalOpen} onClose={() => setViralModalOpen(false)} />
 
-      {/* Install Guidance Modal */}
+      {/* Install Guidance Modal (Arquitectura Oliversia) */}
       {installModalOpen && (
-        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
-          <div className="bg-zinc-900 border border-zinc-800 rounded-3xl max-w-sm w-full p-6 text-zinc-100 space-y-4 shadow-2xl relative">
-            <button
-              onClick={() => setInstallModalOpen(false)}
-              className="absolute top-4 right-4 p-2 text-zinc-400 hover:text-white rounded-xl bg-zinc-800/80 transition-colors"
-              aria-label="Cerrar modal"
-            >
-              <X className="w-4 h-4" />
-            </button>
-
-            <div className="text-center space-y-1.5 pt-2">
-              <div className="w-14 h-14 rounded-2xl bg-white p-1 mx-auto border-2 border-teal-500/40 shadow-md">
-                <img src="/logo.png" alt="M&H Bienestar" className="w-full h-full object-contain rounded-xl" />
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in">
+          <div className="bg-zinc-900 border border-zinc-800 rounded-3xl max-w-md w-full shadow-2xl text-zinc-100 overflow-hidden flex flex-col max-h-[90vh]">
+            
+            {/* Cabecera */}
+            <div className="p-4 sm:p-5 border-b border-zinc-800 flex items-center justify-between bg-zinc-950">
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-white p-0.5 border border-teal-500/40 shrink-0 shadow-md">
+                  <img src="/logo.png" alt="M&H Bienestar" className="w-full h-full object-contain rounded-full" />
+                </div>
+                <div>
+                  <h3 className="font-serif font-black text-lg text-white leading-tight">Instalar M&amp;H Bienestar</h3>
+                  <p className="text-[10.5px] text-teal-400 font-mono">En tu pantalla como App Nativa</p>
+                </div>
               </div>
-              <h3 className="font-serif text-lg font-bold text-white">Instalar App M&amp;H Bienestar</h3>
-              <p className="text-xs text-zinc-400">
-                Ábrela con 1 toque desde tu pantalla de inicio como una aplicación normal, sin barras de navegador.
-              </p>
-            </div>
-
-            {/* Opción 2 como opción principal prioritaria: Direct WhatsApp Link */}
-            <div className="p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 text-center space-y-3">
-              <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider block">
-                ⭐ Opción 1 clic: Enviártela a tu WhatsApp
-              </span>
-              <p className="text-xs text-zinc-200">
-                Pulsa el botón de abajo, envíate el mensaje a ti mismo en WhatsApp y tócalo desde tu móvil:
-              </p>
-
-              <a
-                href="https://api.whatsapp.com/send?text=Abre%20e%20instala%20la%20App%20de%20M%26H%20Bienestar%20en%20tu%20m%C3%B3vil%3A%20https%3A%2F%2Fmh-bienestar.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-3.5 px-4 rounded-xl text-sm font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] flex items-center justify-center gap-2.5 shadow-lg shadow-[#25D366]/20 transition-all hover:scale-[1.02]"
+              <button
+                onClick={() => setInstallModalOpen(false)}
+                className="w-8 h-8 rounded-full bg-zinc-800 hover:bg-zinc-700 text-white flex items-center justify-center text-sm transition-colors"
+                aria-label="Cerrar modal"
               >
-                <MessageCircle className="w-5 h-5 fill-white stroke-[#25D366]" />
-                <span>Enviar enlace a mi móvil por WhatsApp</span>
-              </a>
+                <X className="w-4 h-4" />
+              </button>
             </div>
 
-            {/* Alternativa secundaria: QR Code */}
-            <div className="p-3.5 rounded-2xl bg-zinc-850 border border-zinc-750 text-center space-y-2">
-              <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">
-                O también: Escanear con la cámara de tu móvil
-              </span>
+            {/* Contenido scrolleable */}
+            <div className="p-4 sm:p-5 overflow-y-auto space-y-4 text-xs">
               
-              {qrCodeDataUrl ? (
-                <div className="bg-white p-1.5 rounded-xl inline-block shadow-md border border-zinc-700">
-                  <img src={qrCodeDataUrl} alt="Escanear con el móvil para instalar" className="w-28 h-28 mx-auto" />
+              {/* Badge informativa estilo Oliversia */}
+              <div className="bg-emerald-950/40 p-3.5 rounded-2xl border border-emerald-500/40 text-emerald-100 space-y-1 leading-relaxed">
+                <div className="font-bold text-white flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-teal-400" />
+                  <span>Sin pasar por App Store ni Google Play</span>
                 </div>
-              ) : (
-                <div className="w-28 h-28 bg-zinc-800 rounded-xl mx-auto flex items-center justify-center text-xs text-zinc-500">
-                  Generando QR...
-                </div>
-              )}
-            </div>
+                <p className="text-[11px] text-zinc-300">
+                  Instala M&amp;H Bienestar directamente en tu dispositivo: no ocupa memoria, arranca a pantalla completa y se actualiza sola al instante.
+                </p>
+              </div>
 
-            {/* If user is already browsing directly on their mobile device */}
-            <div className="pt-2 border-t border-zinc-800 space-y-2 text-left">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block">
-                Si ya estás dentro desde tu móvil:
-              </span>
-
-              {deferredPrompt ? (
+              {/* Botón Nativo Directo para Android / Chrome */}
+              <div className="space-y-2">
                 <button
                   onClick={handleTriggerInstall}
-                  className="w-full py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-teal-600 hover:bg-teal-500 shadow-md shadow-teal-600/30 flex items-center justify-center gap-2 transition-all"
+                  className="w-full py-3.5 px-4 rounded-2xl bg-teal-600 hover:bg-teal-500 text-white font-bold flex items-center justify-center gap-2.5 shadow-lg shadow-teal-950/60 transition active:scale-[0.99] text-sm"
                 >
-                  <Download className="w-4 h-4" />
-                  <span>📲 Toca aquí para Instalar ahora</span>
+                  <Download className="w-5 h-5 text-white" />
+                  <span>📲 Instalar App en este Dispositivo</span>
                 </button>
-              ) : (
-                <div className="space-y-1.5 text-[11px] text-zinc-400">
-                  <p>• <strong>Android:</strong> Toca los 3 puntos (⋮) de tu navegador &gt; <em>"Instalar aplicación"</em>.</p>
-                  <p>• <strong>iPhone:</strong> Toca Compartir (⎋) en Safari &gt; <em>"Añadir a pantalla de inicio"</em>.</p>
+              </div>
+
+              {/* Guía Paso a Paso para iPhone / iPad (Safari) */}
+              <div className="bg-zinc-950 p-4 rounded-2xl border border-zinc-800 space-y-3">
+                <div className="flex items-center gap-2 text-white font-bold text-xs">
+                  <span className="text-base">🍏</span>
+                  <span>¿Usas iPhone o iPad (Safari)? Sigue estos 3 pasos:</span>
                 </div>
-              )}
+                <ol className="space-y-2.5 text-[11px] text-zinc-300 list-none">
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-zinc-800 flex items-center justify-center text-teal-400 font-bold shrink-0 text-xs">1</span>
+                    <div>
+                      Toca el botón <strong>Compartir</strong> (icono de cuadrado con flecha hacia arriba en la barra inferior de Safari).
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-zinc-800 flex items-center justify-center text-teal-400 font-bold shrink-0 text-xs">2</span>
+                    <div>
+                      Desplaza hacia abajo y pulsa <strong>«Añadir a la pantalla de inicio»</strong> (icono de cuadrado con símbolo +).
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-zinc-800 flex items-center justify-center text-teal-400 font-bold shrink-0 text-xs">3</span>
+                    <div>
+                      Pulsa <strong>«Añadir»</strong> arriba a la derecha. ¡Listo! M&amp;H Bienestar aparecerá como una app en tu pantalla.
+                    </div>
+                  </li>
+                </ol>
+              </div>
+
+              {/* Guía Paso a Paso para Android (Chrome / Samsung) */}
+              <div className="bg-zinc-950 p-4 rounded-2xl border border-zinc-800 space-y-3">
+                <div className="flex items-center gap-2 text-white font-bold text-xs">
+                  <span className="text-base">📱</span>
+                  <span>¿Usas Android (Chrome o Samsung Internet)?</span>
+                </div>
+                <ol className="space-y-2.5 text-[11px] text-zinc-300 list-none">
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-zinc-800 flex items-center justify-center text-teal-400 font-bold shrink-0 text-xs">1</span>
+                    <div>
+                      Toca los <strong>3 puntos (⋮)</strong> arriba a la derecha en Chrome.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-zinc-800 flex items-center justify-center text-teal-400 font-bold shrink-0 text-xs">2</span>
+                    <div>
+                      Pulsa en <strong>«Instalar aplicación»</strong> o <strong>«Añadir a la pantalla principal»</strong>.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-zinc-800 flex items-center justify-center text-teal-400 font-bold shrink-0 text-xs">3</span>
+                    <div>
+                      Pulsa <strong>«Instalar»</strong> para confirmar. ¡Quedará fija en tu móvil!
+                    </div>
+                  </li>
+                </ol>
+              </div>
+
+              {/* Enviar enlace a WhatsApp o Escanear si está en PC */}
+              <div className="pt-2 border-t border-zinc-800 space-y-3">
+                <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider block">
+                  ¿Estás en tu ordenador? Pásala a tu móvil:
+                </span>
+
+                <a
+                  href="https://api.whatsapp.com/send?text=Abre%20e%20instala%20la%20App%20de%20M%26H%20Bienestar%20en%20tu%20m%C3%B3vil%3A%20https%3A%2F%2Fmh-bienestar.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3 px-4 rounded-xl text-xs font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] flex items-center justify-center gap-2 shadow-sm transition-all"
+                >
+                  <MessageCircle className="w-4 h-4 fill-white stroke-[#25D366]" />
+                  <span>Enviar enlace a mi móvil por WhatsApp</span>
+                </a>
+
+                {qrCodeDataUrl && (
+                  <div className="p-3 rounded-2xl bg-zinc-950 border border-zinc-800 text-center space-y-2">
+                    <p className="text-[11px] text-zinc-300">
+                      O apunta con la <strong>cámara del móvil</strong> a este código:
+                    </p>
+                    <div className="bg-white p-1.5 rounded-xl inline-block shadow-md">
+                      <img src={qrCodeDataUrl} alt="Escanear con el móvil para instalar" className="w-28 h-28 mx-auto" />
+                    </div>
+                  </div>
+                )}
+              </div>
+
             </div>
 
-            <button
-              onClick={() => setInstallModalOpen(false)}
-              className="w-full py-2.5 rounded-xl text-xs font-medium text-zinc-400 hover:text-white bg-zinc-800/60 transition-colors"
-            >
-              Entendido
-            </button>
+            {/* Pie */}
+            <div className="p-3 bg-zinc-950 border-t border-zinc-800 text-center text-[10px] text-zinc-500 font-mono">
+              Compatible con iOS (iPhone/iPad), Android, Windows y Mac
+            </div>
+
           </div>
         </div>
       )}
