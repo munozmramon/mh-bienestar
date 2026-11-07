@@ -10,7 +10,7 @@ export default function WhatsAppFloatingButton() {
   const defaultMessage = 'Hola M&H Bienestar, quisiera consultar disponibilidad o pedir cita para Orcera.';
 
   return (
-    <div className="fixed bottom-20 right-4 md:bottom-6 md:right-6 z-40">
+    <div className="hidden md:block fixed md:bottom-6 md:right-6 z-40">
       <a
         href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(defaultMessage)}`}
         target="_blank"
