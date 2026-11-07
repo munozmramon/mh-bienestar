@@ -623,32 +623,38 @@ export default function Navbar() {
                 </ol>
               </div>
 
-              {/* Guía Paso a Paso para Android (Chrome / Samsung) */}
+              {/* Guía Paso a Paso para Android (Chrome, Samsung y WhatsApp) */}
               <div className="bg-zinc-950 p-4 rounded-2xl border border-zinc-800 space-y-3">
                 <div className="flex items-center gap-2 text-white font-bold text-xs">
                   <span className="text-base">📱</span>
-                  <span>¿Usas Android (Chrome o Samsung Internet)?</span>
+                  <span>En móviles Android:</span>
                 </div>
-                <ol className="space-y-2.5 text-[11px] text-zinc-300 list-none">
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-5 h-5 rounded-full bg-zinc-800 flex items-center justify-center text-teal-400 font-bold shrink-0 text-xs">1</span>
-                    <div>
-                      Toca los <strong>3 puntos (⋮)</strong> arriba a la derecha en Chrome.
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-5 h-5 rounded-full bg-zinc-800 flex items-center justify-center text-teal-400 font-bold shrink-0 text-xs">2</span>
-                    <div>
-                      Pulsa en <strong>«Instalar aplicación»</strong> o <strong>«Añadir a la pantalla principal»</strong>.
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-5 h-5 rounded-full bg-zinc-800 flex items-center justify-center text-teal-400 font-bold shrink-0 text-xs">3</span>
-                    <div>
-                      Pulsa <strong>«Instalar»</strong> para confirmar. ¡Quedará fija en tu móvil!
-                    </div>
-                  </li>
-                </ol>
+
+                {/* Si viene desde WhatsApp */}
+                <div className="p-3 rounded-xl bg-amber-950/30 border border-amber-500/30 space-y-1.5">
+                  <p className="font-bold text-amber-300 text-[11px] flex items-center gap-1.5">
+                    <span>⚠️ ¿Abriste el enlace desde WhatsApp?</span>
+                  </p>
+                  <p className="text-[11px] text-zinc-300 leading-relaxed">
+                    WhatsApp no tiene menú de instalar porque usa un visor interno. <br/>
+                    Toca los <strong>3 puntos (⋮)</strong> arriba a la derecha y elige <strong>«Abrir en Chrome»</strong> (o «Abrir en navegador»). ¡Desde Chrome ya podrás instalarla en 1 toque!
+                  </p>
+                </div>
+
+                {/* Si está en Chrome o Samsung Internet */}
+                <div className="space-y-2 pt-1 text-[11px] text-zinc-300">
+                  <p className="font-semibold text-teal-300">
+                    Si ya estás en el navegador (Chrome / Samsung):
+                  </p>
+                  <ul className="space-y-1.5 list-disc list-inside text-zinc-300">
+                    <li>
+                      <strong>En Google Chrome:</strong> Toca los <strong>3 puntos (⋮)</strong> arriba a la derecha &gt; <em>«Instalar aplicación»</em> o <em>«Añadir a pantalla principal»</em>.
+                    </li>
+                    <li>
+                      <strong>En Samsung / Xiaomi:</strong> El menú está <strong>ABAJO A LA DERECHA</strong> (las <strong>3 rayitas ≡</strong>) &gt; Toca <em>«+ Añadir página a»</em> &gt; <em>«Pantalla de inicio»</em>.
+                    </li>
+                  </ul>
+                </div>
               </div>
 
               {/* Enviar enlace a WhatsApp o Escanear si está en PC */}
