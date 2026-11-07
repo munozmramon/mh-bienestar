@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useStore } from '@/lib/store/useStore';
 import { 
   User as UserIcon, 
@@ -24,6 +25,7 @@ interface ClientAuthViewProps {
 }
 
 export default function ClientAuthView({ onSuccess, initialMode = 'login' }: ClientAuthViewProps) {
+  const router = useRouter();
   const { loginAs, registerClient, users } = useStore();
   const [mode, setMode] = useState<'login' | 'register'>(initialMode);
   
@@ -45,12 +47,26 @@ export default function ClientAuthView({ onSuccess, initialMode = 'login' }: Cli
   const [successMessage, setSuccessMessage] = useState('');
   const [showDemoSelector, setShowDemoSelector] = useState(false);
 
+  const routeAfterLogin = (userEmail: string) => {
+    if (onSuccess) {
+      onSuccess();
+      return;
+    }
+    const loggedUser = users.find(u => u.email.toLowerCase() === userEmail.toLowerCase());
+    if (loggedUser?.role === 'admin' || loggedUser?.role === 'staff') {
+      router.push('/admin');
+    } else {
+      router.push('/mi-cuenta');
+    }
+  };
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage('');
-    const success = loginAs(loginEmail.trim());
+    const cleanEmail = loginEmail.trim();
+    const success = loginAs(cleanEmail);
     if (success) {
-      if (onSuccess) onSuccess();
+      routeAfterLogin(cleanEmail);
     } else {
       setErrorMessage('Correo o contraseña incorrectos. Por favor, revisa tus datos o regístrate si no tienes cuenta.');
     }
@@ -77,7 +93,11 @@ export default function ClientAuthView({ onSuccess, initialMode = 'login' }: Cli
           });
         } catch (e) {}
         setTimeout(() => {
-          if (onSuccess) onSuccess();
+          if (onSuccess) {
+            onSuccess();
+          } else {
+            router.push('/mi-cuenta');
+          }
         }, 1200);
       }
     } catch (err: any) {
@@ -87,9 +107,9 @@ export default function ClientAuthView({ onSuccess, initialMode = 'login' }: Cli
 
   const handleQuickDemoLogin = (emailToUse: string) => {
     const success = loginAs(emailToUse);
-    if (success && onSuccess) {
-      onSuccess();
-    } else if (!success) {
+    if (success) {
+      routeAfterLogin(emailToUse);
+    } else {
       setErrorMessage('No encontramos ninguna cuenta con ese correo electrónico. Si es tu primera vez, puedes registrarte.');
     }
   };
@@ -364,10 +384,10 @@ export default function ClientAuthView({ onSuccess, initialMode = 'login' }: Cli
             </button>
 
             {showDemoSelector && (
-              <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-left animate-in fade-in">
+              <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2 text-left animate-in fade-in">
                 <button
                   type="button"
-                  onClick={() => { loginAs('maria.garcia@email.com'); if (onSuccess) onSuccess(); }}
+                  onClick={() => handleQuickDemoLogin('maria.garcia@email.com')}
                   className="p-2.5 rounded-xl border border-zinc-750 bg-zinc-850 hover:bg-zinc-800 text-xs transition-colors"
                 >
                   <p className="font-semibold text-zinc-100">María García</p>
@@ -375,11 +395,19 @@ export default function ClientAuthView({ onSuccess, initialMode = 'login' }: Cli
                 </button>
                 <button
                   type="button"
-                  onClick={() => { loginAs('carlos.ruiz@email.com'); if (onSuccess) onSuccess(); }}
+                  onClick={() => handleQuickDemoLogin('carlos.ruiz@email.com')}
                   className="p-2.5 rounded-xl border border-zinc-750 bg-zinc-850 hover:bg-zinc-800 text-xs transition-colors"
                 >
                   <p className="font-semibold text-zinc-100">Carlos Ruiz</p>
                   <p className="text-[11px] text-teal-400">Cliente nuevo (50 pts)</p>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleQuickDemoLogin('admin@mh-bienestar.es')}
+                  className="p-2.5 rounded-xl border border-amber-500/30 bg-amber-950/20 hover:bg-amber-950/40 text-xs transition-colors"
+                >
+                  <p className="font-semibold text-amber-300">Dirección M&amp;H</p>
+                  <p className="text-[11px] text-amber-400">Administrador</p>
                 </button>
               </div>
             )}

@@ -115,86 +115,115 @@ export default function Navbar() {
               <MessageCircle className="w-5 h-5" />
             </a>
 
-            {/* Quick Demo Switcher / Profile */}
-            <div className="relative">
-              <button
-                onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium border border-warm-300 dark:border-white/10 bg-white/70 dark:bg-obsidian-800 hover:bg-white dark:hover:bg-obsidian-700 text-forest-800 dark:text-obsidian-100 shadow-soft-sm transition-all"
+            {/* Client Access / User Profile */}
+            {!currentUser ? (
+              <Link
+                href="/login"
+                className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold border border-warm-300 dark:border-white/10 bg-white/70 dark:bg-obsidian-800 hover:bg-white dark:hover:bg-obsidian-700 text-forest-800 dark:text-obsidian-100 shadow-soft-sm transition-all"
               >
-                {isAdmin ? (
-                  <span className="flex items-center gap-1.5 text-gold-700 dark:text-neon-lime font-semibold">
-                    <ShieldCheck className="w-4 h-4 text-gold-600 dark:text-neon-lime" />
-                    Admin
-                  </span>
-                ) : (
-                  <span className="flex items-center gap-1.5 text-forest-700 dark:text-obsidian-100 font-semibold">
-                    <UserIcon className="w-4 h-4 text-sage-600 dark:text-neon-lime" />
-                    {currentUser ? currentUser.name.split(' ')[0] : 'Acceder'}
-                  </span>
-                )}
-                {currentUser && (
-                  <span className="text-[10px] bg-sage-100 dark:bg-obsidian-700 text-forest-800 dark:text-neon-lime px-1.5 py-0.5 rounded-full font-bold">
-                    {currentUser.loyaltyPoints || 0} pts
-                  </span>
-                )}
-                <ChevronDown className="w-3.5 h-3.5 text-forest-500 dark:text-obsidian-400" />
-              </button>
-
-              {userDropdownOpen && (
-                <div 
-                  className="absolute right-0 mt-2 w-72 rounded-2xl bg-white dark:bg-obsidian-850 shadow-soft-xl border border-warm-300 dark:border-white/10 p-2 text-sm z-50 text-forest-900 dark:text-obsidian-100"
-                  onClick={() => setUserDropdownOpen(false)}
+                <UserIcon className="w-4 h-4 text-emerald-600 dark:text-teal-400" />
+                <span>Acceso Clientes</span>
+              </Link>
+            ) : (
+              <div className="relative">
+                <button
+                  onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium border border-warm-300 dark:border-white/10 bg-white/70 dark:bg-obsidian-800 hover:bg-white dark:hover:bg-obsidian-700 text-forest-800 dark:text-obsidian-100 shadow-soft-sm transition-all"
                 >
-                  <div className="px-3 py-2 border-b border-warm-200 dark:border-white/10">
-                    <p className="text-xs text-forest-500 dark:text-obsidian-400 font-medium">Sesión actual</p>
-                    <p className="font-semibold text-forest-900 dark:text-white truncate">
-                      {currentUser ? currentUser.name : 'No identificado'}
-                    </p>
-                    <p className="text-xs text-sage-600 dark:text-neon-lime truncate">
-                      {currentUser ? currentUser.email : 'Visita pública'}
-                    </p>
-                  </div>
-
-                  <div className="py-1">
-                    <Link
-                      href="/mi-cuenta"
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-warm-100 dark:hover:bg-obsidian-750 text-forest-800 dark:text-obsidian-100 transition-colors font-medium text-xs"
-                    >
-                      <UserIcon className="w-4 h-4 text-forest-600 dark:text-neon-lime" />
-                      Mi Portal de Cliente &amp; Puntos
-                    </Link>
-
-                    <Link
-                      href="/admin"
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-warm-100 dark:hover:bg-obsidian-750 text-forest-800 dark:text-obsidian-100 transition-colors font-medium text-xs"
-                    >
+                  {isAdmin ? (
+                    <span className="flex items-center gap-1.5 text-gold-700 dark:text-neon-lime font-semibold">
                       <ShieldCheck className="w-4 h-4 text-gold-600 dark:text-neon-lime" />
-                      Panel Administrativo &amp; CRM
-                    </Link>
-                  </div>
+                      Admin M&amp;H
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-1.5 text-forest-700 dark:text-obsidian-100 font-semibold">
+                      <UserIcon className="w-4 h-4 text-sage-600 dark:text-neon-lime" />
+                      {currentUser.name.split(' ')[0]}
+                    </span>
+                  )}
+                  {!isAdmin && (
+                    <span className="text-[10px] bg-sage-100 dark:bg-obsidian-700 text-forest-800 dark:text-neon-lime px-1.5 py-0.5 rounded-full font-bold">
+                      {currentUser.loyaltyPoints || 0} pts
+                    </span>
+                  )}
+                  <ChevronDown className="w-3.5 h-3.5 text-forest-500 dark:text-obsidian-400" />
+                </button>
 
-                  <div className="pt-2 border-t border-warm-200 dark:border-white/10">
-                    <p className="px-3 text-[11px] font-bold text-forest-400 dark:text-obsidian-400 uppercase tracking-wider mb-1">
-                      Cambio rápido de perfil (Demo)
-                    </p>
-                    <button
-                      onClick={() => loginAs('maria.garcia@email.com')}
-                      className="w-full text-left px-3 py-1.5 rounded-lg text-xs hover:bg-sage-50 dark:hover:bg-obsidian-700 text-forest-700 dark:text-obsidian-200 flex justify-between"
-                    >
-                      <span>María García (Cliente habitual)</span>
-                      <span className="text-sage-600 dark:text-neon-lime">340 pts</span>
-                    </button>
-                    <button
-                      onClick={() => loginAs('admin@mh-bienestar.es')}
-                      className="w-full text-left px-3 py-1.5 rounded-lg text-xs hover:bg-gold-50 dark:hover:bg-obsidian-700 text-gold-800 dark:text-neon-lime font-medium flex justify-between"
-                    >
-                      <span>Dirección M&amp;H (Administrador)</span>
-                      <span className="text-gold-600 dark:text-neon-lime">Admin</span>
-                    </button>
+                {userDropdownOpen && (
+                  <div 
+                    className="absolute right-0 mt-2 w-72 rounded-2xl bg-white dark:bg-obsidian-850 shadow-soft-xl border border-warm-300 dark:border-white/10 p-2 text-sm z-50 text-forest-900 dark:text-obsidian-100"
+                    onClick={() => setUserDropdownOpen(false)}
+                  >
+                    <div className="px-3 py-2.5 border-b border-warm-200 dark:border-white/10">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[11px] font-semibold uppercase tracking-wider text-forest-500 dark:text-obsidian-400">
+                          {isAdmin ? '🛡️ Administrador' : '👤 Cliente Registrado'}
+                        </span>
+                        {!isAdmin && (
+                          <span className="text-[10px] font-bold text-emerald-700 dark:text-neon-lime bg-emerald-50 dark:bg-obsidian-700 px-2 py-0.5 rounded-full">
+                            {currentUser.loyaltyPoints || 0} pts
+                          </span>
+                        )}
+                      </div>
+                      <p className="font-semibold text-forest-900 dark:text-white truncate">
+                        {currentUser.name}
+                      </p>
+                      <p className="text-xs text-sage-600 dark:text-neon-lime truncate">
+                        {currentUser.email}
+                      </p>
+                    </div>
+
+                    <div className="py-1.5 space-y-1">
+                      {isAdmin ? (
+                        <>
+                          <Link
+                            href="/admin"
+                            className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-warm-100 dark:hover:bg-obsidian-750 text-gold-700 dark:text-neon-lime font-medium text-xs transition-colors"
+                          >
+                            <ShieldCheck className="w-4 h-4 text-gold-600 dark:text-neon-lime shrink-0" />
+                            <span>Panel Administrativo &amp; Fichas</span>
+                          </Link>
+                          <Link
+                            href="/mi-cuenta"
+                            className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-warm-100 dark:hover:bg-obsidian-750 text-forest-800 dark:text-obsidian-100 transition-colors font-medium text-xs"
+                          >
+                            <UserIcon className="w-4 h-4 text-forest-600 dark:text-neon-lime shrink-0" />
+                            <span>Vista Previa Portal Cliente</span>
+                          </Link>
+                        </>
+                      ) : (
+                        <>
+                          <Link
+                            href="/mi-cuenta"
+                            className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-warm-100 dark:hover:bg-obsidian-750 text-forest-800 dark:text-obsidian-100 transition-colors font-medium text-xs"
+                          >
+                            <UserIcon className="w-4 h-4 text-emerald-600 dark:text-neon-lime shrink-0" />
+                            <span>🌿 Mi Historia &amp; Citas (Privado)</span>
+                          </Link>
+                          <Link
+                            href="/mi-cuenta?tab=bonos"
+                            className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-warm-100 dark:hover:bg-obsidian-750 text-forest-800 dark:text-obsidian-100 transition-colors font-medium text-xs"
+                          >
+                            <Gift className="w-4 h-4 text-gold-600 dark:text-neon-lime shrink-0" />
+                            <span>Mis Bonos y Puntos</span>
+                          </Link>
+                        </>
+                      )}
+                    </div>
+
+                    <div className="pt-1.5 border-t border-warm-200 dark:border-white/10">
+                      <button
+                        onClick={() => logout()}
+                        className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-medium text-xs text-left transition-colors"
+                      >
+                        <LogOut className="w-4 h-4 shrink-0" />
+                        <span>Cerrar Sesión</span>
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+            )}
 
             {/* Viral Share Quick CTA */}
             <button
@@ -259,14 +288,53 @@ export default function Navbar() {
           </div>
 
           <div className="pt-3 border-t border-warm-200 dark:border-white/10 space-y-2">
-            <Link
-              href="/mi-cuenta"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium text-forest-800 dark:text-obsidian-100 bg-white dark:bg-obsidian-800 border dark:border-white/10"
-            >
-              <UserIcon className="w-4 h-4 text-sage-600 dark:text-neon-lime" />
-              Portal Cliente (Mi Cuenta)
-            </Link>
+            {!currentUser ? (
+              <Link
+                href="/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-semibold text-emerald-800 dark:text-teal-300 bg-emerald-50 dark:bg-obsidian-800 border border-emerald-200 dark:border-white/10"
+              >
+                <UserIcon className="w-4 h-4 text-emerald-600 dark:text-teal-400" />
+                Acceso Clientes / Iniciar Sesión
+              </Link>
+            ) : (
+              <>
+                <div className="px-3 py-2 bg-white/70 dark:bg-obsidian-800 rounded-xl border border-warm-200 dark:border-white/10">
+                  <p className="text-[11px] uppercase tracking-wider text-forest-500 dark:text-obsidian-400 font-semibold">
+                    {isAdmin ? '🛡️ Administrador' : '👤 Cliente Registrado'}
+                  </p>
+                  <p className="font-semibold text-forest-900 dark:text-white text-sm truncate">{currentUser.name}</p>
+                </div>
+
+                {isAdmin && (
+                  <Link
+                    href="/admin"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-semibold text-gold-800 dark:text-neon-lime bg-gold-100/70 dark:bg-obsidian-800 border border-gold-300 dark:border-neon-lime/30"
+                  >
+                    <ShieldCheck className="w-4 h-4 text-gold-700 dark:text-neon-lime" />
+                    Panel Administrativo &amp; Fichas
+                  </Link>
+                )}
+
+                <Link
+                  href="/mi-cuenta"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium text-forest-800 dark:text-obsidian-100 bg-white dark:bg-obsidian-800 border border-warm-200 dark:border-white/10"
+                >
+                  <UserIcon className="w-4 h-4 text-sage-600 dark:text-neon-lime" />
+                  {isAdmin ? 'Vista Previa Portal Cliente' : '🌿 Mi Historia & Citas (Privado)'}
+                </Link>
+
+                <button
+                  onClick={() => { setMobileMenuOpen(false); logout(); }}
+                  className="flex items-center gap-2.5 w-full px-3 py-2 rounded-xl text-sm font-medium text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/30 text-left transition-colors"
+                >
+                  <LogOut className="w-4 h-4 text-rose-500" />
+                  Cerrar Sesión
+                </button>
+              </>
+            )}
 
             <button
               onClick={() => { setMobileMenuOpen(false); setViralModalOpen(true); }}
@@ -278,15 +346,6 @@ export default function Navbar() {
               </span>
               <span className="px-2 py-0.5 rounded-full bg-gold-200 text-gold-900 dark:bg-neon-lime/20 dark:text-neon-lime text-[10px] font-bold">150 pts</span>
             </button>
-
-            <Link
-              href="/admin"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-semibold text-forest-900 dark:text-neon-lime bg-gold-100/70 dark:bg-obsidian-800 border border-gold-300 dark:border-neon-lime/30"
-            >
-              <ShieldCheck className="w-4 h-4 text-gold-700 dark:text-neon-lime" />
-              Panel Administrativo
-            </Link>
 
             <div className="pt-2">
               <a

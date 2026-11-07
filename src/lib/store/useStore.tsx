@@ -181,12 +181,11 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         if (parsed.businessConfig) setBusinessConfig(parsed.businessConfig);
         if (parsed.currentUser) setCurrentUser(parsed.currentUser);
       } else {
-        // default to first client as signed in for easy testing
-        setCurrentUser(initialUsers[1]);
+        setCurrentUser(null);
       }
     } catch (e) {
       console.warn("Storage read error:", e);
-      setCurrentUser(initialUsers[1]);
+      setCurrentUser(null);
     }
     setInitialized(true);
   }, []);
