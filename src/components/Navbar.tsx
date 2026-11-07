@@ -42,9 +42,10 @@ export default function Navbar() {
   const isAdmin = currentUser?.role === 'admin' || currentUser?.role === 'staff';
 
   return (
-    <header className="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/80 shadow-soft-sm transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+    <>
+      <header className="sticky top-0 z-40 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/80 shadow-soft-sm transition-all duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
           
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group">
@@ -269,19 +270,20 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+    </header>
 
-      {/* Mobile Off-Canvas Slide Drawer */}
+      {/* Mobile Off-Canvas Slide Drawer (Rendered at root outside <header> to avoid CSS clipping) */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-50 flex justify-end">
+        <div className="fixed inset-0 z-[100] flex justify-end" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}>
           
           {/* Backdrop Blur Overlay */}
           <div 
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity"
+            className="fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity animate-in fade-in duration-200"
             onClick={() => setMobileMenuOpen(false)}
           />
 
           {/* Lateral Slide-Over Panel */}
-          <div className="relative w-full max-w-[310px] bg-zinc-950 text-zinc-100 h-full border-l border-zinc-800 shadow-2xl p-5 flex flex-col justify-between overflow-y-auto z-10 animate-in slide-in-from-right duration-250">
+          <div className="relative w-full max-w-[320px] bg-zinc-950 text-zinc-100 h-[100dvh] border-l border-zinc-800 shadow-2xl p-5 flex flex-col justify-between overflow-y-auto z-10 animate-in slide-in-from-right duration-250">
             
             <div className="space-y-6">
               
@@ -437,6 +439,6 @@ export default function Navbar() {
 
       {/* Global Referral Viral Modal */}
       <ViralShareModal isOpen={viralModalOpen} onClose={() => setViralModalOpen(false)} />
-    </header>
+    </>
   );
 }
