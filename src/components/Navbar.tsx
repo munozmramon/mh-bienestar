@@ -300,16 +300,16 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Right Controls (Arquitectura Oliversia: Viral, App, Tema, Menú) */}
+          {/* Mobile Right Controls: Compartir, App, Tema, Menú */}
           <div className="flex md:hidden items-center gap-1 sm:gap-1.5">
-            {/* Botón 1-Clic Viralizar / Compartir */}
+            {/* Botón 1-Clic Compartir */}
             <button
               onClick={() => setViralModalOpen(true)}
               className="px-2 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 text-[11px] font-bold flex items-center gap-1 transition shadow-sm"
-              title="Compartir y Viralizar M&H Bienestar"
+              title="Compartir M&H Bienestar"
             >
               <Share2 className="w-3.5 h-3.5 text-amber-400" />
-              <span className="text-[10px]">Viral</span>
+              <span className="text-[10px]">Compartir</span>
             </button>
 
             {/* Botón Instalar App en el Móvil */}
@@ -501,7 +501,7 @@ export default function Navbar() {
 
             </div>
 
-            {/* Drawer Footer with Quick Action Grid (Viralizar & Instalar App estilo Oliversia) & Clinic Contact */}
+            {/* Drawer Footer with Quick Action Grid (Compartir & Instalar App) & Clinic Contact */}
             <div className="pt-4 border-t border-zinc-850 space-y-3">
               <div className="grid grid-cols-2 gap-2">
                 <button
@@ -509,7 +509,7 @@ export default function Navbar() {
                   className="w-full py-2.5 px-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 text-xs font-bold flex items-center justify-center gap-1.5 transition shadow-sm"
                 >
                   <Share2 className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Viralizar</span>
+                  <span>Compartir</span>
                 </button>
                 <button
                   onClick={() => { setMobileMenuOpen(false); handleTriggerInstall(); }}
