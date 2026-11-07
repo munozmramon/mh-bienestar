@@ -23,8 +23,10 @@ import {
   Phone,
   Smartphone,
   Download,
-  Share2
+  Share2,
+  QrCode
 } from 'lucide-react';
+import QRCode from 'qrcode';
 import ViralShareModal from './ViralShareModal';
 
 export default function Navbar() {
@@ -36,8 +38,18 @@ export default function Navbar() {
   const [viralModalOpen, setViralModalOpen] = useState(false);
   const [installModalOpen, setInstallModalOpen] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string>('');
 
   React.useEffect(() => {
+    QRCode.toDataURL('https://mh-bienestar.vercel.app', {
+      width: 220,
+      margin: 1.5,
+      color: {
+        dark: '#022c22',
+        light: '#ffffff'
+      }
+    }).then(setQrCodeDataUrl).catch(console.error);
+
     const handleBeforeInstall = (e: any) => {
       e.preventDefault();
       setDeferredPrompt(e);
@@ -501,39 +513,63 @@ export default function Navbar() {
               </p>
             </div>
 
-            {deferredPrompt ? (
-              <div className="pt-2">
+            {/* Direct QR Code for Instant Phone Scan (if user is on PC or laptop) */}
+            <div className="p-4 rounded-2xl bg-zinc-850 border border-zinc-750 text-center space-y-2.5">
+              <span className="text-[11px] font-bold text-teal-400 uppercase tracking-wider block">
+                ⚡ Forma más directa (1 segundo):
+              </span>
+              <p className="text-xs text-zinc-200">
+                Apunta con la <strong>cámara de tu móvil</strong> a este código QR:
+              </p>
+              
+              {qrCodeDataUrl ? (
+                <div className="bg-white p-2 rounded-2xl inline-block shadow-md border border-teal-500/30">
+                  <img src={qrCodeDataUrl} alt="Escanear con el móvil para instalar" className="w-36 h-36 mx-auto" />
+                </div>
+              ) : (
+                <div className="w-36 h-36 bg-zinc-800 rounded-2xl mx-auto flex items-center justify-center text-xs text-zinc-500">
+                  Generando QR...
+                </div>
+              )}
+
+              <p className="text-[11px] text-zinc-400">
+                Al enfocarlo, aparecerá un enlace amarillo en tu móvil. <br/>
+                Tócalo y se abrirá directamente en tu teléfono.
+              </p>
+            </div>
+
+            {/* Direct WhatsApp Share Link */}
+            <a
+              href="https://api.whatsapp.com/send?text=Abre%20e%20instala%20la%20App%20de%20M%26H%20Bienestar%20en%20tu%20m%C3%B3vil%3A%20https%3A%2F%2Fmh-bienestar.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] flex items-center justify-center gap-2 shadow-sm transition-all"
+            >
+              <MessageCircle className="w-4 h-4 fill-white stroke-[#25D366]" />
+              <span>Enviarme el enlace a mi WhatsApp</span>
+            </a>
+
+            {/* If user is already browsing directly on their mobile device */}
+            <div className="pt-2 border-t border-zinc-800 space-y-2 text-left">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block">
+                Si ya estás dentro desde tu móvil:
+              </span>
+
+              {deferredPrompt ? (
                 <button
                   onClick={handleTriggerInstall}
-                  className="w-full py-3 px-4 rounded-xl text-xs font-bold text-white bg-teal-600 hover:bg-teal-500 shadow-lg shadow-teal-600/30 flex items-center justify-center gap-2 transition-all"
+                  className="w-full py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-teal-600 hover:bg-teal-500 shadow-md shadow-teal-600/30 flex items-center justify-center gap-2 transition-all"
                 >
                   <Download className="w-4 h-4" />
-                  <span>Instalar ahora en 1 clic</span>
+                  <span>📲 Toca aquí para Instalar ahora</span>
                 </button>
-              </div>
-            ) : (
-              <div className="space-y-3 pt-2 text-xs">
-                {/* Android Guide */}
-                <div className="p-3 rounded-2xl bg-zinc-850 border border-zinc-750 space-y-1 text-left">
-                  <p className="font-bold text-teal-400 flex items-center gap-1.5">
-                    <span>📱 En Android (Chrome / Samsung)</span>
-                  </p>
-                  <p className="text-[11px] text-zinc-300 leading-relaxed">
-                    Toca los <strong>3 puntos (⋮)</strong> arriba a la derecha del navegador y selecciona <strong>"Instalar aplicación"</strong> o <strong>"Añadir a pantalla de inicio"</strong>.
-                  </p>
+              ) : (
+                <div className="space-y-1.5 text-[11px] text-zinc-400">
+                  <p>• <strong>Android:</strong> Toca los 3 puntos (⋮) de tu navegador &gt; <em>"Instalar aplicación"</em>.</p>
+                  <p>• <strong>iPhone:</strong> Toca Compartir (⎋) en Safari &gt; <em>"Añadir a pantalla de inicio"</em>.</p>
                 </div>
-
-                {/* iPhone Guide */}
-                <div className="p-3 rounded-2xl bg-zinc-850 border border-zinc-750 space-y-1 text-left">
-                  <p className="font-bold text-teal-400 flex items-center gap-1.5">
-                    <span>🍏 En iPhone (Safari)</span>
-                  </p>
-                  <p className="text-[11px] text-zinc-300 leading-relaxed">
-                    Toca el botón <strong>Compartir (⎋ cuadrado con flecha hacia arriba)</strong> en la barra inferior de Safari y elige <strong>"Añadir a la pantalla de inicio"</strong>.
-                  </p>
-                </div>
-              </div>
-            )}
+              )}
+            </div>
 
             <button
               onClick={() => setInstallModalOpen(false)}
